@@ -1,3 +1,5 @@
 export * from './login'
 export * from './splash'
 export * from './registration'
+export * from './getStarted'
+export * from './introduction'

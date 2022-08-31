@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     },
     gFlex: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center', 
     },
     forgotPassView: {
         alignItems: 'center',
@@ -63,13 +63,13 @@ export const styles = StyleSheet.create({
     },
     forgotPassText: {
         fontSize: 16,
-        fontFamily: "Roboto-SemiBold",
+        fontFamily: "Roboto-Bold",
         color: '#F5F5F5',
         lineHeight: 19
     },
     noAccount: {
         fontSize: 16,
-        fontFamily: "Roboto-SemiBold",
+        fontFamily: "Roboto-Bold",
         color: '#F5F5F5',
         lineHeight: 19
     },

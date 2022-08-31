@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from "react-native";
 let width = Dimensions.get("window").width;
 let height = Dimensions.get("window").height;
 
+ 
 export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
@@ -65,13 +66,13 @@ export const styles = StyleSheet.create({
     },
     forgotPassText: {
         fontSize: 16,
-        fontFamily: "Roboto-SemiBold",
+        fontFamily: "Roboto-Bold",
         color: '#F5F5F5',
         lineHeight: 19
     },
     noAccount: {
         fontSize: 16,
-        fontFamily: "Roboto-SemiBold",
+        fontFamily: "Roboto-Bold",
         color: '#F5F5F5',
         lineHeight: 19
     },

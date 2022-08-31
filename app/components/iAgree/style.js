@@ -9,28 +9,26 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: "center",
         justifyContent: "flex-start",
-        marginTop: 23
+        marginTop: 23, 
 
     },
     checkBoxConteiner: {
         flexDirection: 'row',
         alignItems: "center",
-    },
-   
+    }, 
     checkBoxText: {
         color: "#ffffff",
         fontSize: 12,
         lineHeight: 21,
-        fontFamily:"Montserrat-Regular",
+        fontFamily:"Roboto-Regular",
         marginLeft:2
     },
     terms: {
         color: "#4D94BD",
-        textDecorationLine: 'underline',
-        fontWeight:'900',
-        fontSize: 12,
-        lineHeight: 21,
-        fontFamily:'Montserrat-Bold'
+        textDecorationLine: 'underline', 
+        fontSize: 12, 
+        fontFamily:'Roboto-Bold',
+        marginLeft:2
     }
 });
 

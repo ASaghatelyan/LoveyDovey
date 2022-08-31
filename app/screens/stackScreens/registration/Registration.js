@@ -1,7 +1,8 @@
 import {
     View, Text, ScrollView,
     TouchableOpacity, StatusBar,
-    ImageBackground, Image
+    ImageBackground, Image,
+    Platform, SafeAreaView
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
@@ -23,8 +24,9 @@ export function Registration(props) {
     const [err, setErr] = useState('')
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
+    const STATUSBAR_HEIGHT = StatusBar.currentHeight;
     const MyStatusBar = ({ backgroundColor, ...props }) => (
-        <View style={[styles.statusBar, { backgroundColor }]}>
+        <View style={[{ height: STATUSBAR_HEIGHT, }, { backgroundColor }]}>
             <SafeAreaView>
                 <StatusBar translucent backgroundColor={props.backgroundColor} {...props} />
             </SafeAreaView>
@@ -81,8 +83,9 @@ export function Registration(props) {
 
     return (
         <ScrollView contentContainerStyle={styles.content}>
-            {StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
-            {StatusBar.setTranslucent(true)}
+           <StatusBar barStyle={'light-content'} showHideTransition={false} translucent/>
+            {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
+            {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
             <ImageBackground source={bg} style={styles.bgImage}>
                 <Image source={logo} style={styles.logo} />
                 <View style={styles.bottomView}>

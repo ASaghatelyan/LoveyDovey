@@ -21,8 +21,9 @@ export function Login(props) {
 
   return (
     <ScrollView contentContainerStyle={styles.content}> 
-      {StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
-      {StatusBar.setTranslucent(true)}
+  <StatusBar barStyle={'light-content'} showHideTransition={false}/>
+            {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
+            {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
       <ImageBackground source={bg} style={styles.bgImage}>
         <Image source={logo} style={styles.logo} />
         <Text style={styles.titleLogin}>Log in or sign up to continue</Text>
@@ -42,7 +43,7 @@ export function Login(props) {
               secure={showHidePass}
               handleShowPass={() => setShowHidePass(!showHidePass)}
             /> 
-            <GlobalButton btnName="Log in Now"/>
+            <GlobalButton btnName="Log in Now" onSubmit={()=>props.navigation.replace('Introduction')}/>
             {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
           </View>
           <View style={{ alignItems: 'center' }}>

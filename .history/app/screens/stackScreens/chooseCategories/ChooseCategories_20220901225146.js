@@ -47,9 +47,10 @@ export function ChooseCategories(props) {
   const chooseItem = (ind) => {
     let arr = chooseData
     arr[ind].status = !arr[ind].status
-    setChooseData([...arr])
+    setChooseData(arr)
   }
 
+  
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <StatusBar barStyle={'light-content'} showHideTransition={false} />
@@ -60,16 +61,12 @@ export function ChooseCategories(props) {
         <View style={styles.bottomView}>
           {chooseData.map((item, index) => {
             return <SubmitItem
-              key={index}
               check={item.status}
-              valueChanged={() => chooseItem(index)}
-              type={item.type}
+              valueChanged={(newValue) => chooseItem(index)}
             />
           })}
         </View>
-        <View style={styles.btnView}>
-          <GlobalButton btnName="Submit" />
-        </View>
+        <GlobalButton btnName="Submit" />
       </ImageBackground>
     </ScrollView>
 

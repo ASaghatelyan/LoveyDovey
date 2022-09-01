@@ -51,8 +51,7 @@ export const styles = StyleSheet.create({
         marginBottom: globalHeight(37),
     },
     btnView:{
-        width:'100%',
-        paddingHorizontal:globalHeight(17)
+        width:'100%'
     }
 });
 

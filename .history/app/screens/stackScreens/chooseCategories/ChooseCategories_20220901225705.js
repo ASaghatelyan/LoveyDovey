@@ -60,14 +60,13 @@ export function ChooseCategories(props) {
         <View style={styles.bottomView}>
           {chooseData.map((item, index) => {
             return <SubmitItem
-              key={index}
               check={item.status}
-              valueChanged={() => chooseItem(index)}
+              valueChanged={(newValue) => chooseItem(index)}
               type={item.type}
             />
           })}
         </View>
-        <View style={styles.btnView}>
+        <View style={styles.btn}>
           <GlobalButton btnName="Submit" />
         </View>
       </ImageBackground>

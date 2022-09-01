@@ -5,7 +5,7 @@ import CheckBox from '@react-native-community/checkbox'
 
 export function SubmitItem(props) {
     return (
-      <View style={styles.content}  > 
+      <View style={styles.content} key={props.}> 
             <CheckBox 
                 onCheckColor='red'
                 onFillColor='red'

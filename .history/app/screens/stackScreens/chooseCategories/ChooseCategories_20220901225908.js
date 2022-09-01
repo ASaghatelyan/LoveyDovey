@@ -60,9 +60,9 @@ export function ChooseCategories(props) {
         <View style={styles.bottomView}>
           {chooseData.map((item, index) => {
             return <SubmitItem
-              key={index}
+            
               check={item.status}
-              valueChanged={() => chooseItem(index)}
+              valueChanged={(newValue) => chooseItem(index)}
               type={item.type}
             />
           })}

@@ -50,9 +50,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: globalHeight(37),
     },
-    btnView:{
-        width:'100%',
-        paddingHorizontal:globalHeight(17)
-    }
+    btnView:{}
 });
 

@@ -18,8 +18,7 @@ export const styles = StyleSheet.create({
     content: {
         flexDirection: 'row',
         alignItems: "center",
-        justifyContent: 'center',
-        paddingVertical:globalHeight(10)
+        justifyContent: 'center'
     },
     checkBoxConteiner: {
         flexDirection: 'row',

@@ -13,7 +13,7 @@ import { GlobalButton } from 'app/components/globalButton';
 
 
 export function ChooseCategories(props) {
-  const [chooseData, setChooseData] = useState([
+  const [chooseData,setChooseData] = [
     {
       status: false,
       type: 'Presents'
@@ -42,14 +42,7 @@ export function ChooseCategories(props) {
       status: false,
       type: 'Peace'
     },
-  ])
-
-  const chooseItem = (ind) => {
-    let arr = chooseData
-    arr[ind].status = !arr[ind].status
-    setChooseData([...arr])
-  }
-
+  ]
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <StatusBar barStyle={'light-content'} showHideTransition={false} />
@@ -58,18 +51,9 @@ export function ChooseCategories(props) {
       <ImageBackground source={bg} style={styles.bgImage}>
         <Text style={styles.titleText}>What Categories do youwant to start with?</Text>
         <View style={styles.bottomView}>
-          {chooseData.map((item, index) => {
-            return <SubmitItem
-              key={index}
-              check={item.status}
-              valueChanged={() => chooseItem(index)}
-              type={item.type}
-            />
-          })}
+          <SubmitItem />
         </View>
-        <View style={styles.btnView}>
-          <GlobalButton btnName="Submit" />
-        </View>
+        <GlobalButton btnName="Submit" />
       </ImageBackground>
     </ScrollView>
 

@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     },
     btnView:{
         width:'100%',
-        paddingHorizontal:globalHeight(17)
+        paddingHorizontal:11
     }
 });
 

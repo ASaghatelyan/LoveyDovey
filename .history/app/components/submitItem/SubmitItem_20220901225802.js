@@ -5,7 +5,7 @@ import CheckBox from '@react-native-community/checkbox'
 
 export function SubmitItem(props) {
     return (
-      <View style={styles.content}  > 
+      <View style={styles.content} > 
             <CheckBox 
                 onCheckColor='red'
                 onFillColor='red'
@@ -14,7 +14,7 @@ export function SubmitItem(props) {
                 value={props.check}
                 onValueChange={props.valueChanged}
                 style={[{ margin: 0, padding: 0 }, Platform.OS === "ios" ?styles.checkBocStyle : null]}
-                boxType={'circle'} 
+                boxType='circle' 
                 onAnimationType='fill'
                 hideBox="false" 
             />

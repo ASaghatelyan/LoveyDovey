@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SubmitItem } from 'app/components'
 import bg from 'app/assets/img/submitBg.png'
 import { GlobalButton } from 'app/components/globalButton';
-
+import V
 
 
 export function ChooseCategories(props) {
@@ -58,14 +58,15 @@ export function ChooseCategories(props) {
       <ImageBackground source={bg} style={styles.bgImage}>
         <Text style={styles.titleText}>What Categories do youwant to start with?</Text>
         <View style={styles.bottomView}>
-          {chooseData.map((item, index) => {
+
+          {/* {chooseData.map((item, index) => {
             return <SubmitItem
               key={index}
               check={item.status}
-              valueChanged={() => chooseItem(index)}
+              valueChanged={( ) => chooseItem(index)}
               type={item.type}
             />
-          })}
+          })} */}
         </View>
         <View style={styles.btnView}>
           <GlobalButton btnName="Submit" />

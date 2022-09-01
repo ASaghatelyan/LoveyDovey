@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SubmitItem } from 'app/components'
 import bg from 'app/assets/img/submitBg.png'
 import { GlobalButton } from 'app/components/globalButton';
-
+import VideoPlayer from 'react-native-video-player';
 
 
 export function ChooseCategories(props) {
@@ -58,14 +58,22 @@ export function ChooseCategories(props) {
       <ImageBackground source={bg} style={styles.bgImage}>
         <Text style={styles.titleText}>What Categories do youwant to start with?</Text>
         <View style={styles.bottomView}>
-          {chooseData.map((item, index) => {
+          <VideoPlayer
+            resizeMode="none"
+            video={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+            videoWidth={1600}
+            videoHeight={900}
+            thumbnail={{ uri: 'https://i.picsum.photos/id/866/1600/900.jpg' }}
+            style={{ width: 64, height: 64 }}
+          />
+          {/* {chooseData.map((item, index) => {
             return <SubmitItem
               key={index}
               check={item.status}
-              valueChanged={() => chooseItem(index)}
+              valueChanged={( ) => chooseItem(index)}
               type={item.type}
             />
-          })}
+          })} */}
         </View>
         <View style={styles.btnView}>
           <GlobalButton btnName="Submit" />

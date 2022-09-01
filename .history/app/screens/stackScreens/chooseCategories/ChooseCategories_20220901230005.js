@@ -62,7 +62,7 @@ export function ChooseCategories(props) {
             return <SubmitItem
               key={index}
               check={item.status}
-              valueChanged={() => chooseItem(index)}
+              valueChanged={( ) => chooseItem(index)}
               type={item.type}
             />
           })}

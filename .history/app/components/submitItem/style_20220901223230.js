@@ -15,11 +15,9 @@ const globalHeight = (a) => {
 
 
 export const styles = StyleSheet.create({
-    content: {
-        flexDirection: 'row',
+    content: { 
         alignItems: "center",
-        justifyContent: 'center',
-        paddingVertical:globalHeight(10)
+        justifyContent: 'center'
     },
     checkBoxConteiner: {
         flexDirection: 'row',

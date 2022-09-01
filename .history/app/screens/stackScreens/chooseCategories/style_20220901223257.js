@@ -22,9 +22,9 @@ export const styles = StyleSheet.create({
     },
     bottomView: {
         width:'100%', 
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: globalWidth(17),
+        paddingHorizontal: globalWidth(41),
         backgroundColor:'rgba(71, 85, 112, 0.55)',
         paddingVertical:globalHeight(10)
     },
@@ -50,9 +50,5 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: globalHeight(37),
     },
-    btnView:{
-        width:'100%',
-        paddingHorizontal:globalHeight(17)
-    }
 });
 

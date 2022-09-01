@@ -3,9 +3,21 @@ import { StyleSheet, Dimensions } from "react-native";
 let width = Dimensions.get("window").width;
 let height = Dimensions.get("window").height;
 
+const widthFigma = 375
+const heightFigma = 812
+
+const globalWidth = (a) => {
+    return ((width * a) / widthFigma)
+}
+const globalHeight = (a) => {
+    return ((height * a) / heightFigma)
+}
+
+
 export const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
+        justifyContent:'space-between',
         height: '100%',
     },
     content: {
@@ -15,29 +27,30 @@ export const styles = StyleSheet.create({
     textContent: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 50,
-        marginBottom: 100
+        marginTop: globalHeight(50),
+        marginBottom: globalHeight(100)
     },
     proHeart: {
-        width: width / 4.62,
-        resizeMode: 'contain',
-        height: height / 12.68
+        width: globalWidth(82), 
+        height: globalHeight(64),
+        resizeMode:'contain',
+        marginBottom:globalHeight(25)
     },
     progress: {
-        width: width / 2.9,
+        width:globalWidth(129),
         resizeMode: 'contain',
-        height: height / 5.23
+        height: globalHeight(155)
 
     },
     title: {
         fontFamily: 'Roboto-Medium',
-        fontSize: 20,
+        fontSize: globalWidth(20),
         color: '#EB1829',
-        marginBottom: 25
+        marginBottom: globalHeight(25)
     },
     infoText: {
         fontFamily: 'Roboto-Regular',
-        fontSize: 20,
+        fontSize: globalWidth(12),
         color: '#3A3434', textAlign: 'center'
     },
 });

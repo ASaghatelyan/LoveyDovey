@@ -23,23 +23,23 @@ export function Login(props) {
 
   let getIntro = async () => {
     let data = await AsyncStorage.getItem('intro', (err, value) => {
-        if (err) {
-            console.log(err)
-        } else {
-        }
+      if (err) {
+        console.log(err)
+      } else {
+      }
     })
     return JSON.parse(data)
-}
+  }
 
-const onLogin = async()=>{
-  let intro = await getIntro()
-intro == null ? props.navigation.replace('Introduction') : null
-}
+  const onLogin = async () => {
+    let intro = await getIntro()
+    intro == null ? props.navigation.replace('Introduction') : props.navigation.replace('ChooseCategories')
+  }
   return (
-    <ScrollView contentContainerStyle={styles.content}> 
-  <StatusBar barStyle={'light-content'} showHideTransition={false}/>
-            {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
-            {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
+    <ScrollView contentContainerStyle={styles.content}>
+      <StatusBar barStyle={'light-content'} showHideTransition={false} />
+      {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
+      {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
       <ImageBackground source={bg} style={styles.bgImage}>
         <Image source={logo} style={styles.logo} />
         <Text style={styles.titleLogin}>Log in or sign up to continue</Text>
@@ -58,14 +58,14 @@ intro == null ? props.navigation.replace('Introduction') : null
               inputBtnView={styles.lockView}
               secure={showHidePass}
               handleShowPass={() => setShowHidePass(!showHidePass)}
-            /> 
-            <GlobalButton btnName="Log in Now" onSubmit={onLogin}/>
+            />
+            <GlobalButton btnName="Log in Now" onSubmit={onLogin} />
             {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
           </View>
           <View style={{ alignItems: 'center' }}>
             <View style={styles.gFlex}>
               <Text style={styles.noAccount}>Don’t have account?</Text>
-              <TouchableOpacity onPress={()=>props.navigation.navigate('Registration')}>
+              <TouchableOpacity onPress={() => props.navigation.navigate('Registration')}>
                 <Text style={styles.regText}> create a new account</Text>
               </TouchableOpacity>
             </View>

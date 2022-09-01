@@ -12,8 +12,8 @@ export function IntroTwo(props) {
                 <Image source={Heart} style={styles.heart} />
             </View>
             <View style={styles.textContent}>
-                <Text style={styles.title}>Introduction</Text>
-                <Text style={styles.infoText}>LoveyDovey is designed to help two people in lovecommunicate and engage at deeper levels about what they truly want and need in the relationship.</Text>
+                <Text style={styles.title}>Invite your Partner</Text>
+                <Text style={styles.infoText}>Invite your partner to join the mobile application by simply tapping on the “+” icon, copy the link and share the link withyour partner to join the application.</Text>
             </View>
         </View>
     )

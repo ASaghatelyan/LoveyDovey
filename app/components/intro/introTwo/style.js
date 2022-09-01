@@ -3,6 +3,16 @@ import { StyleSheet, Dimensions } from "react-native";
 let width = Dimensions.get("window").width;
 let height = Dimensions.get("window").height;
 
+const widthFigma = 375
+const heightFigma = 812
+
+const globalWidth = (a) => {
+    return ((width * a) / widthFigma)
+}
+const globalHeight = (a) => {
+    return ((height * a) / heightFigma)
+}
+
 export const styles = StyleSheet.create({
     container:{
         alignItems:'center',
@@ -17,28 +27,28 @@ export const styles = StyleSheet.create({
     textContent:{ 
         alignItems:'center',
         justifyContent:'center', 
-        marginTop:50,
-        marginBottom:100
+        marginTop:globalHeight(50),
+        marginBottom:globalHeight(100)
     },
     heart:{
-        width:width/2.37, 
+        width:globalWidth(140), 
         resizeMode:'contain',
-        height:125
+        height:globalHeight(135), 
     },
     lines:{
-        width:width/3.47, 
+        width: globalWidth(105), 
         resizeMode:'contain',
-        height:80
+        height:globalHeight(80), 
     },
     title: {
         fontFamily: 'Roboto-Medium',
-        fontSize: 20,
+        fontSize: globalWidth(20),
         color: '#EB1829',
-        marginBottom: 25
+        marginBottom: globalHeight(25)
     },
     infoText: {
         fontFamily: 'Roboto-Regular',
-        fontSize: 20,
+        fontSize: globalWidth(12),
         color: '#3A3434', textAlign: 'center'
     },
 });

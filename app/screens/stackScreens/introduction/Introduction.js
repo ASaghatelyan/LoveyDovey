@@ -40,7 +40,7 @@ export function Introduction(props) {
 
     let handleAsync =   () => {
           AsyncStorage.setItem('intro', JSON.stringify(true))
-        return props.navigation.replace('Registration')
+        return props.navigation.replace('ChooseCategories')
     }
 
     const navi = () => {
@@ -62,15 +62,16 @@ export function Introduction(props) {
             <StatusBar barStyle={'dark-content'} showHideTransition={false} translucent />
             {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
             {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
-            <TouchableOpacity style={styles.skipView}>
+            <TouchableOpacity style={styles.skipView} onPress={handleAsync}>
                 <Text style={styles.skipText}>Skip</Text>
             </TouchableOpacity>
-            <View style={{ marginTop: 200, paddingHorizontal: 25, flex: 1, justifyContent: 'flex-end' }}>
+            <View style={styles.infoView}>
                 {navi()}
             </View>
             <View style={styles.bottomView}>
                 <TouchableOpacity onPress={decriment}   >
-                    <Image source={left} style={styles.icon} />
+                   { count>1 ? <Image source={left} style={styles.icon} />:
+                    <Text style={styles.icon}></Text>}
                 </TouchableOpacity>
                 <View style={{ flexDirection: 'row' }}>
 

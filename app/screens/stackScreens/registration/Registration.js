@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
-import bg from '../../../assets/img/bg.png'
+import bg from '../../../assets/img/signUp.png'
 import logo from 'app/assets/img/logo.png'
 import mail from 'app/assets/img/mail.png'
 import lock from 'app/assets/img/lock.png'

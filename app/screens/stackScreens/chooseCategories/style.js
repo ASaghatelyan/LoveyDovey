@@ -18,7 +18,8 @@ const globalHeight = (a) => {
 export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
-        position: 'relative',
+        position: 'relative', 
+        height:'100%'
     },
     bottomView: {
         width:'100%', 

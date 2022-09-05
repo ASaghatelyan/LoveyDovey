@@ -20,6 +20,12 @@ export const styles = StyleSheet.create({
         flexGrow: 1,
         paddingBottom:globalHeight(100), 
     },
+    bgImage: {
+        height: '100%',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        marginBottom: 37,
+    },
     skipView: {
         position: 'absolute',
         right: globalHeight(16),
@@ -53,7 +59,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: globalWidth(25),
         flex: 1,
         justifyContent: 'flex-end',
-        marginTop:globalHeight(190)
+        // marginTop:globalHeight(190)
     }
 });
 

@@ -28,9 +28,9 @@ export function Splash(props) {
     }, [])
 
     const navi = async () => {
-        let getStarted = await getData()
+    
         let timer = setTimeout(() => {
-            getStarted === null ? props.navigation.navigate('GetStarted') :
+            
                 props.navigation.navigate('Login')
         }, 2000);
         return () => {

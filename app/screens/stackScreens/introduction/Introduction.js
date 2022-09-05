@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, Image, StatusBar } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Image, StatusBar, ImageBackground } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './style'
 import { IntroFour, IntroOne, IntroThree, IntroTwo } from 'app/components'
@@ -8,6 +8,8 @@ import left from 'app/assets/img/left.png'
 import right from 'app/assets/img/right.png'
 import cycle from 'app/assets/img/cycle.png'
 import cycleC from 'app/assets/img/colorCycle.png'
+import bg from 'app/assets/img/introBg.png'
+import bgW from 'app/assets/img/introWbg.png'
 
 export function Introduction(props) {
     const [count, setCount] = useState(1);
@@ -38,8 +40,8 @@ export function Introduction(props) {
         count > 1 && setCount(prev => prev - 1)
     }
 
-    let handleAsync =   () => {
-          AsyncStorage.setItem('intro', JSON.stringify(true))
+    let handleAsync = () => {
+        AsyncStorage.setItem('intro', JSON.stringify(true))
         return props.navigation.replace('ChooseCategories')
     }
 
@@ -58,10 +60,12 @@ export function Introduction(props) {
         }
     }
     return (
+            <ImageBackground source={count === 1 ? bg : bgW} style={styles.bgImage}>
         <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
             <StatusBar barStyle={'dark-content'} showHideTransition={false} translucent />
             {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
             {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
+           
             <TouchableOpacity style={styles.skipView} onPress={handleAsync}>
                 <Text style={styles.skipText}>Skip</Text>
             </TouchableOpacity>
@@ -70,8 +74,8 @@ export function Introduction(props) {
             </View>
             <View style={styles.bottomView}>
                 <TouchableOpacity onPress={decriment}   >
-                   { count>1 ? <Image source={left} style={styles.icon} />:
-                    <Text style={styles.icon}></Text>}
+                    {count > 1 ? <Image source={left} style={styles.icon} /> :
+                        <Text style={styles.icon}></Text>}
                 </TouchableOpacity>
                 <View style={{ flexDirection: 'row' }}>
 
@@ -85,6 +89,8 @@ export function Introduction(props) {
                     <Image source={right} style={styles.icon} />
                 </TouchableOpacity>
             </View>
+
         </ScrollView>
+            </ImageBackground>
     )
 }

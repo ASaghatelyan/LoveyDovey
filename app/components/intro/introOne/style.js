@@ -14,21 +14,33 @@ const globalHeight = (a) => {
 
 
 export const styles = StyleSheet.create({
-    content: {
-        alignItems: 'center',
-        justifyContent: 'center',
+    content: { 
+        alignItems: 'center', 
         marginTop:globalHeight(50),
-        marginBottom:globalHeight(100)
+        marginBottom:globalHeight(100),
     },
+    img:{
+        width:globalWidth(264),
+        height:globalHeight(528)
+    },
+    textContent:{ 
+        alignItems:'center',
+        justifyContent:'center',  
+    }, 
     title: {
         fontFamily: 'Roboto-Medium',
         fontSize: globalWidth(20),
         color: '#EB1829',
-        marginBottom: globalHeight(25)
+        marginBottom: globalHeight(25),
     },
     infoText: {
         fontFamily: 'Roboto-Regular',
         fontSize : globalWidth(12),
         color: '#3A3434', textAlign: 'center'
     },
+    video:{
+        width:globalWidth(252),
+        height:globalHeight(228),
+        borderRadius:8
+    }
 });

@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
         alignItems:'center', 
         justifyContent:'space-between',
         height:'100%',  
+        paddingTop:globalHeight(190)
     },
     content:{
         flexDirection:'row',

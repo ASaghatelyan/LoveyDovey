@@ -7,6 +7,13 @@ export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
         position: 'relative',
+        height: '100%',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        marginBottom: 37,
+    },
+    mainContainer:{
+         
     },
     bgImage: {
         height: '100%',

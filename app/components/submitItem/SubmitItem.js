@@ -7,7 +7,7 @@ export function SubmitItem(props) {
     return (
       <View style={styles.content}  > 
             <CheckBox 
-                onCheckColor='red'
+                onCheckColor='grey'
                 onFillColor='red'
                 onTintColor='red'
                 tintColors={{ true: 'red', false: 'red' }}

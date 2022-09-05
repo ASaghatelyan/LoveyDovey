@@ -7,7 +7,7 @@ import {
   Login,
   Splash,
   Registration,
-  GetStarted,
+  // GetStarted,
   Introduction,
   ChooseCategories
 } from "app/screens";
@@ -19,7 +19,7 @@ export default function StackNavigation() {
       }}
     >
       <Stack.Screen name="Splash" component={Splash} />
-      <Stack.Screen name="GetStarted" component={GetStarted} />
+      {/* <Stack.Screen name="GetStarted" component={GetStarted} /> */}
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Registration" component={Registration} />
       <Stack.Screen name="Introduction" component={Introduction} />

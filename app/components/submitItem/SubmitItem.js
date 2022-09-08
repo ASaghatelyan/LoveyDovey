@@ -18,7 +18,7 @@ export function SubmitItem(props) {
                 onAnimationType='fill'
                 hideBox="false" 
             />
-        <Text style={styles.checkBoxText}>{props.type}</Text>
+        <Text style={[styles.checkBoxText,props.color]}>{props.type}</Text>
       </View>
 
     )

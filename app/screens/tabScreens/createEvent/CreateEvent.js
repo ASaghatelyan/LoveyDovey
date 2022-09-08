@@ -24,7 +24,7 @@ export function CreateEvent(props) {
                 />
                 <ScrollView contentContainerStyle={styles.content}  > 
                     <View >
-                        <CalendarLovey /> 
+                        <CalendarLovey onNavi={(day)=>props.navigation.navigate('AddEvent',{day})}/> 
                     </View>
                 </ScrollView>
             </SafeAreaView>

@@ -14,7 +14,8 @@ import TabCalendar from 'app/assets/img/tabCalendar.png'
 import AddEvent from 'app/assets/img/addEvent.png'
 import Share from 'app/assets/img/share.png'
 import Settings from 'app/assets/img/settings.png'
-
+import CreateEventNavigation from "./CreateEventNavigation";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 const Tab = createBottomTabNavigator();
 let width = Dimensions.get("window").width;
 
@@ -52,7 +53,7 @@ export default function TabNavigation(props) {
             if (route.name === "BlogScreens") {
               imageSource = Note;
             }
-            if (route.name === "CreateEvent") {
+            if (route.name === "CreateEventNavigation") {
               imageSource = TabCalendar;
             }
             if (route.name === "ShareScreen") {
@@ -61,13 +62,13 @@ export default function TabNavigation(props) {
             if (route.name === "SettingsScreen") {
               imageSource = Settings;
             }
-            if (route.name === "CreateEvent") {
+            if (route.name === "CreateEventNavigation") {
               return (focused ? <Image
                 style={{
                   height: 68,
                   width: 68,
                   resizeMode: "contain",
-                  marginBottom:50
+                  marginBottom: 50
                 }}
                 source={AddEvent}
               /> : <Image
@@ -75,7 +76,7 @@ export default function TabNavigation(props) {
                   height: 68,
                   width: 68,
                   resizeMode: "contain",
-                  marginBottom:50
+                  marginBottom: 50
                 }}
                 source={imageSource}
               />)
@@ -157,10 +158,27 @@ export default function TabNavigation(props) {
             title: ''
           }}
         />
-        <Tab.Screen name="CreateEvent" component={CreateEvent}
-          options={{
-            title: ''
-          }}
+        <Tab.Screen name="CreateEventNavigation" component={CreateEventNavigation}
+          options={({ route }) => ({
+            title: '',
+            tabBarVisible:
+              ((route) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+                if (routeName === "AddEvent") { return false }
+                return true
+              })(route),
+            tabBarButton:
+              ((route) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+                if (routeName === "AddEvent") { () => null }
+
+              })(route),
+            tabBarStyle: ((route) => {
+              const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+              if (routeName === "AddEvent") { return { display: 'none' } }
+              return styles.generalStyle
+            })(route),
+          })}
         />
         <Tab.Screen name="ShareScreen" component={ShareScreen}
           options={{
@@ -238,24 +256,14 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   generalStyle: {
-    backgroundColor: "#343F46",
-    borderRadius: 50,
-    marginBottom: 40,
-    marginTop: 5,
-    height: 68,
-    paddingHorizontal: 12,
-    paddingTop: 30,
-    marginHorizontal: 10,
+    backgroundColor: "#FFF",
+    borderWidth: 1,
+    borderTopEndRadius: 30,
+    borderTopLeftRadius: 30,
+    borderColor: '#C4C0BF',
+    marginTop: 5, paddingTop: 25,
+    height: 57,
     position: "absolute",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-    borderTopColor: '#343F46',
   }
 
 });

@@ -13,7 +13,7 @@ import { GlobalButton } from 'app/components/globalButton'
 export function AddEvent(props) {
     console.log(props.route.params.day);
     const [modalVisible, setMOdalVisible] = useState(false)
-    const [category,setCategory]=useState('')
+    c
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -28,14 +28,13 @@ export function AddEvent(props) {
                     <View>
                         <Text style={styles.titleText}>Create Need /Want</Text>
                         <TabGlobalButton name="Select Category"
-                        data={category}
                             onPush={() => setMOdalVisible(!modalVisible)}
                         />
                         <TextInput
                             placeholder='Description'
                             placeholderTextColor={'#979797'}
                             style={styles.description} />
-                        <TabGlobalButton name="Frequency"  />
+                        <TabGlobalButton name="Frequency" item={''} />
                         <TabGlobalButton name="Start Date" />
                         <TabGlobalButton name="End Date" />
                         <GlobalButton btnName="Submit" />
@@ -43,8 +42,7 @@ export function AddEvent(props) {
                 </ScrollView>
                 <SelectCategori
                     isVisible={modalVisible}
-                    onClose={(info) => {
-                        setCategory(info)
+                    onClose={() => {
                         setMOdalVisible(!modalVisible)}}
                 />
             </SafeAreaView>

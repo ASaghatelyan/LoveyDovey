@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions,Pl } from "react-native";
 
 let width = Dimensions.get("window").width;
 let height = Dimensions.get("window").height;
@@ -16,11 +16,14 @@ const globalHeight = (a) => {
 
 
 export const styles = StyleSheet.create({
+    mainContainer:{
+     
+    },
     content: {
         flexGrow: 1,
         position: 'relative', 
         height:'100%', 
-        paddingTop:Platform.OS === 'android' ? globalHeight(46) :null
+        paddingTop:30
     },
     bottomView: {
         width:'100%', 

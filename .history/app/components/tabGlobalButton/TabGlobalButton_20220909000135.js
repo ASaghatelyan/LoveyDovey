@@ -9,7 +9,7 @@ export function TabGlobalButton(props) {
         <TouchableOpacity style={styles.globalView} onPress={props.onPush} >
             <Text>{props.name}</Text>
             <View style={styles.gFlex}>
-                <Text>{props?.data}</Text>
+                <Text>{props.data}</Text>
                 <Image source={Right} style={styles.rightIc}/>
             </View>
         </TouchableOpacity>

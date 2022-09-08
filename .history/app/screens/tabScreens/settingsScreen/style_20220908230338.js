@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
         flexGrow: 1,
         position: 'relative', 
         height:'100%', 
-        paddingTop:Platform.OS === 'android' ? globalHeight(46) :null
+        paddingTop:Platform.OS === 'android' ? 30 :null
     },
     bottomView: {
         width:'100%', 

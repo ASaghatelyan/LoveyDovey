@@ -14,7 +14,6 @@ import he from 'app/assets/img/he.png'
 import mers from 'app/assets/img/mers.png'
 
 export function SelectCategori(props) {
-    const [data,setData]=useState('s')
     const [chooseData, setChooseData] = useState([
         {
             status: false,
@@ -52,12 +51,13 @@ export function SelectCategori(props) {
             img:mers
         },
     ])
-  
+ 
     const chooseItem = (ind) => {
         let arr = chooseData
         // arr[ind].status = !arr[ind].status
         arr.filter((item, index) => {
-            if (ind === index) {   
+            if (ind === index) { 
+                console.log(arr[ind].type);
                 arr[ind].status = !arr[ind].status
              }
             else (arr[index].status = false)
@@ -72,7 +72,7 @@ export function SelectCategori(props) {
 
             <View style={styles.titleView}>
                 <Text style={styles.whosIn}>Choose Category</Text>
-                <TouchableOpacity onPress={()=>props.onClose(data)}>
+                <TouchableOpacity onPress={props.onClose}>
                     <Image source={close} style={styles.closeIc} />
                 </TouchableOpacity>
             </View>
@@ -82,9 +82,7 @@ export function SelectCategori(props) {
                         <SubmitItem
                             color={{ color: '#403D3D', fontSize: 16 }} 
                             check={item.status}
-                            valueChanged={() => {
-                                setData(chooseData[index].type);
-                                chooseItem(index)}}
+                            valueChanged={() => chooseItem(index)}
                             type={item.type}
                         />
                         <Image source={item.img} style={styles.imgIc}/>

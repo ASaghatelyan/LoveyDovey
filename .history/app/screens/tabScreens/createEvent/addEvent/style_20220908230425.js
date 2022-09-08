@@ -14,30 +14,29 @@ const globalHeight = (a) => {
     return ((height * a) / heightFigma)
 }
 
-
 export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
-        position: 'relative', 
-        height:'100%', 
-        paddingTop:Platform.OS === 'android' ? globalHeight(46) :null
+        position: 'relative',
+        height: '100%',
+        paddingHorizontal: globalWidth(16),
+        paddingTop:Platform.OS === 'android' ? globalHeight(33) :null
     },
     bottomView: {
-        width:'100%', 
+        width: '100%',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        paddingHorizontal: globalWidth(17), 
-        paddingVertical:globalHeight(10), 
+        paddingHorizontal: globalWidth(17),
+        paddingVertical: globalHeight(10),
     },
     titleText: {
-        fontSize: globalWidth(24),
+        fontSize: globalWidth(20),
         fontFamily: "Roboto-Medium",
-        color: '#000',
-        marginTop: globalHeight(157),
+        color: '#210B04',
         lineHeight: globalHeight(28),
         textAlign: 'center',
         marginHorizontal: globalHeight(59),
-        marginBottom:globalWidth(38)
+        marginBottom: globalWidth(36)
     },
     infoView: {
         paddingHorizontal: globalWidth(17),
@@ -51,6 +50,13 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: globalHeight(37),
     },
-  
+    description: {
+        borderBottomColor: '#979797',
+        borderBottomWidth:1,
+        paddingHorizontal:16,
+        paddingVertical:12,
+        marginBottom:16
+    },
+
 });
 

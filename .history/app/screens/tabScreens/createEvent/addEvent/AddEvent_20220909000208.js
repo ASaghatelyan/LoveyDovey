@@ -28,7 +28,6 @@ export function AddEvent(props) {
                     <View>
                         <Text style={styles.titleText}>Create Need /Want</Text>
                         <TabGlobalButton name="Select Category"
-                        data={category}
                             onPush={() => setMOdalVisible(!modalVisible)}
                         />
                         <TextInput

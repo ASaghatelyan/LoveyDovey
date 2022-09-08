@@ -28,14 +28,13 @@ export function AddEvent(props) {
                     <View>
                         <Text style={styles.titleText}>Create Need /Want</Text>
                         <TabGlobalButton name="Select Category"
-                        data={category}
                             onPush={() => setMOdalVisible(!modalVisible)}
                         />
                         <TextInput
                             placeholder='Description'
                             placeholderTextColor={'#979797'}
                             style={styles.description} />
-                        <TabGlobalButton name="Frequency"  />
+                        <TabGlobalButton name="Frequency" item={category} />
                         <TabGlobalButton name="Start Date" />
                         <TabGlobalButton name="End Date" />
                         <GlobalButton btnName="Submit" />
@@ -44,7 +43,7 @@ export function AddEvent(props) {
                 <SelectCategori
                     isVisible={modalVisible}
                     onClose={(info) => {
-                        setCategory(info)
+                        setCategory(a)
                         setMOdalVisible(!modalVisible)}}
                 />
             </SafeAreaView>

@@ -66,13 +66,13 @@ export function SelectCategori(props) {
     }
     return (
         <Modal
-            isVisible={props.isVisible}
+            isVisible={()props.isVisible}
             style={styles.content}
         >
 
             <View style={styles.titleView}>
                 <Text style={styles.whosIn}>Choose Category</Text>
-                <TouchableOpacity onPress={()=>props.onClose(data)}>
+                <TouchableOpacity onPress={props.onClose}>
                     <Image source={close} style={styles.closeIc} />
                 </TouchableOpacity>
             </View>

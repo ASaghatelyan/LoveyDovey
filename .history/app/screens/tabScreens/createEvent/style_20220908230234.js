@@ -16,11 +16,14 @@ const globalHeight = (a) => {
 
 
 export const styles = StyleSheet.create({
+    mainContainer:{
+     
+    },
     content: {
         flexGrow: 1,
         position: 'relative', 
         height:'100%', 
-        paddingTop:Platform.OS === 'android' ? globalHeight(46) :null
+        paddingTop:30
     },
     bottomView: {
         width:'100%', 

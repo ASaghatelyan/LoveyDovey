@@ -4,12 +4,12 @@ import Right from 'app/assets/img/rightC.png'
 import { styles } from './style'
 
 export function TabGlobalButton(props) {
-    console.log(props);
+    console.log(props.daat);
     return (
         <TouchableOpacity style={styles.globalView} onPress={props.onPush} >
             <Text>{props.name}</Text>
             <View style={styles.gFlex}>
-                <Text>{props?.data}</Text>
+                <Text>{props.data}</Text>
                 <Image source={Right} style={styles.rightIc}/>
             </View>
         </TouchableOpacity>

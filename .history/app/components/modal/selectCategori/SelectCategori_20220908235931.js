@@ -52,7 +52,7 @@ export function SelectCategori(props) {
             img:mers
         },
     ])
-  
+ console.log(data);
     const chooseItem = (ind) => {
         let arr = chooseData
         // arr[ind].status = !arr[ind].status
@@ -72,7 +72,7 @@ export function SelectCategori(props) {
 
             <View style={styles.titleView}>
                 <Text style={styles.whosIn}>Choose Category</Text>
-                <TouchableOpacity onPress={()=>props.onClose(data)}>
+                <TouchableOpacity onPress={props.onClose}>
                     <Image source={close} style={styles.closeIc} />
                 </TouchableOpacity>
             </View>

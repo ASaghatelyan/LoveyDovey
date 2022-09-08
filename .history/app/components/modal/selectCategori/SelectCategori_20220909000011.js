@@ -72,7 +72,7 @@ export function SelectCategori(props) {
 
             <View style={styles.titleView}>
                 <Text style={styles.whosIn}>Choose Category</Text>
-                <TouchableOpacity onPress={()=>props.onClose(data)}>
+                <TouchableOpacity onPress={(data)=>props.onClose()}>
                     <Image source={close} style={styles.closeIc} />
                 </TouchableOpacity>
             </View>

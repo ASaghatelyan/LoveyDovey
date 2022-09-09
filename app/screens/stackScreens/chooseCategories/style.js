@@ -54,6 +54,18 @@ export const styles = StyleSheet.create({
     btnView:{
         width:'100%',
         paddingHorizontal:globalHeight(17)
-    }
+    },
+    hintView:{
+        alignItems:'center',
+        justifyContent:'center',
+        marginBottom:48
+    },
+    hint:{
+        fontSize: globalWidth(14),
+        fontFamily: "Roboto-Medium",
+        color: '#EB1829', 
+        lineHeight: globalHeight(28),
+    
+    },
 });
 

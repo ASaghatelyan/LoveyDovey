@@ -14,7 +14,7 @@ import he from 'app/assets/img/he.png'
 import mers from 'app/assets/img/mers.png'
 
 export function SelectCategori(props) {
-    const [data,setData]=useState('s')
+    const [data,setData]=useState('')
     const [chooseData, setChooseData] = useState([
         {
             status: false,

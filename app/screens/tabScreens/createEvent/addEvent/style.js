@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
         position: 'relative',
         height: '100%',
         paddingHorizontal: globalWidth(16),
-        paddingTop:Platform.OS === 'android' ? globalHeight(46) :null
+        paddingTop: Platform.OS === 'android' ? globalHeight(46) : null
     },
     bottomView: {
         width: '100%',
@@ -52,10 +52,10 @@ export const styles = StyleSheet.create({
     },
     description: {
         borderBottomColor: '#979797',
-        borderBottomWidth:1,
-        paddingHorizontal:16,
-        paddingVertical:12,
-        marginBottom:16
+        backgroundColor: '#FFF',
+        fontSize: 14,
+        marginBottom: 16
+
     },
 
 });

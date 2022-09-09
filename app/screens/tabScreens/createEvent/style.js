@@ -35,12 +35,36 @@ export const styles = StyleSheet.create({
     titleText: {
         fontSize: globalWidth(24),
         fontFamily: "Roboto-Medium",
-        color: '#000',
-        marginTop: globalHeight(157),
+        color: '#403D3D',
         lineHeight: globalHeight(28),
-        textAlign: 'center',
-        marginHorizontal: globalHeight(59),
-        marginBottom:globalWidth(38)
+        textAlign: 'left',
+    },
+    titleView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: globalWidth(33),
+        justifyContent: 'space-between',
+        marginHorizontal: globalHeight(24),
+    },
+    gFlex: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    img: {
+        width: globalWidth(19),
+        height: globalHeight(19), 
+        marginLeft: 12
+    },
+    img2: {
+        width: globalWidth(18),
+        height: globalHeight(18),
+        // resizeMode: 'contain',
+        marginLeft: 12
+    },
+    img3: {
+        width: globalWidth(18),
+        height: globalHeight(19), 
+        marginLeft: 12
     },
     infoView: {
         paddingHorizontal: globalWidth(17),

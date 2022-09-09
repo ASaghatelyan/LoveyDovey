@@ -18,26 +18,51 @@ const globalHeight = (a) => {
 export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
-        position: 'relative', 
-        height:'100%', 
-        paddingTop:Platform.OS === 'android' ? globalHeight(46) :null
+        position: 'relative',
+        height: '100%',
+        paddingTop: Platform.OS === 'android' ? globalHeight(46) : null
     },
     bottomView: {
-        width:'100%', 
+        width: '100%',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        paddingHorizontal: globalWidth(17), 
-        paddingVertical:globalHeight(10), 
+        paddingHorizontal: globalWidth(17),
+        paddingVertical: globalHeight(10),
     },
     titleText: {
         fontSize: globalWidth(24),
         fontFamily: "Roboto-Medium",
-        color: '#000',
-        marginTop: globalHeight(157),
+        color: '#403D3D',
         lineHeight: globalHeight(28),
-        textAlign: 'center',
-        marginHorizontal: globalHeight(59),
-        marginBottom:globalWidth(38)
+        textAlign: 'left',
+    },
+    titleView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: globalWidth(33),
+        justifyContent: 'space-between',
+        marginHorizontal: globalHeight(24),
+    },
+    gFlex: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    img: {
+        width: globalWidth(16),
+        height: globalHeight(16),
+        resizeMode: 'contain',
+        marginLeft: 12
+    },
+    img2: {
+        width: globalWidth(22),
+        height: globalHeight(16),
+        // resizeMode: 'contain',
+        marginLeft: 12
+    },
+    img3: {
+        width: globalWidth(16),
+        height: globalHeight(19), 
+        marginLeft: 12
     },
     infoView: {
         paddingHorizontal: globalWidth(17),
@@ -51,6 +76,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: globalHeight(37),
     },
-  
+
 });
 

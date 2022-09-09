@@ -18,26 +18,48 @@ const globalHeight = (a) => {
 export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
-        position: 'relative', 
-        height:'100%', 
-        paddingTop:Platform.OS === 'android' ? globalHeight(46) :null
+        position: 'relative',
+        height: '100%',
+        paddingTop: Platform.OS === 'android' ? globalHeight(46) : null
+    },
+    itemView: {
+        backgroundColor: '#FFF',
+        paddingVertical: globalHeight(6),
+        paddingLeft: globalWidth(6),
+        borderRadius: 4,
+        marginBottom: globalHeight(16),
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65, 
+        elevation: 7,
     },
     bottomView: {
-        width:'100%', 
+        width: '100%',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        paddingHorizontal: globalWidth(17), 
-        paddingVertical:globalHeight(10), 
+        paddingHorizontal: globalWidth(17),
+        paddingVertical: globalHeight(10),
     },
     titleText: {
         fontSize: globalWidth(24),
         fontFamily: "Roboto-Medium",
-        color: '#000',
-        marginTop: globalHeight(157),
+        color: '#403D3D',
         lineHeight: globalHeight(28),
-        textAlign: 'center',
-        marginHorizontal: globalHeight(59),
-        marginBottom:globalWidth(38)
+        textAlign: 'left',
+        marginHorizontal: globalHeight(24),
+        marginBottom: globalWidth(33)
+    },
+    text: {
+        fontSize: globalWidth(12),
+        fontFamily: "Roboto-Regular",
+        color: '#403D3D',
+        lineHeight: globalHeight(14),
+        width: globalWidth(213),
+        marginLeft: 16
     },
     infoView: {
         paddingHorizontal: globalWidth(17),
@@ -51,6 +73,19 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: globalHeight(37),
     },
-  
+    imgView: {
+        flexDirection: 'row',
+    },
+    img: {
+        width: globalWidth(82),
+        height: globalHeight(96),
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    playBtn: {
+        width: globalWidth(22),
+        height: globalHeight(22),
+
+    },
 });
 

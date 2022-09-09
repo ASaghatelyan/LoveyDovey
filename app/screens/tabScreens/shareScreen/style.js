@@ -32,12 +32,11 @@ export const styles = StyleSheet.create({
     titleText: {
         fontSize: globalWidth(24),
         fontFamily: "Roboto-Medium",
-        color: '#000',
-        marginTop: globalHeight(157),
+        color: '#403D3D',
         lineHeight: globalHeight(28),
-        textAlign: 'center',
-        marginHorizontal: globalHeight(59),
-        marginBottom:globalWidth(38)
+        textAlign: 'left',
+        marginHorizontal: globalHeight(24),
+        marginBottom: globalWidth(33)
     },
     infoView: {
         paddingHorizontal: globalWidth(17),

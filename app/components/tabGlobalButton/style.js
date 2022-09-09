@@ -36,7 +36,17 @@ export const styles = StyleSheet.create({
         shadowRadius: 2.65,
         backgroundColor: '#FFF',
         elevation: 7,
-        marginBottom:16
+        marginBottom: 16
+    },
+    topView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    img: {
+        width: globalWidth(15),
+        height: globalHeight(15),
+        resizeMode: 'contain',
+        marginRight: 10
     },
     gFlex: {
         flexDirection: 'row',
@@ -54,6 +64,20 @@ export const styles = StyleSheet.create({
         fontFamily: "Roboto-Medium",
         color: '#000',
         lineHeight: globalHeight(28),
+        textAlign: 'center',
+    },
+    nameText: {
+        fontSize: globalWidth(14),
+        fontFamily: "Roboto-Regular",
+        color: '#000',
+        lineHeight: globalHeight(19),
+        textAlign: 'center',
+    },
+    chooseItem: {
+        fontSize: globalWidth(16),
+        fontFamily: "Roboto-Bold",
+        color: '#000',
+        lineHeight: globalHeight(19),
         textAlign: 'center',
     },
     rightIc: {

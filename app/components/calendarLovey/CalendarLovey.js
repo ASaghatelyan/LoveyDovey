@@ -45,6 +45,7 @@ export function CalendarLovey(props) {
                         },
                     },
                 }}
+                style={{borderRadius:10}}
             />
         </View>
     )

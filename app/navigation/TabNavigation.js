@@ -27,8 +27,7 @@ export default function TabNavigation(props) {
 
   return (
     <>
-      <Tab.Navigator
-
+      <Tab.Navigator 
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarActiveTintColor: "#000",

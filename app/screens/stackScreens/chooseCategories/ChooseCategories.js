@@ -2,7 +2,7 @@ import {
   View, Text, ScrollView,
   TouchableOpacity, StatusBar,
   ImageBackground, Image,
-  SafeAreaView, SafeAreaProvider, 
+  SafeAreaView, SafeAreaProvider,
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
@@ -77,34 +77,37 @@ export function ChooseCategories(props) {
 
     // </ScrollView>
 
-    <View style={{ flex: 1,height:'100%' }}>
-      <BgImage img={bg} /> 
-        <SafeAreaView
-          style={styles.mainContainer}>
-          <StatusBar
-            //backgroundColor={'#11161f'}
-            animated={true}
-            backgroundColor="transparent"
-            barStyle="light-content"
-            translucent={true}
-            />
-      <ScrollView contentContainerStyle={styles.content}  >
-           <Text style={styles.titleText}>What Categories do youwant to start with?</Text>
-         <View style={styles.bottomView}>
-          {chooseData.map((item, index) => {
-            return <SubmitItem
-            key={index}
-            check={item.status}
-            valueChanged={() => chooseItem(index)}
-            type={item.type}
-            />
-          })}
+    <View style={{ flex: 1, height: '100%' }}>
+      <BgImage img={bg} />
+      <SafeAreaView
+        style={styles.mainContainer}>
+        <StatusBar
+          //backgroundColor={'#11161f'}
+          animated={true}
+          backgroundColor="transparent"
+          barStyle="light-content"
+          translucent={true}
+        />
+        <ScrollView contentContainerStyle={styles.content}  >
+          <Text style={styles.titleText}>What Categories do youwant to start with?</Text>
+          <View style={styles.bottomView}>
+            {chooseData.map((item, index) => {
+              return <SubmitItem
+                key={index}
+                check={item.status}
+                valueChanged={() => chooseItem(index)}
+                type={item.type}
+              />
+            })}
+          </View>
+          <View style={styles.btnView}>
+            <GlobalButton btnName="Submit" onSubmit={() => props.navigation.navigate('TabNavigation')} />
+          </View>
+        </ScrollView>
+        <View style={styles.hintView}>
+          <Text style={styles.hint}> Hint: Start with just one or two categories</Text>
         </View>
-        <View style={styles.btnView}>
-          <GlobalButton btnName="Submit" onSubmit={()=>props.navigation.navigate('TabNavigation')}/>
-        </View>
-        </ScrollView> 
-        </SafeAreaView> 
+      </SafeAreaView>
     </View>
 
   )

@@ -7,10 +7,13 @@ export function TabGlobalButton(props) {
     console.log(props);
     return (
         <TouchableOpacity style={styles.globalView} onPress={props.onPush} >
-            <Text>{props.name}</Text>
+            <View style={styles.topView}>
+                {props.img ? <Image source={props.img} style={styles.img} /> : null}
+                <Text style={styles.nameText}>{props.name}</Text>
+            </View>
             <View style={styles.gFlex}>
-                <Text>{props?.data}</Text>
-                <Image source={Right} style={styles.rightIc}/>
+                <Text style={styles.chooseItem}>{props?.data}</Text>
+                <Image source={Right} style={styles.rightIc} />
             </View>
         </TouchableOpacity>
     )

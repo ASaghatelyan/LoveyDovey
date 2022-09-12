@@ -30,10 +30,10 @@ export function SettingsScreen(props) {
                 <ScrollView contentContainerStyle={styles.content}  >
                     <Text style={styles.titleText}>Resources and Gifts</Text>
                     <View style={styles.bottomView}>
-                        <TabGlobalButton name="Contact Us" img={phone} />
-                        <TabGlobalButton name="Love and Life" img={pass} />
-                        <TabGlobalButton name="Change Password"  img={term}/>
-                        <TabGlobalButton name="Terms & Condition" img={term}/>
+                        <TabGlobalButton name="Contact Us" img={phone} onPush={()=>console.log(props.navigation.navigate('ContactUs'))}/>
+                        <TabGlobalButton name="Change Password" img={pass} onPush={()=>console.log(props.navigation.navigate('ChangePasswird'))} />
+                        <TabGlobalButton name="Terms & Condition" img={term} onPush={()=>console.log(props.navigation.navigate('TermsCondition'))}/>
+                        <TabGlobalButton name="Privacy Policy"  img={term} onPush={()=>console.log(props.navigation.navigate('PrivacyPolicy'))}/>
                         <TabGlobalButton name="Intro Slides" img={term}/>
                         <TabGlobalButton name="Logout" img={logOut}/>
                     </View>

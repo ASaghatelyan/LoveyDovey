@@ -15,6 +15,7 @@ import AddEvent from 'app/assets/img/addEvent.png'
 import Share from 'app/assets/img/share.png'
 import Settings from 'app/assets/img/settings.png'
 import CreateEventNavigation from "./CreateEventNavigation";
+import SettingsNavigation from "./SettingsNavigation";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 const Tab = createBottomTabNavigator();
 let width = Dimensions.get("window").width;
@@ -58,7 +59,7 @@ export default function TabNavigation(props) {
             if (route.name === "ShareScreen") {
               imageSource = Share;
             }
-            if (route.name === "SettingsScreen") {
+            if (route.name === "SettingsNavigation") {
               imageSource = Settings;
             }
             if (route.name === "CreateEventNavigation") {
@@ -184,10 +185,36 @@ export default function TabNavigation(props) {
             title: ''
           }}
         />
-        <Tab.Screen name="SettingsScreen" component={SettingsScreen}
-          options={{
-            title: ''
-          }}
+        <Tab.Screen name="SettingsNavigation" component={SettingsNavigation}
+          options={({ route }) => ({
+            title: '',
+            tabBarVisible:
+              ((route) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+                if (routeName === "ContactUs") { return false }
+                if (routeName === "ChangePasswird") { return false }
+                if (routeName === "TermsCondition") { return false }
+                if (routeName === "PrivacyPolicy") { return false }
+                return true
+              })(route),
+            tabBarButton:
+              ((route) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+                if (routeName === "ContactUs") { () => null }
+                if (routeName === "ChangePasswird") { () => null }
+                if (routeName === "TermsCondition") { () => null }
+                if (routeName === "PrivacyPolicy") { () => null }
+
+              })(route),
+            tabBarStyle: ((route) => {
+              const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+              if (routeName === "ContactUs") { return { display: 'none' } }
+              else if (routeName === "ChangePasswird") { return { display: 'none' } }
+              else if (routeName === "TermsCondition") { return { display: 'none' } }
+              else if (routeName === "PrivacyPolicy") { return { display: 'none' } }
+              return styles.generalStyle
+            })(route),
+          })}
         />
 
 

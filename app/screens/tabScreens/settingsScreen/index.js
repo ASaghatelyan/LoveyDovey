@@ -1,1 +1,5 @@
 export {SettingsScreen} from './SettingsScreen'
+export * from './contactUs'
+export * from './changePasswird'
+export * from './termsConditions'
+export * from './privacyPolicy'

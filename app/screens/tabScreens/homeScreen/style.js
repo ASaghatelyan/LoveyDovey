@@ -19,15 +19,20 @@ export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
         position: 'relative',
-        height: '100%',
         paddingTop: Platform.OS === 'android' ? globalHeight(46) : null
     },
     bottomView: {
         width: '100%',
-        alignItems: 'flex-start',
+        // alignItems: 'flex-start',
         justifyContent: 'space-between',
         paddingHorizontal: globalWidth(17),
         paddingVertical: globalHeight(10),
+    },
+    itemView: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: 45
     },
     titleText: {
         fontSize: globalWidth(24),
@@ -35,6 +40,13 @@ export const styles = StyleSheet.create({
         color: '#403D3D',
         lineHeight: globalHeight(28),
         textAlign: 'left',
+    },
+    categoryText: {
+        fontSize: globalWidth(14),
+        fontFamily: "Roboto-Medium",
+        color: '#3A3434',
+        lineHeight: globalHeight(16),
+        marginBottom: 5
     },
     titleView: {
         flexDirection: 'row',
@@ -46,6 +58,12 @@ export const styles = StyleSheet.create({
     gFlex: {
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    name: {
+        fontSize: globalWidth(20),
+        fontFamily: "Roboto-Bold",
+        color: '#000',
+        lineHeight: globalHeight(23),
     },
     img: {
         width: globalWidth(16),
@@ -61,7 +79,7 @@ export const styles = StyleSheet.create({
     },
     img3: {
         width: globalWidth(16),
-        height: globalHeight(19), 
+        height: globalHeight(19),
         marginLeft: 12
     },
     infoView: {
@@ -76,6 +94,38 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: globalHeight(37),
     },
+    me: {
+        width: globalWidth(81),
+        height: globalHeight(64),
+        resizeMode: 'contain',
+        marginLeft: 32
+    },
+    userH: {
+        width: globalWidth(81),
+        height: globalHeight(64),
+        resizeMode: 'contain',
 
+    },
+    leftSide: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 32
+    },
+    rightSide: {
+        marginLeft: 32,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    addIc: {
+        width: globalWidth(81),
+        height: globalHeight(64),
+        resizeMode: 'contain',
+    },
+    partner: {
+        fontSize: globalWidth(12),
+        fontFamily: "Roboto-Medium",
+        color: '#000',
+        lineHeight: globalHeight(14),
+    },
 });
 

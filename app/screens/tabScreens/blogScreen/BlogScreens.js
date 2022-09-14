@@ -33,11 +33,9 @@ export function BlogScreens(props) {
             <BgImage img={bg} />
             <SafeAreaView
                 style={styles.mainContainer}>
-                <StatusBar
-                    // backgroundColor={'#FFF'}
-                    animated={true}
-                    // backgroundColor="transparent"
-                    barStyle="light-content"
+                <StatusBar 
+                    animated={true} 
+                    barStyle="dark-content"
                     translucent={true}
                 />
                 <ScrollView contentContainerStyle={styles.content}  >

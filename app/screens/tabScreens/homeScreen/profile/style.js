@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? globalHeight(46) : null
     },
     bottomView: {
-        width: '100%',
+        width: '100%', 
         justifyContent: 'space-between',
         paddingHorizontal: globalWidth(17),
         paddingVertical: globalHeight(10),
@@ -43,45 +43,28 @@ export const styles = StyleSheet.create({
         width: globalWidth(21),
         height: globalHeight(12)
     },
+    edit: {
+        width: globalWidth(24),
+        height: globalHeight(24),
+        resizeMode:'contain'
+    },
     titleText: {
         fontSize: globalWidth(24),
         fontFamily: "Roboto-Medium",
         color: '#403D3D',
         lineHeight: globalHeight(28),
     },
-    bgImage: {
-        height: '100%',
-        alignItems: 'center',
-        marginBottom: globalHeight(37),
+    userAvatar:{
+        width:globalWidth(138),
+        height:globalHeight(138),
+        borderRadius:globalWidth(138/2),
     },
-    inputView: {
-        paddingHorizontal: 16
+    avatarView:{
+        width:'100%',
+        alignItems:'center',
+        justifyContent:'center',
+        marginBottom:24
     },
-    description: {
-        borderBottomColor: '#979797',
-        backgroundColor: '#FFF',
-        fontSize: 14,
-        marginBottom: 16
-    },
-    title: {
-        fontFamily: 'Roboto-Bold',
-        fontSize: 10,
-        lineHeight: 12,
-        color: '#403D3D',
-        marginBottom: 12
-    },
-    text: {
-        fontFamily: 'Roboto-Regular',
-        fontSize: 10,
-        lineHeight: 12,
-        color: '#403D3D',
-        marginBottom: 12
-    },
-    infoText: {
-        fontFamily: 'Roboto-Regular',
-        fontSize: 10,
-        lineHeight: 12,
-        color: '#403D3D', 
-    },
+
 });
 

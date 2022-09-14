@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, SafeAreaView } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
-  HomeScreen,
   BlogScreens,
-  CreateEvent,
   ShareScreen,
-  SettingsScreen
 } from "app/screens";
 import Home from 'app/assets/img/home.png'
 import Note from 'app/assets/img/note.png'
@@ -16,6 +13,7 @@ import Share from 'app/assets/img/share.png'
 import Settings from 'app/assets/img/settings.png'
 import CreateEventNavigation from "./CreateEventNavigation";
 import SettingsNavigation from "./SettingsNavigation";
+import HomeNavigation from "./HomeNavigation";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 const Tab = createBottomTabNavigator();
 let width = Dimensions.get("window").width;
@@ -28,7 +26,7 @@ export default function TabNavigation(props) {
 
   return (
     <>
-      <Tab.Navigator 
+      <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarActiveTintColor: "#000",
@@ -46,7 +44,7 @@ export default function TabNavigation(props) {
 
           tabBarIcon: ({ focused, color, size }) => {
             let imageSource = null;
-            if (route.name === "HomeScreen") {
+            if (route.name === "HomeNavigation") {
 
               imageSource = Home;
             }
@@ -148,10 +146,30 @@ export default function TabNavigation(props) {
                                 })(route),
                             })} /> */}
 
-        <Tab.Screen name="HomeScreen" component={HomeScreen}
-          options={{
-            title: ''
-          }}
+        <Tab.Screen name="HomeNavigation" component={HomeNavigation}
+          options={({ route }) => ({
+            title: '',
+            tabBarVisible:
+              ((route) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+                if (routeName === "Profile") { return false }
+                if (routeName === "EditProfile") { return false }
+                return true
+              })(route),
+            tabBarButton:
+              ((route) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+                if (routeName === "Profile") { () => null }
+                if (routeName === "EditProfile") { () => null }
+
+              })(route),
+            tabBarStyle: ((route) => {
+              const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+              if (routeName === "Profile") { return { display: 'none' } }
+              if (routeName === "EditProfile") { return { display: 'none' } }
+              return styles.generalStyle
+            })(route),
+          })}
         />
         <Tab.Screen name="BlogScreens" component={BlogScreens}
           options={{

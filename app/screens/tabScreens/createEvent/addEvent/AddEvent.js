@@ -38,7 +38,7 @@ export function AddEvent(props) {
                     translucent={true} />
                 <ScrollView contentContainerStyle={styles.content}  >
                     <View>
-                        <Text style={styles.titleText}>Create Need /Want</Text>
+                        <Text style={styles.titleText}>Create Want/Need</Text>
                         <TabGlobalButton name="Select Category"
                             data={category}
                             onPush={() => setMOdalVisible(!modalVisible)}

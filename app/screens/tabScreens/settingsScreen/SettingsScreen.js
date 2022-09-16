@@ -35,7 +35,7 @@ export function SettingsScreen(props) {
                         <TabGlobalButton name="Change Password" img={pass} onPush={()=>console.log(props.navigation.navigate('ChangePasswird'))} />
                         <TabGlobalButton name="Terms & Condition" img={term} onPush={()=>console.log(props.navigation.navigate('TermsCondition'))}/>
                         <TabGlobalButton name="Privacy Policy"  img={term} onPush={()=>console.log(props.navigation.navigate('PrivacyPolicy'))}/>
-                        <TabGlobalButton name="Intro Slides" img={term}/>
+                        <TabGlobalButton name="Intro Slides" img={term} props={props} onPush={()=>console.log(props.navigation.navigate('IntroSlides'))}/>
                         <TabGlobalButton name="Logout" img={logOut} onPush={()=>setModalVisible(!modatlVisible)}/>
                     </View>
                 </ScrollView>

@@ -18,18 +18,19 @@ const globalHeight = (a) => {
 export const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
-        paddingBottom:globalHeight(100), 
+        paddingBottom: globalHeight(100),
+        width: '100%',
     },
     bgImage: {
         height: '100%',
-        alignItems: 'center',
         paddingHorizontal: 16,
         marginBottom: 37,
     },
     skipView: {
         position: 'absolute',
         right: globalHeight(16),
-        top: globalWidth(50)
+        top: globalWidth(50),
+        zIndex:9999
     },
     skipText: {
         fontFamily: 'Roboto-Medium',
@@ -41,24 +42,25 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: globalWidth(41),
+        paddingHorizontal: globalWidth(35),
+        position: 'relative'
     },
     icon: {
         width: globalWidth(21),
         height: globalHeight(12),
         resizeMode: 'contain',
-        margin: 2
+        margin: 2,
     },
     cycle: {
         width: globalWidth(8),
         height: globalHeight(8),
         marginLeft: globalWidth(8),
-        resizeMode:'contain'
+        resizeMode: 'contain',
     },
     infoView: {
         paddingHorizontal: globalWidth(25),
         flex: 1,
-        justifyContent: 'flex-end',
+        // justifyContent: 'flex-end',
         // marginTop:globalHeight(190)
     }
 });

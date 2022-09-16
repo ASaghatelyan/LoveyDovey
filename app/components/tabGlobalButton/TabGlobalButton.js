@@ -4,7 +4,7 @@ import Right from 'app/assets/img/rightC.png'
 import { styles } from './style'
 
 export function TabGlobalButton(props) {
-    console.log(props);
+ 
     return (
         <TouchableOpacity style={styles.globalView} onPress={props.onPush} >
             <View style={styles.topView}>

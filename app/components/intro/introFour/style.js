@@ -16,10 +16,11 @@ const globalHeight = (a) => {
 
 export const styles = StyleSheet.create({
     container: {
+        // width:'100%',
         alignItems: 'center',
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
         height: '100%',
-        paddingTop:globalHeight(190)
+        paddingTop: globalHeight(190),  
     },
     content: {
         alignItems: 'center',
@@ -32,13 +33,13 @@ export const styles = StyleSheet.create({
         marginBottom: globalHeight(100)
     },
     proHeart: {
-        width: globalWidth(82), 
+        width: globalWidth(82),
         height: globalHeight(64),
-        resizeMode:'contain',
-        marginBottom:globalHeight(25)
+        resizeMode: 'contain',
+        marginBottom: globalHeight(25)
     },
     progress: {
-        width:globalWidth(129),
+        width: globalWidth(129),
         resizeMode: 'contain',
         height: globalHeight(155)
 
@@ -52,6 +53,7 @@ export const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'Roboto-Regular',
         fontSize: globalWidth(12),
-        color: '#3A3434', textAlign: 'center'
+        color: '#3A3434',
+        textAlign: 'center',
     },
 });

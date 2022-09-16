@@ -213,6 +213,7 @@ export default function TabNavigation(props) {
                 if (routeName === "ChangePasswird") { return false }
                 if (routeName === "TermsCondition") { return false }
                 if (routeName === "PrivacyPolicy") { return false }
+                if (routeName === "IntroSlides") { return false }
                 return true
               })(route),
             tabBarButton:
@@ -222,6 +223,7 @@ export default function TabNavigation(props) {
                 if (routeName === "ChangePasswird") { () => null }
                 if (routeName === "TermsCondition") { () => null }
                 if (routeName === "PrivacyPolicy") { () => null }
+                if (routeName === "IntroSlides") { () => null }
 
               })(route),
             tabBarStyle: ((route) => {
@@ -230,6 +232,7 @@ export default function TabNavigation(props) {
               else if (routeName === "ChangePasswird") { return { display: 'none' } }
               else if (routeName === "TermsCondition") { return { display: 'none' } }
               else if (routeName === "PrivacyPolicy") { return { display: 'none' } }
+              else if (routeName === "IntroSlides") { return { display: 'none' } }
               return styles.generalStyle
             })(route),
           })}

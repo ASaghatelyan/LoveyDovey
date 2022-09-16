@@ -18,10 +18,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: globalHeight(50),
         marginBottom: globalHeight(100),
-        backgroundColor: '#FFF',
         borderRadius: 8,
         overflow: 'hidden',
-        position: 'relative'
+        position: 'relative',marginTop:height/3.5
     },
     img: {
         width: globalWidth(264),
@@ -34,8 +33,8 @@ export const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'Roboto-Medium',
-        fontSize: globalWidth(20),
-        color: '#EB1829',
+        fontSize: globalWidth(14),
+        color: '#000',
         marginBottom: globalHeight(25),
         marginTop: globalHeight(13)
     },
@@ -43,21 +42,21 @@ export const styles = StyleSheet.create({
         fontFamily: 'Roboto-Regular',
         fontSize: globalWidth(12),
         color: '#3A3434',
-        textAlign: 'center',
+        textAlign: 'left',
         marginBottom: globalHeight(76),
         marginHorizontal: globalHeight(21)
     },
     video: {
         width: '100%',
-        height: globalHeight(170),
+        height: globalHeight(166),
     },
     playViwe: {
         position: 'absolute', 
-        top:globalHeight(50)
+        top:globalHeight(60)
     },
     play: {
-        width: globalWidth(68),
-        height: globalHeight(68),
+        width: globalWidth(44),
+        height: globalHeight(44),
         resizeMode:'contain'
     },
 });

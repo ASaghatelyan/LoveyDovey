@@ -13,7 +13,7 @@ export function IntroOne(props) {
         rate: 1,
         volume: 1,
         muted: false,
-        resizeMode: 'cover',
+        resizeMode: 'contain',
         duration: 0.1,
         currentTime: 0.1,
         paused: true,
@@ -29,28 +29,23 @@ export function IntroOne(props) {
 
     return (
         <View style={styles.content}>
-          
-                <Video
-                    ref={ref => {
-                        vidRef = ref
-                    }}
-                    paused={state.paused}
-                    source={vid}
-                    style={styles.video}
-                // controls={true}
-                
-                />
-
-       
+            <Video
+                ref={ref => {
+                    vidRef = ref
+                }}
+                paused={state.paused}
+                source={vid}
+                style={styles.video}
+            />
             {state.paused ? <TouchableOpacity style={styles.playViwe} onPress={hendlePlay}>
                 <Image source={play} style={styles.play} />
             </TouchableOpacity> : null}
-            <Text style={styles.title}>How It Works</Text>
-            <Text style={styles.infoText}>LoveyDovey is designed to help two people in love communicate and engage at deeper levels about what they truly want and need in the relationship.</Text>
-            {/* <View style={styles.textContent}> 
-            </View> */}
-            {/* <Image source={img} style={styles.img}/> */}
-
+            <View style={{
+                backgroundColor: '#FFF', alignItems: 'center',
+            }}>
+                <Text style={styles.title}>How It Works</Text>
+                <Text style={styles.infoText}>LoveyDovey is designed to help two people in love communicate and engage at deeper levels about what they truly want and need in the relationship.</Text>
+            </View>
         </View>
 
     )

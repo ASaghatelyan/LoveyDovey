@@ -16,17 +16,21 @@ const globalHeight = (a) => {
 
 
 export const styles = StyleSheet.create({
+    mainContainer:{
+        flex:1,
+   
+    },
     content: {
         flexGrow: 1,
-        position: 'relative',
-        height: '100%',
-        paddingTop: Platform.OS === 'android' ? globalHeight(46) : null
+        position: 'relative', 
+        paddingTop: Platform.OS === 'android' ? globalHeight(46) : null,
     },
     bottomView: {
         width: '100%', 
         justifyContent: 'space-between',
         paddingHorizontal: globalWidth(17),
-        paddingVertical: globalHeight(10),
+        paddingVertical: globalHeight(10), 
+        marginBottom:globalHeight(22)
     },
     gFlex: {
         flex: 1,
@@ -69,14 +73,14 @@ export const styles = StyleSheet.create({
     description: {
         borderBottomColor: '#979797',
         backgroundColor: '#FFF',
-        fontSize: 14,
-        marginBottom: 16
+        fontSize: 14, 
     },
     btnView:{
         alignItems:'center',
         marginHorizontal:globalHeight(16),
-        justifyContent:'flex-end', 
-        flex:1
+        justifyContent:'center', 
+        flex:1,
+        marginBottom:30
     },
 });
 

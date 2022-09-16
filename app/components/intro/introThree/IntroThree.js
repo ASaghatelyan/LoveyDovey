@@ -12,7 +12,7 @@ export   function IntroThree(props) {
             </View>
             <View style={styles.textContent}>
                 <Text style={styles.title}>Needs & Wants  </Text>
-                <Text style={styles.infoText}>Use the calendar screen to create Needs and Wants to engagewith your partner at a deeper level. View the Needs, and Wants created by your partner and fullfill them.Your partner will mark the Want/Need as either missed or done.</Text>
+                <Text style={styles.infoText}>Use the calendar screen to create Needs and Wants to engage with your partner at a deeper level. View the Wants and Needs created by your partner and fullfill them.Your partner will mark the Want/Need as either missed or done.</Text>
             </View>
         </View>
   )

@@ -154,6 +154,7 @@ export default function TabNavigation(props) {
                 const routeName = getFocusedRouteNameFromRoute(route) ?? ""
                 if (routeName === "Profile") { return false }
                 if (routeName === "EditProfile") { return false }
+                if (routeName === "Notification") { return false }
                 return true
               })(route),
             tabBarButton:
@@ -161,12 +162,14 @@ export default function TabNavigation(props) {
                 const routeName = getFocusedRouteNameFromRoute(route) ?? ""
                 if (routeName === "Profile") { () => null }
                 if (routeName === "EditProfile") { () => null }
+                if (routeName === "Notification") { () => null }
 
               })(route),
             tabBarStyle: ((route) => {
               const routeName = getFocusedRouteNameFromRoute(route) ?? ""
               if (routeName === "Profile") { return { display: 'none' } }
               if (routeName === "EditProfile") { return { display: 'none' } }
+              if (routeName === "Notification") { return { display: 'none' } }
               return styles.generalStyle
             })(route),
           })}

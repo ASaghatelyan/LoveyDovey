@@ -58,7 +58,7 @@ export function HomeScreen(props) {
                             <TouchableOpacity>
                                 <Image source={refresh} style={styles.img2} />
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>props.navigation.navigate('Notification')}>
                                 <Image source={noti} style={styles.img3} />
                             </TouchableOpacity>
                         </View>

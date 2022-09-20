@@ -43,10 +43,10 @@ export function EditProfile(props) {
                     <View style={styles.bottomView}>
                         <View style={styles.avatarView}>
                             <TouchableOpacity style={{ position: 'relative' }} onPress={() => {
-                        ChooseImage(async (imageRes) => {
-                            setImages([imageRes.assets[0].uri])
-                        })
-                    }}>
+                                ChooseImage(async (imageRes) => {
+                                    setImages([imageRes.assets[0].uri])
+                                })
+                            }}>
                                 <Image source={img ? img : user} style={styles.userAvatar} />
                                 <View>
                                     <Image source={editPhoto} style={styles.editPhoto} />
@@ -75,9 +75,9 @@ export function EditProfile(props) {
                         <EditProfileItem name='Email Address' />
                     </View>
                 </ScrollView>
-                    <View style={styles.btnView}>
-                        <GlobalButton btnName='Update' onPush={() => { }} />
-                    </View>
+                <View style={styles.btnView}>
+                    <GlobalButton btnName='Update' onPush={() => { }} />
+                </View>
             </SafeAreaView>
         </View>
     )

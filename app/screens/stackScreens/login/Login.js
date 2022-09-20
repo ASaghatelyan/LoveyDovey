@@ -116,7 +116,7 @@ export function Login(props) {
                 <Text style={styles.regText}> create a new account</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.forgotPassView}>
+            <TouchableOpacity style={styles.forgotPassView} onPress={()=>props.navigation.navigate('ForgotPassNavigation')}>
               <Text style={styles.forgotPassText}>Forgot Password?</Text>
             </TouchableOpacity>
           </View>

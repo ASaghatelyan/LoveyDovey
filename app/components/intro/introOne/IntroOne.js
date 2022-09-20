@@ -2,7 +2,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useRef } from 'react'
 import { styles } from './style'
 import Video from 'react-native-video';
-import vid from 'app/assets/img/video.mp4'
+import vid from 'app/assets/img/video.mp4' 
 import play from 'app/assets/img/play.png'
 
 
@@ -23,7 +23,6 @@ export function IntroOne(props) {
         overlay: false,
         fullscreen: false,
     })
-    let a=[]
     let hendlePlay = () => {
         setState({ ...state, paused: !state.paused })
     }

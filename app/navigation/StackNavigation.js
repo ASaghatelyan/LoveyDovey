@@ -1,8 +1,5 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
-const Stack = createStackNavigator();
-
 import {
   Login,
   Splash,
@@ -11,6 +8,10 @@ import {
   Introduction,
   ChooseCategories
 } from "app/screens";
+import  ForgotPassNavigation  from "./ForgotPassNavigation";
+
+const Stack = createStackNavigator();
+
 export default function StackNavigation() {
   return (
     <Stack.Navigator
@@ -24,6 +25,7 @@ export default function StackNavigation() {
       <Stack.Screen name="Introduction" component={Introduction} />
       <Stack.Screen name="ChooseCategories" component={ChooseCategories} />
       <Stack.Screen name="TermsCondition" component={TermsCondition} />
+      <Stack.Screen name="ForgotPassNavigation" component={ForgotPassNavigation} />
 
     </Stack.Navigator>
   )

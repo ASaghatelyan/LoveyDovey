@@ -1,0 +1,1 @@
+export {TabGlobalButton} from './TabGlobalButton'

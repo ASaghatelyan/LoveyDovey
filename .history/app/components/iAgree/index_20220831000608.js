@@ -1,0 +1,1 @@
+export {IAgree} fr

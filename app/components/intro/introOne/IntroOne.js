@@ -23,6 +23,7 @@ export function IntroOne(props) {
         overlay: false,
         fullscreen: false,
     })
+    let a=[]
     let hendlePlay = () => {
         setState({ ...state, paused: !state.paused })
     }

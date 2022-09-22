@@ -1,7 +1,7 @@
-import { Constants } from "../constants";
+import { Constants } from "../constant";
 import axios from "axios";
-import AsyncStorage from "@react-native-community/async-storage";
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+ 
 let getToken = async () => {
     try {
         let token =  await AsyncStorage.getItem("token");

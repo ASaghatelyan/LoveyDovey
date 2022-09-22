@@ -12,7 +12,8 @@ import mail from 'app/assets/img/mail.png'
 import lock from 'app/assets/img/lock.png'
 import { IAgree, Input } from 'app/components'
 import { GlobalButton } from 'app/components/globalButton'
-
+import axiosInstance from 'app/networking/api'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export function Registration(props) {
     const [name, setName] = useState("")
@@ -24,7 +25,7 @@ export function Registration(props) {
     const [err, setErr] = useState('')
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
- 
+
     const MyStatusBar = ({ backgroundColor, ...props }) => (
         <View style={[{ height: STATUSBAR_HEIGHT, }, { backgroundColor }]}>
             <SafeAreaView>
@@ -40,50 +41,60 @@ export function Registration(props) {
 
 
 
-    // let handleSingUp = () => {
+    let handleSingUp = async () => {
+        try {
+            if (name && validateEmail(email) && pass.length > 7 && confirmPass.length > 7 && pass === confirmPass && toggleCheckBox) {
+                let register = {
+                    email,
+                    password: pass,
+                    name,
+                    confirm_password:confirmPass
+                }
+                let response = await axiosInstance.post("/register", register);
+                props.navigation.navigate('Login')
+                console.log(response); 
+            }
+            if (!name) {
+                setErr("Name is not filled")
+            }
+            else if (!email) {
+                setErr("Email is not filled")
+            }
+            else if (!validateEmail(email)) {
+                setErr("Email is not valid")
+            }
+            else if (!pass) {
+                setErr("Password is not filled")
+            }
+            else if (!confirmPass) {
+                setErr("Repeat password is not filled")
+            }
+            else if (pass !== confirmPass) {
+                setErr(`Password and Repeat password doesn't match`)
+            }
+            else if (pass.length < 8 || confirmPass < 8) {
+                setErr('Password must contain at least 8 characters')
+            }
+            else if (!toggleCheckBox) {
+                setErr('Term agreement is a required step to continue  ')
+            }
+            else {
+                setErr("Incorrect email address");
 
-    //     if (name && surname && validateEmail(email) && pass.length > 7 && confirmPass.length > 7 && pass === confirmPass && toggleCheckBox) {
-    //         let register = {
-    //             email,
-    //             password: pass,
-    //             surname,
-    //             name
-    //         }
-    //         axios.post(`${url}auth/register`, register)
-    //             .then(res => { props.navigation.push("Login") })
-    //             .catch(err => setErr(err.response.data.message ))
-    //     } if (!name) {
-    //         setErr("Name is not filled")
-    //     } else if (!surname) {
-    //         setErr("Surname is not filled")
-    //     }
-    //     else if (!email) {
-    //         setErr("Email is not filled")
-    //     }
-    //     else if (!validateEmail(email)) {
-    //         setErr("Email is not valid")
-    //     }
-    //     else if (!pass) {
-    //         setErr("Password is not filled")
-    //     }
-    //     else if (!confirmPass) {
-    //         setErr("Repeat password is not filled")
-    //     }
-    //     else if (pass !== confirmPass) {
-    //         setErr(`Password and Repeat password doesn't match`)
-    //     }
-    //     else if (pass.length < 8 || confirmPass < 8) {
-    //         setErr('Password must contain at least 8 characters')
-    //     }
-    //     else if (!toggleCheckBox) {
-    //         setErr('Term agreement is a required step to continue  ')
-    //     }
-
-    // }
+            }
+        } catch (e) { 
+            console.log(e,'err');
+            if (e.response.status === 401) {
+                let data = { email, type: "email" };
+                props.navigation.navigate("SignUp", data);
+            }
+        }
+       
+    }
 
     return (
         <ScrollView contentContainerStyle={styles.content}>
-           <StatusBar barStyle={'light-content'} showHideTransition={false} translucent/>
+            <StatusBar barStyle={'light-content'} showHideTransition={false} translucent />
             {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
             {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
             <ImageBackground source={bg} style={styles.bgImage}>
@@ -132,16 +143,18 @@ export function Registration(props) {
                             }}
                             multiline={false}
                         />
-                        <IAgree   props={props} check={toggleCheckBox} valueChanged={(newValue) => {
-                         
+                        <IAgree props={props} check={toggleCheckBox} valueChanged={(newValue) => {
+
                             setToggleCheckBox(newValue)
                         }} />
-                        <GlobalButton btnName="Sign up" />
+                        <GlobalButton btnName="Sign up"  onSubmit={handleSingUp}/>
                         {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
                     </View>
                     <View style={styles.gFlex}>
                         <Text style={styles.noAccount}>Already have account?</Text>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
+                        <TouchableOpacity onPress={() => {
+                            props.navigation.navigate('Login')
+                        }}>
                             <Text style={styles.regText}> Sign in</Text>
                         </TouchableOpacity>
                     </View>

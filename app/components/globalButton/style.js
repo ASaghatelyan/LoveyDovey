@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 14,
-        marginTop: height / 25.375,
+        marginBottom:22,
         minHeight: 48
     },
     loginText: {

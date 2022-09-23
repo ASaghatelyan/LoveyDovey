@@ -14,7 +14,7 @@ import moment from 'moment'
 
 
 export function AddEvent(props) {
-    console.log(props.route.params.day);
+   
     const [errorModal,setErrorModal]=useState(false)
     const [modalVisible, setMOdalVisible] = useState(false)
     const [frequencyModal, setFrequencyModal] = useState(false)
@@ -68,7 +68,8 @@ export function AddEvent(props) {
                             onPush={() => setCalendarModal(!calendarModal)} />
                         <TabGlobalButton name="End Date"
                             data={endData}
-                            onPush={() => setEndModal(!endModal)} />
+                            onPush={() => setEndModal(!endModal)}
+                            diffStyle={{ marginBottom:36}} />
                         <GlobalButton btnName="Submit" onSubmit={()=>props.navigation.navigate('TabNavigation',{screen:'HomeScreen'})}/>
                     </View>
                 </ScrollView>

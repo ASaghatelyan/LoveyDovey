@@ -31,6 +31,14 @@ export function Login(props) {
     return JSON.parse(data)
   }
 
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('token', value)
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   let validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
@@ -39,14 +47,15 @@ export function Login(props) {
   const onLogin = async () => {
     try {
       let intro = await getIntro()
-     
+
       if (validateEmail(email) && pass.length > 7) {
         let login = {
           email,
           password: pass,
         }
         let response = await axiosInstance.post("/login", login);
-        console.log(response);
+        console.log(response.data.data.token);
+        storeData(response.data.data.token)
         intro == null ? props.navigation.replace('Introduction') : props.navigation.replace('ChooseCategories')
       }
       else if (!email) {
@@ -73,41 +82,8 @@ export function Login(props) {
     }
   }
 
-  let handleLogin = async () => {
-    try {
-      if (validateEmail(email) && pass.length > 7) {
-        let login = {
-          email,
-          password: pass,
-        }
-        let response = await axiosInstance.post("/register", login);
-        console.log(response);
-      }
-      else if (!email) {
-        setErr("Email is not filled")
-      }
-      else if (!validateEmail(email)) {
-        setErr("Email is not valid")
-      }
-      else if (!pass) {
-        setErr("Password is not filled")
-      }
-      else if (pass.length < 8) {
-        setErr('Password must contain at least 8 characters')
-      }
-      else {
-        setErr("Incorrect email address");
-      }
-    } catch (e) {
-      console.log(e, 'err');
-      if (e.response.status === 401) {
-        let data = { email, type: "email" };
-        props.navigation.navigate("SignUp", data);
-      }
-    }
-
-  }
-  console.log(email,pass);
+ 
+ 
   return (
     <View style={{ flex: 1, height: '100%', }}>
       <BgImage img={bg} />
@@ -141,7 +117,7 @@ export function Login(props) {
                 handleShowPass={() => setShowHidePass(!showHidePass)}
                 onChange={(e) => setPass(e)}
               />
-              <GlobalButton btnName="Log in Now" onSubmit={onLogin} />
+              <GlobalButton diffStyle={{marginTop:38}} btnName="Log in Now" onSubmit={onLogin} />
               {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
             </View>
             <View style={{ alignItems: 'center' }}>

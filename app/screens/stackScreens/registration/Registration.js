@@ -147,7 +147,7 @@ export function Registration(props) {
 
                             setToggleCheckBox(newValue)
                         }} />
-                        <GlobalButton btnName="Sign up"  onSubmit={handleSingUp}/>
+                        <GlobalButton diffStyle={{marginTop:38}}  btnName="Sign up"  onSubmit={handleSingUp}/>
                         {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
                     </View>
                     <View style={styles.gFlex}>

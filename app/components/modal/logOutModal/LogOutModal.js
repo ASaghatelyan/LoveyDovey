@@ -2,6 +2,9 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Modal from 'react-native-modal'
 import { styles } from './style'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+
 export function LogOutModal(props) {
     return (
         <Modal
@@ -16,7 +19,7 @@ export function LogOutModal(props) {
                 <TouchableOpacity onPress={props.onClose}>
                     <Text>NO</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft:48}} onPress={props.onClose}>
+                <TouchableOpacity style={{marginLeft:48}} onPress={props.onLogOut}>
                     <Text>YES</Text>
                 </TouchableOpacity>
             </View>

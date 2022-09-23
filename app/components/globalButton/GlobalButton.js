@@ -5,7 +5,7 @@ import { styles } from './style'
 
 export function GlobalButton(props) {
     return (
-        <TouchableOpacity style={styles.loginBtn} onPress={props.onSubmit}>
+        <TouchableOpacity style={[styles.loginBtn,props.diffStyle]} onPress={props.onSubmit}>
             <Text style={styles.loginText}>{props.btnName}</Text>
         </TouchableOpacity>
     )

@@ -49,7 +49,7 @@ export function HomeScreen(props) {
                     <View style={styles.titleView}>
                         <Text style={styles.titleText}>Home</Text>
                         <View style={styles.gFlex}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>props.navigation.navigate('WantNeedList')}>
                                 <Image source={list} style={styles.img} />
                             </TouchableOpacity>
                             <TouchableOpacity  onPress={()=>props.navigation.navigate('Profile')}>

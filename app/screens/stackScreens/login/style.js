@@ -12,8 +12,13 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 16,
         marginBottom: 37,
     },
-    mainContainer:{
-         
+    err: {
+        fontSize: 14,
+        fontFamily: "Roboto-Bold",
+        color: 'red',
+        textAlign: 'center',
+        lineHeight: 18,
+        marginTop: 6
     },
     bgImage: {
         height: '100%',
@@ -61,7 +66,7 @@ export const styles = StyleSheet.create({
     },
     gFlex: {
         flexDirection: 'row',
-        alignItems: 'center', 
+        alignItems: 'center',
     },
     forgotPassView: {
         alignItems: 'center',
@@ -81,7 +86,7 @@ export const styles = StyleSheet.create({
         lineHeight: 19
     },
     regText: {
-        color:'#EB1829',
+        color: '#EB1829',
         fontSize: 16,
         fontFamily: "Roboto-Medium",
     },

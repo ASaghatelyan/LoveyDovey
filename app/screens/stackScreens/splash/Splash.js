@@ -22,16 +22,29 @@ export function Splash(props) {
         return JSON.parse(data)
     }
 
+    const getDataTokken = async () => {
+
+        try {
+            const value = await AsyncStorage.getItem('token')
+            if (value !== null) {
+                return value
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
     useEffect(() => {
         navi()
 
     }, [])
 
     const navi = async () => {
-    
+        let token = await getDataTokken()
+        
         let timer = setTimeout(() => {
-            
-                props.navigation.navigate('Login')
+            token ? props.navigation.navigate('TabNavigation') : props.navigation.navigate('Login')
         }, 2000);
         return () => {
             clearTimeout(timer)

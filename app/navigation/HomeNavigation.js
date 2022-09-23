@@ -4,7 +4,10 @@ import {
   HomeScreen,
   Profile,
   EditProfile,
-  Notification
+  Notification,
+  WantNeedList,
+  WantNeedInfo,
+  WantNeedItem
 } from "app/screens";
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -22,6 +25,9 @@ export default function HomeNavigation() {
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="Notification" component={Notification} />
+      <Stack.Screen name="WantNeedList" component={WantNeedList} />
+      <Stack.Screen name="WantNeedItem" component={WantNeedItem} />
+      <Stack.Screen name="WantNeedInfo" component={WantNeedInfo} />
 
 
     </Stack.Navigator>

@@ -111,41 +111,6 @@ export default function TabNavigation(props) {
         )
         }
       >
-        {/* <Tab.Screen name="HomeNavigation" component={HomeNavigation}
-                            options={({ route }) => ({
-                                tabBarVisible:
-                                    ((route) => {
-                                        const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-                                        if (routeName === "HandicapNavigation") { return false }
-                                        else if (routeName === "AllNotification") { return false } 
-                                        else if (routeName === "ProfileInfo") { return false } 
-                                        else if (routeName === "InviteInfo") { return false } 
-                                        else if (routeName === "WaitingList") { return false } 
-                                        else if (routeName === "InfoDateItems") { return false } 
-                                        return true
-                                    })(route),
-                                tabBarButton:
-                                    ((route) => {
-                                        const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-                                        if (routeName === "HandicapNavigation") { () => null }
-                                        else if (routeName === "AllNotification") { () => null }
-                                        else if (routeName === "ProfileInfo") { () => null }
-                                        else if (routeName === "InviteInfo") { () => null }
-                                        else if (routeName === "WaitingList") { () => null }
-                                        else if (routeName === "InfoDateItems") { () => null }
-                                    })(route),
-                                tabBarStyle: ((route) => {
-                                    const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-                                    if (routeName === "HandicapNavigation") { return { display: 'none' } }
-                                    else if (routeName === "AllNotification") { return { display: 'none' } }
-                                    else if (routeName === "ProfileInfo") { return { display: 'none' } }
-                                    else if (routeName === "InviteInfo") { return { display: 'none' } }
-                                    else if (routeName === "WaitingList") { return { display: 'none' } }
-                                    else if (routeName === "InfoDateItems") { return { display: 'none' } }
-                                     return styles.generalStyle
-                                })(route),
-                            })} /> */}
-
         <Tab.Screen name="HomeNavigation" component={HomeNavigation}
           options={({ route }) => ({
             title: '',
@@ -155,6 +120,9 @@ export default function TabNavigation(props) {
                 if (routeName === "Profile") { return false }
                 if (routeName === "EditProfile") { return false }
                 if (routeName === "Notification") { return false }
+                if (routeName === "WantNeedList") { return false }
+                if (routeName === "WantNeedItem") { return false }
+                if (routeName === "WantNeedInfo") { return false }
                 return true
               })(route),
             tabBarButton:
@@ -163,6 +131,9 @@ export default function TabNavigation(props) {
                 if (routeName === "Profile") { () => null }
                 if (routeName === "EditProfile") { () => null }
                 if (routeName === "Notification") { () => null }
+                if (routeName === "WantNeedList") { () => null }
+                if (routeName === "WantNeedItem") { () => null }
+                if (routeName === "WantNeedInfo") { () => null }
 
               })(route),
             tabBarStyle: ((route) => {
@@ -170,6 +141,9 @@ export default function TabNavigation(props) {
               if (routeName === "Profile") { return { display: 'none' } }
               if (routeName === "EditProfile") { return { display: 'none' } }
               if (routeName === "Notification") { return { display: 'none' } }
+              if (routeName === "WantNeedList") { return { display: 'none' } }
+              if (routeName === "WantNeedItem") { return { display: 'none' } }
+              if (routeName === "WantNeedInfo") { return { display: 'none' } }
               return styles.generalStyle
             })(route),
           })}

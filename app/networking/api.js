@@ -2,12 +2,15 @@ import { Constants } from "../constant";
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage'
  
-let getToken = async () => {
+const getDataTokken = async () => {
+
     try {
-        let token =  await AsyncStorage.getItem("token");
-        return JSON.parse(token)
-    } catch (error) {
-        console.log(error);
+        const value = await AsyncStorage.getItem('token')
+        if (value !== null) {
+            return value
+        }
+    } catch (e) {
+        console.log(e);
     }
 }
 
@@ -17,10 +20,10 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(async (config) => {
-    let token = await getToken();
+    let token = await getDataTokken();
     console.log(token);
     if (token) {
-        config.headers.Authorization = `Bearer ${token.access}`; 
+        config.headers.Authorization = `Bearer ${token}`; 
     }
     return config;
 }, (error) => {

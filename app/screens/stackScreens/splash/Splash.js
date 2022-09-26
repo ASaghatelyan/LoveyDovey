@@ -37,12 +37,10 @@ export function Splash(props) {
 
     useEffect(() => {
         navi()
-
     }, [])
 
     const navi = async () => {
-        let token = await getDataTokken()
-        
+        let token = await getDataTokken() 
         let timer = setTimeout(() => {
             token ? props.navigation.navigate('TabNavigation') : props.navigation.navigate('Login')
         }, 2000);

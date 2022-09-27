@@ -1,11 +1,11 @@
-import { View, Text ,TouchableOpacity} from 'react-native'
+import { View, Text,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { styles } from './style'
 import CheckBox from '@react-native-community/checkbox'
 
-export function SubmitItem(props) {
-    return (
-      <TouchableOpacity style={styles.content} onPress={props.onSubmit} > 
+export   function SubmitRegional(props) {
+  return (
+    <TouchableOpacity style={styles.content}  onPress={props.onSubmit}> 
             <CheckBox 
                 onCheckColor='grey'
                 onFillColor='red'
@@ -21,5 +21,5 @@ export function SubmitItem(props) {
         <Text style={[styles.checkBoxText,props.color]}>{props.type}</Text>
       </TouchableOpacity>
 
-    )
+  )
 }

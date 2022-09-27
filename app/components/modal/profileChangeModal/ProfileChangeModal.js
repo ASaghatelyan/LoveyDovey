@@ -1,14 +1,14 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-native-modal'
 import { styles } from './style'
 import { SubmitItem } from 'app/components/submitItem'
 import close from 'app/assets/img/close.png'
-import axiosInstance from 'app/networking/api'
+
 
 export function ProfileChangeModal(props) {
     const [data, setData] = useState('')
-    const [chooseData, setChooseData] = useState([ ])
+    const [chooseData, setChooseData] = useState([])
 
     const chooseItem = (ind) => {
         let arr = chooseData
@@ -37,18 +37,20 @@ export function ProfileChangeModal(props) {
                 </TouchableOpacity>
             </View>
             <View style={styles.bottomSide}>
-                {props.data && props?.data.map((item, index) => {
+                {props?.data && props?.data.map((item, index) => {
                     return (<SubmitItem
                         key={index}
                         color={{ color: '#403D3D', fontSize: 16 }}
                         check={item.status}
-                        valueChanged={() => {
-                            setData(chooseData[index].name);
+                        onSubmit={() => {
+                            setData(props.data[index].name);
                             chooseItem(index)
+                            props.onChoose(props.data[index].name)
                         }}
                         type={item.name}
                     />)
-                })}
+                }) 
+                }
             </View>
         </Modal>
     )

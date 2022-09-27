@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
-import { BgImage, EditProfileItem, ProfileChangeModal } from 'app/components'
+import { BgImage, CalendarModal, ChooseRegionalInfo, EditProfileItem, ProfileChangeModal } from 'app/components'
 import { TextInput as PaperInput } from 'react-native-paper';
 import { ChooseImage } from 'app/components/imagePicker'
 import bg from 'app/assets/img/white.png'
@@ -18,39 +18,111 @@ import { GlobalButton } from 'app/components/globalButton';
 import axiosInstance from 'app/networking/api';
 
 export function EditProfile(props) {
+    const [globalData, setGlobalData] = useState({})
+    const [changedData, setChangedData] = useState({})
     const [text, setText] = useState("");
     const [img, setImages] = useState(null)
-    const [bthDayModal, setBthDayModal] = useState(false)
-    const [bthDay, setBthDay] = useState(false)
+    const [modatlVisible, setModalVisible] = useState(false)
+    const [bthDay, setBthDay] = useState('Date of Birth')
     const [genderModal, setGenderModal] = useState(false)
-    const [gender, setGender] = useState(false)
+    const [gender, setGender] = useState("Gender")
     const [countryModal, setCountryModal] = useState(false)
-    const [country, setCountry] = useState(false)
-    const [globalData, setGlobalData] = useState({})
+    const [country, setCountry] = useState('Country')
+    const [stateModal, setStateModal] = useState(false)
+    const [state, setState] = useState('State')
+    const [cityModal, setCityModal] = useState(false)
+    const [city, setCity] = useState('City')
+    const [ethnicityModal, setEthnicityModal] = useState(false)
+    const [ethnicity, setEthnicity] = useState('Ethnicity')
+    const [incomLvlModal, setIncomeLvlModal] = useState(false)
+    const [incomLvl, setIncomeLvl] = useState('Income Level')
+    const [educationModal, setEducationModal] = useState(false)
+    const [education, setEducation] = useState('Education')
+
 
     useEffect(() => {
         let requestFunc = async () => {
             try {
                 let resCountry = await axiosInstance.get("/country")
                 let resGender = await axiosInstance.get("/gender")
-               
-                console.log();
+                let resEducation = await axiosInstance.get(`/education`)
+                let resIncomingLvl = await axiosInstance.get(`/income-level`)
                 setGlobalData({
                     resCountry: resCountry.data.data,
                     resGender: resGender.data.data,
-
+                    resEducation: resEducation.data.data,
+                    resIncomingLvl: resIncomingLvl.data.data,
                 })
-
-
             } catch (e) {
                 console.log(e, 'err');
             }
         }
         requestFunc()
     }, [])
-    console.log(globalData, 'gloooo');
+
+    useEffect(() => {
+        let requestFunc = async () => {
+            try {
+                let resState = await axiosInstance.get(`/state/?country=${country}`)
+                setGlobalData({
+                    ...globalData,
+                    resState: resState.data.data,
+                })
+            } catch (e) {
+                console.log(e, 'err');
+            }
+        }
+        requestFunc()
+    }, [country])
+
+    useEffect(() => {
+        let requestFunc = async () => {
+            try {
+
+                let resCity = await axiosInstance.get(`/cities/?state=${state}`)
+
+                setGlobalData({
+                    ...globalData,
+                    resCity: resCity.data.data,
+                })
+            } catch (e) {
+                console.log(e, 'err');
+            }
+        }
+        requestFunc()
+    }, [state])
+
+    useEffect(() => {
+        let requestFunc = async () => {
+            try {
+                let resEthnicity = await axiosInstance.get(`/ethnicity/?cities=${city}`)
+                setGlobalData({
+                    ...globalData,
+                    resEthnicity: resEthnicity.data.data
+                })
+            } catch (e) {
+                console.log(e, 'err');
+            }
+        }
+        requestFunc()
+    }, [city])
+
+    let formData = new FormData();
+    formData.append("country", country);
+    formData.append("state", state);
+    formData.append("city", city);
+    formData.append(`images`, {
+        name: `images.jpg`,
+        uri: `${img}`,
+        type: 'image/jpeg',
+    })
+
+    const onUpdate = async () => {
+
+    }
+    console.log(formData, 'formData');
     return (
-        <View style={{ flex: 1, height: '100%' }}>
+        <View style={{ flex: 1, height: '100%' }} >
             <BgImage img={bg} />
             <SafeAreaView
                 style={styles.mainContainer}>
@@ -92,52 +164,130 @@ export function EditProfile(props) {
                                 },
                                 fonts: { regular: 'Roboto-Regular' }
                             }} />
-                        <EditProfileItem name='Date of Birth' />
-                        <EditProfileItem name='Gender' onSelect={() => setGenderModal(!genderModal)} />
-                        <EditProfileItem name='Country' onSelect={() => setGenderModal(!genderModal)} />
-                        <EditProfileItem name='State' />
-                        <EditProfileItem name='City' />
-                        <EditProfileItem name='Ethnicity' />
-                        <EditProfileItem name='Eduaction' />
-                        <EditProfileItem name='Income Level' />
+                        <EditProfileItem name={bthDay} onSelect={() => setModalVisible(!modatlVisible)} />
+                        <EditProfileItem name={gender} onSelect={() => setGenderModal(!genderModal)} />
+                        <EditProfileItem name={country} onSelect={() => setCountryModal(!countryModal)} />
+                        <EditProfileItem name={state} onSelect={() => setStateModal(!stateModal)} />
+                        <EditProfileItem name={city} onSelect={() => setCityModal(!cityModal)} />
+                        <EditProfileItem name={ethnicity} onSelect={() => setEthnicityModal(!ethnicityModal)} />
+                        <EditProfileItem name={education} onSelect={() => setEducationModal(!educationModal)} />
+                        <EditProfileItem name={incomLvl} onSelect={() => setIncomeLvlModal(!incomLvlModal)} />
                         <EditProfileItem name='Email Address' />
                     </View>
                 </ScrollView>
                 <View style={styles.btnView}>
-                    <GlobalButton btnName='Update' onPush={() => { }} />
+                    <GlobalButton btnName='Update' onPush={onUpdate} />
                 </View>
             </SafeAreaView>
-            <ProfileChangeModal
-                isVisible={bthDayModal}
-                onClose={() => setBthDayModal(!bthDayModal)}
-                onChoose={async () => {
-                    setBthDayModal(!bthDayModal)
-                }}
 
-            />
             <ProfileChangeModal
                 isVisible={genderModal}
-                onClose={async () => {
-                    setGenderModal(!genderModal)
-                }}
-                onChoose={async () => {
+                onClose={async (a) => {
                     setGenderModal(!genderModal)
 
+                }}
+                onChoose={async (a) => {
+                    setGenderModal(!genderModal)
+                    setGender(a)
                 }}
                 name='Gender'
                 data={globalData?.resGender}
             />
             <ProfileChangeModal
+                isVisible={educationModal}
+                onClose={() => {
+                    setEducationModal(!educationModal)
+
+                }}
+                onChoose={(a) => {
+                    setEducationModal(!educationModal)
+                    setEducation(a)
+                }}
+                name='Education'
+                data={globalData.resEducation}
+            />
+            <ProfileChangeModal
+                isVisible={incomLvlModal}
+                onClose={() => {
+                    setIncomeLvlModal(!incomLvlModal)
+
+                }}
+                onChoose={(a) => {
+                    setIncomeLvlModal(!incomLvlModal)
+                    setIncomeLvl(a)
+                }}
+                name='Income Level'
+                data={globalData.resIncomingLvl}
+            />
+            <ProfileChangeModal
+                isVisible={ethnicityModal}
+                onClose={() => {
+                    setEthnicityModal(!ethnicityModal)
+
+                }}
+                onChoose={(a) => {
+                    setEthnicityModal(!ethnicityModal)
+                    setEthnicity(a)
+                }}
+                name='Ethniccity'
+                data={globalData.resEthnicity}
+            />
+            <ChooseRegionalInfo
                 isVisible={countryModal}
                 onClose={async () => {
                     setCountryModal(!countryModal)
                 }}
-                onChoose={async () => {
+                onChoose={(a) => {
                     setCountryModal(!countryModal)
+                    setCountry(a)
                 }}
                 name='Country'
-                
+                regional={globalData.resCountry}
             />
-        </View>
+            <ChooseRegionalInfo
+                isVisible={stateModal}
+                onClose={() => {
+                    setStateModal(!stateModal)
+                }}
+                onChoose={(a) => {
+                    setStateModal(!stateModal)
+                    setState(a)
+                }}
+                name='State'
+                regional={globalData.resState}
+            />
+            <ChooseRegionalInfo
+                isVisible={stateModal}
+                onClose={() => {
+                    setStateModal(!stateModal)
+                }}
+                onChoose={(a) => {
+                    setStateModal(!stateModal)
+                    setState(a)
+                }}
+                name='State'
+                regional={globalData.resState}
+            />
+            <ChooseRegionalInfo
+                isVisible={cityModal}
+                onClose={() => {
+                    setCityModal(!cityModal)
+                }}
+                onChoose={(a) => {
+                    setCityModal(!cityModal)
+                    setCity(a)
+                }}
+                name='City'
+                regional={globalData.resCity}
+            />
+            <CalendarModal
+                isVisible={modatlVisible}
+                onClose={() => { setModalVisible(!modatlVisible) }}
+                onNavi={(a) => {
+                    setBthDay(a.dateString)
+                    setModalVisible(!modatlVisible)
+                }}
+            />
+        </View >
     )
 }

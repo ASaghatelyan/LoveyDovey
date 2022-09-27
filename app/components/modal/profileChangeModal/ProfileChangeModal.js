@@ -23,8 +23,7 @@ export function ProfileChangeModal(props) {
     }
 
 
-
-
+    
     return (
         <Modal
             isVisible={props.isVisible}
@@ -45,12 +44,12 @@ export function ProfileChangeModal(props) {
                         onSubmit={() => {
                             setData(props.data[index].name);
                             chooseItem(index)
-                            props.onChoose(props.data[index].name)
+                            props.onChoose(props.data[index])
+                            // console.log(props.data[index]);
                         }}
                         type={item.name}
                     />)
-                }) 
-                }
+                })}
             </View>
         </Modal>
     )

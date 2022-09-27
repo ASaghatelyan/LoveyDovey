@@ -25,7 +25,7 @@ export function EditProfile(props) {
     const [modatlVisible, setModalVisible] = useState(false)
     const [bthDay, setBthDay] = useState('Date of Birth')
     const [genderModal, setGenderModal] = useState(false)
-    const [gender, setGender] = useState("Gender")
+    const [gender, setGender] = useState({ id: 1, name: "Gender" })
     const [countryModal, setCountryModal] = useState(false)
     const [country, setCountry] = useState('Country')
     const [stateModal, setStateModal] = useState(false)
@@ -33,11 +33,11 @@ export function EditProfile(props) {
     const [cityModal, setCityModal] = useState(false)
     const [city, setCity] = useState('City')
     const [ethnicityModal, setEthnicityModal] = useState(false)
-    const [ethnicity, setEthnicity] = useState('Ethnicity')
+    const [ethnicity, setEthnicity] = useState({ id: 1, name: 'Ethnicity' })
     const [incomLvlModal, setIncomeLvlModal] = useState(false)
-    const [incomLvl, setIncomeLvl] = useState('Income Level')
+    const [incomLvl, setIncomeLvl] = useState({ id: 1, name: 'Income Level' })
     const [educationModal, setEducationModal] = useState(false)
-    const [education, setEducation] = useState('Education')
+    const [education, setEducation] = useState({ id: 1, name: 'Education' })
 
 
     useEffect(() => {
@@ -47,6 +47,7 @@ export function EditProfile(props) {
                 let resGender = await axiosInstance.get("/gender")
                 let resEducation = await axiosInstance.get(`/education`)
                 let resIncomingLvl = await axiosInstance.get(`/income-level`)
+
                 setGlobalData({
                     resCountry: resCountry.data.data,
                     resGender: resGender.data.data,
@@ -111,16 +112,25 @@ export function EditProfile(props) {
     formData.append("country", country);
     formData.append("state", state);
     formData.append("city", city);
-    formData.append(`images`, {
-        name: `images.jpg`,
-        uri: `${img}`,
-        type: 'image/jpeg',
-    })
+    formData.append("date_of_birth", bthDay);
+    formData.append("education_id", education.id);
+    formData.append("ethnicity_id", ethnicity.id);
+    formData.append("income_level_id", incomLvl.id);
+    // formData.append(`images`, {
+    //     name: `images.jpg`,
+    //     uri: `${img}`,
+    //     type: 'image/jpeg',
+    // })
 
     const onUpdate = async () => {
-
+        try {
+            let res = await axiosInstance.post(`/create`,formData)
+            console.log(res);
+        } catch (e) {
+            console.log(e, 'err');
+        } 
     }
-    console.log(formData, 'formData');
+   console.log(formData);
     return (
         <View style={{ flex: 1, height: '100%' }} >
             <BgImage img={bg} />
@@ -165,18 +175,18 @@ export function EditProfile(props) {
                                 fonts: { regular: 'Roboto-Regular' }
                             }} />
                         <EditProfileItem name={bthDay} onSelect={() => setModalVisible(!modatlVisible)} />
-                        <EditProfileItem name={gender} onSelect={() => setGenderModal(!genderModal)} />
+                        <EditProfileItem name={gender.name} onSelect={() => setGenderModal(!genderModal)} />
                         <EditProfileItem name={country} onSelect={() => setCountryModal(!countryModal)} />
                         <EditProfileItem name={state} onSelect={() => setStateModal(!stateModal)} />
                         <EditProfileItem name={city} onSelect={() => setCityModal(!cityModal)} />
-                        <EditProfileItem name={ethnicity} onSelect={() => setEthnicityModal(!ethnicityModal)} />
-                        <EditProfileItem name={education} onSelect={() => setEducationModal(!educationModal)} />
-                        <EditProfileItem name={incomLvl} onSelect={() => setIncomeLvlModal(!incomLvlModal)} />
+                        <EditProfileItem name={ethnicity.name} onSelect={() => setEthnicityModal(!ethnicityModal)} />
+                        <EditProfileItem name={education.name} onSelect={() => setEducationModal(!educationModal)} />
+                        <EditProfileItem name={incomLvl.name} onSelect={() => setIncomeLvlModal(!incomLvlModal)} />
                         <EditProfileItem name='Email Address' />
                     </View>
                 </ScrollView>
                 <View style={styles.btnView}>
-                    <GlobalButton btnName='Update' onPush={onUpdate} />
+                    <GlobalButton btnName='Update' onSubmit={onUpdate} />
                 </View>
             </SafeAreaView>
 
@@ -184,7 +194,6 @@ export function EditProfile(props) {
                 isVisible={genderModal}
                 onClose={async (a) => {
                     setGenderModal(!genderModal)
-
                 }}
                 onChoose={async (a) => {
                     setGenderModal(!genderModal)

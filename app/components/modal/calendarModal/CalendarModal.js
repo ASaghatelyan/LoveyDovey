@@ -24,13 +24,12 @@ export function CalendarModal(props) {
                         return (<Text style={styles.titleText}> {moment(date[0]).format('MMM YYYY')}</Text>)
                     }}
                     onDayPress={day => { props?.onNavi && props?.onNavi(day) }}
-                    onDayLongPress={day => {
-                        console.log('selected day', day);
-                    }}
-                    monthFormat={'MMM YYYY'}
-                    onMonthChange={month => {
-                        console.log('month changed', moment(month.dateString).format('MMM YYYY'));
-                    }}
+                    // onDayLongPress={day => {
+                        
+                    // }}
+                    // monthFormat={'MMM YYYY'}
+                    // onMonthChange={month => { 
+                    // }}
                     renderArrow={direction => direction === 'left' ?
                         <Image source={Left} style={styles.arrowIc} /> :
                         <Image source={Right} style={styles.arrowIc} />

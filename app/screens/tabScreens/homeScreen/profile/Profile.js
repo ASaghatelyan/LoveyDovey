@@ -45,7 +45,7 @@ export function Profile(props) {
         }
         requestFunc() 
     }, [])
-
+    console.log(data);
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -70,12 +70,12 @@ export function Profile(props) {
                     </View>
                     <View style={styles.bottomView}>
                         <View style={styles.avatarView}>
-                            <Image source={user} style={styles.userAvatar} />
+                            <Image source={data.user_details?.image ? {uri:data.user_details?.image} :user} style={styles.userAvatar} />
                         </View>
                         <TabGlobalButton name={`Username`} data={data.name} />
                         <TabGlobalButton name={`Email Address`} data={data.email} />
                         <TabGlobalButton name={`Date of Birth `} data={data.user_details?.date_of_birth} />
-                        <TabGlobalButton name={`Gender`} data={data.user_details?.gender_id} />
+                        <TabGlobalButton name={`Gender`} data={data.user_details?.gender?.name} />
                         <TabGlobalButton name={`Country`} data={data.user_details?.country} />
                         <TabGlobalButton name={`State`} data={data.user_details?.state} />
                         <TabGlobalButton name={`City`} data={data.user_details?.city} />

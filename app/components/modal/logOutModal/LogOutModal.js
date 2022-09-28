@@ -8,21 +8,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 export function LogOutModal(props) {
     return (
         <Modal
-        isVisible={props.isVisible}
- 
-        >
-            <View  style={styles.modal}>
-                
-            <Text style={styles.title}>LOGOUT</Text>
-            <Text style={styles.info}>Are you sure you want to log out?</Text>
-            <View style={styles.battonView}>
-                <TouchableOpacity onPress={props.onClose}>
-                    <Text>NO</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{marginLeft:48}} onPress={props.onLogOut}>
-                    <Text>YES</Text>
-                </TouchableOpacity>
-            </View>
+            isVisible={props.isVisible}>
+            <View style={styles.modal}>
+                <Text style={styles.title}>LOGOUT</Text>
+                <Text style={styles.info}>Are you sure you want to log out?</Text>
+                <View style={styles.battonView}>
+                    <TouchableOpacity onPress={props.onClose}>
+                        <Text>NO</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ marginLeft: 48 }} onPress={props.onLogOut}>
+                        <Text>YES</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </Modal>
     )

@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     description: {
         borderBottomColor: '#979797',
         backgroundColor: '#FFF',
-        fontSize: 14, 
+        fontSize: 16, 
     },
     btnView:{
         alignItems:'center',

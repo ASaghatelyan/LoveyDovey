@@ -1,7 +1,7 @@
 import {
   View, Text, ScrollView,
   TouchableOpacity, StatusBar,
-  ImageBackground, Image, SafeAreaView,
+  Animated, Image, SafeAreaView, Easing
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
@@ -54,7 +54,6 @@ export function Login(props) {
           password: pass,
         }
         let response = await axiosInstance.post("/login", login);
-        console.log(response.data.data.token);
         storeData(response.data.data.token)
         intro == null ? props.navigation.replace('Introduction') : props.navigation.replace('ChooseCategories')
       }
@@ -75,15 +74,33 @@ export function Login(props) {
       }
     } catch (e) {
       console.log(e, 'err');
-      if (e.response.status === 401) {
-        let data = { email, type: "email" };
-        props.navigation.navigate("SignUp", data);
-      }
+      setErr(e.response.data.message);
+      // if (e.response.status === 401) {
+      //   let data = { email, type: "email" };
+      //   props.navigation.navigate("SignUp", data);
+      // }
     }
   }
 
- 
- 
+  let spinValue = new Animated.Value(0);
+
+  Animated.loop(
+    Animated.timing(
+      spinValue,
+      {
+        toValue: 1,
+        duration: 3000,
+        easing: Easing.linear,
+        useNativeDriver: true
+      }
+    )
+  ).start();
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+
+  })
+
   return (
     <View style={{ flex: 1, height: '100%', }}>
       <BgImage img={bg} />
@@ -97,7 +114,7 @@ export function Login(props) {
           translucent={true}
         />
         <ScrollView contentContainerStyle={styles.content}  >
-          <Image source={logo} style={styles.logo} />
+          <Image source={logo} style={styles.logo} /> 
           <Text style={styles.titleLogin}>Log in or sign up to continue</Text>
           <View style={styles.bottomView}>
             <View style={{ width: '100%' }}>
@@ -117,7 +134,7 @@ export function Login(props) {
                 handleShowPass={() => setShowHidePass(!showHidePass)}
                 onChange={(e) => setPass(e)}
               />
-              <GlobalButton diffStyle={{marginTop:38}} btnName="Log in Now" onSubmit={onLogin} />
+              <GlobalButton diffStyle={{ marginTop: 38 }} btnName="Log in Now" onSubmit={onLogin} />
               {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
             </View>
             <View style={{ alignItems: 'center' }}>

@@ -15,11 +15,37 @@ import user from 'app/assets/img/profile.png'
 import loc from 'app/assets/img/loc.png'
 import edit from 'app/assets/img/edit.png'
 import { GlobalButton } from 'app/components/globalButton';
-
+import axiosInstance from 'app/networking/api';
 
 
 export function Profile(props) {
     const [text, setText] = useState("");
+    const [data, setData] = useState([]);
+    const [globalData, setGlobalData] = useState({})
+
+    useEffect(() => {
+        let requestFunc = async () => {
+            try {
+                let res = await axiosInstance.get(`user/detail`)
+                setData(res.data.data);
+                let resCountry = await axiosInstance.get("/country")
+                let resGender = await axiosInstance.get("/gender")
+                let resEducation = await axiosInstance.get(`/education`)
+                let resIncomingLvl = await axiosInstance.get(`/income-level`)
+                console.log();
+                setGlobalData({
+                    resCountry: resCountry.data.data,
+                    resGender: resGender.data.data,
+                    resEducation: resEducation.data.data,
+                    resIncomingLvl: resIncomingLvl.data.data,
+                })
+            } catch (e) {
+                console.log(e, 'err');
+            }
+        }
+        requestFunc() 
+    }, [])
+
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -38,7 +64,7 @@ export function Profile(props) {
                         <View style={styles.gFlex}>
                             <Text style={styles.titleText}>Profile</Text>
                         </View>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile', { data, globalData })}>
                             <Image source={edit} style={styles.edit} />
                         </TouchableOpacity>
                     </View>
@@ -46,13 +72,13 @@ export function Profile(props) {
                         <View style={styles.avatarView}>
                             <Image source={user} style={styles.userAvatar} />
                         </View>
-                        <TabGlobalButton name={`Username`} />
-                        <TabGlobalButton name={`Email Address`} />
-                        <TabGlobalButton name={`Date of Birth `} />
-                        <TabGlobalButton name={`Gender`} />
-                        <TabGlobalButton name={`Country`} />
-                        <TabGlobalButton name={`State`} />
-                        <TabGlobalButton name={`City`} />
+                        <TabGlobalButton name={`Username`} data={data.name} />
+                        <TabGlobalButton name={`Email Address`} data={data.email} />
+                        <TabGlobalButton name={`Date of Birth `} data={data.user_details?.date_of_birth} />
+                        <TabGlobalButton name={`Gender`} data={data.user_details?.gender_id} />
+                        <TabGlobalButton name={`Country`} data={data.user_details?.country} />
+                        <TabGlobalButton name={`State`} data={data.user_details?.state} />
+                        <TabGlobalButton name={`City`} data={data.user_details?.city} />
                     </View>
                 </ScrollView>
             </SafeAreaView>

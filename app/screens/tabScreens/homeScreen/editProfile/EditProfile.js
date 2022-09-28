@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
-import { BgImage, CalendarModal, ChooseRegionalInfo, EditProfileItem, ProfileChangeModal } from 'app/components'
+import { BgImage, CalendarModal, ChooseRegionalInfo, EditProfileItem, LoadingModal, ProfileChangeModal } from 'app/components'
 import { TextInput as PaperInput } from 'react-native-paper';
 import { ChooseImage } from 'app/components/imagePicker'
 import bg from 'app/assets/img/white.png'
@@ -16,11 +16,13 @@ import editPhoto from 'app/assets/img/editPhoto.png'
 import user from 'app/assets/img/profile.png'
 import { GlobalButton } from 'app/components/globalButton';
 import axiosInstance from 'app/networking/api';
+import { set } from 'react-native-reanimated';
 
 export function EditProfile(props) {
-    const [globalData, setGlobalData] = useState({})
+    const [load, setLoad] = useState(false)
+    const [globalData, setGlobalData] = useState({ ...props.route.params.globalData })
     const [changedData, setChangedData] = useState({})
-    const [text, setText] = useState("");
+    const [text, setText] = useState(props.route.params?.data?.name);
     const [img, setImages] = useState(null)
     const [modatlVisible, setModalVisible] = useState(false)
     const [bthDay, setBthDay] = useState('Date of Birth')
@@ -40,26 +42,29 @@ export function EditProfile(props) {
     const [education, setEducation] = useState({ id: 1, name: 'Education' })
 
 
-    useEffect(() => {
-        let requestFunc = async () => {
-            try {
-                let resCountry = await axiosInstance.get("/country")
-                let resGender = await axiosInstance.get("/gender")
-                let resEducation = await axiosInstance.get(`/education`)
-                let resIncomingLvl = await axiosInstance.get(`/income-level`)
+    // useEffect(() => {
+    //     setLoad(true)
+    //     let requestFunc = async () => {
+    //         try {
+    //             let resCountry = await axiosInstance.get("/country")
+    //             let resGender = await axiosInstance.get("/gender")
+    //             let resEducation = await axiosInstance.get(`/education`)
+    //             let resIncomingLvl = await axiosInstance.get(`/income-level`)
+    //             console.log();
+    //             setGlobalData({
+    //                 resCountry: resCountry.data.data,
+    //                 resGender: resGender.data.data,
+    //                 resEducation: resEducation.data.data,
+    //                 resIncomingLvl: resIncomingLvl.data.data,
+    //             })
+    //             setLoad(false)
+    //         } catch (e) {
+    //             console.log(e, 'err');
+    //         }
+    //     }
+    //     requestFunc()
+    // }, [])
 
-                setGlobalData({
-                    resCountry: resCountry.data.data,
-                    resGender: resGender.data.data,
-                    resEducation: resEducation.data.data,
-                    resIncomingLvl: resIncomingLvl.data.data,
-                })
-            } catch (e) {
-                console.log(e, 'err');
-            }
-        }
-        requestFunc()
-    }, [])
 
     useEffect(() => {
         let requestFunc = async () => {
@@ -114,6 +119,7 @@ export function EditProfile(props) {
     formData.append("city", city);
     formData.append("date_of_birth", bthDay);
     formData.append("education_id", education.id);
+    formData.append("gender_id", gender.id);
     formData.append("ethnicity_id", ethnicity.id);
     formData.append("income_level_id", incomLvl.id);
     // formData.append(`images`, {
@@ -124,13 +130,13 @@ export function EditProfile(props) {
 
     const onUpdate = async () => {
         try {
-            let res = await axiosInstance.post(`/create`,formData)
-            console.log(res);
+            await axiosInstance.post(`user/detail/create`, formData)
+            props.navigation.navigate('Profile')
         } catch (e) {
             console.log(e, 'err');
-        } 
+        }
     }
-   console.log(formData);
+
     return (
         <View style={{ flex: 1, height: '100%' }} >
             <BgImage img={bg} />
@@ -174,22 +180,22 @@ export function EditProfile(props) {
                                 },
                                 fonts: { regular: 'Roboto-Regular' }
                             }} />
-                        <EditProfileItem name={bthDay} onSelect={() => setModalVisible(!modatlVisible)} />
-                        <EditProfileItem name={gender.name} onSelect={() => setGenderModal(!genderModal)} />
-                        <EditProfileItem name={country} onSelect={() => setCountryModal(!countryModal)} />
-                        <EditProfileItem name={state} onSelect={() => setStateModal(!stateModal)} />
-                        <EditProfileItem name={city} onSelect={() => setCityModal(!cityModal)} />
-                        <EditProfileItem name={ethnicity.name} onSelect={() => setEthnicityModal(!ethnicityModal)} />
-                        <EditProfileItem name={education.name} onSelect={() => setEducationModal(!educationModal)} />
-                        <EditProfileItem name={incomLvl.name} onSelect={() => setIncomeLvlModal(!incomLvlModal)} />
-                        <EditProfileItem name='Email Address' />
+                        <EditProfileItem name={bthDay} chooseStyle={bthDay !== 'Date of Birth' && { color: '#403D3D' }} onSelect={() => setModalVisible(!modatlVisible)} />
+                        <EditProfileItem name={gender.name} chooseStyle={gender.name !== 'Gender' && { color: '#403D3D' }} onSelect={() => setGenderModal(!genderModal)} />
+                        <EditProfileItem name={country} chooseStyle={country !== 'Country' && { color: '#403D3D' }} onSelect={() => setCountryModal(!countryModal)} />
+                        <EditProfileItem name={state} chooseStyle={state !== 'State' && { color: '#403D3D' }} onSelect={() => country !== 'Country' && setStateModal(!stateModal)} />
+                        <EditProfileItem name={city} chooseStyle={city !== 'City' && { color: '#403D3D' }} onSelect={() => state !== 'State' && setCityModal(!cityModal)} />
+                        <EditProfileItem name={ethnicity.name} chooseStyle={ethnicity.name !== 'Ethnicity' && { color: '#403D3D' }} onSelect={() => setEthnicityModal(!ethnicityModal)} />
+                        <EditProfileItem name={education.name} chooseStyle={education.name !== 'Education' && { color: '#403D3D' }} onSelect={() => setEducationModal(!educationModal)} />
+                        <EditProfileItem name={incomLvl.name} chooseStyle={incomLvl.name !== 'Income Level' && { color: '#403D3D' }} onSelect={() => setIncomeLvlModal(!incomLvlModal)} />
+                        <EditProfileItem name={props.route.params?.data.email} chooseStyle={props.route.params?.data.email && { color: '#403D3D' }} />
                     </View>
                 </ScrollView>
                 <View style={styles.btnView}>
                     <GlobalButton btnName='Update' onSubmit={onUpdate} />
                 </View>
             </SafeAreaView>
-
+            <LoadingModal isVisible={load} />
             <ProfileChangeModal
                 isVisible={genderModal}
                 onClose={async (a) => {

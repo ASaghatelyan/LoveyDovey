@@ -7,7 +7,7 @@ export   function EditProfileItem(props) {
   
   return (
     <TouchableOpacity style={styles.content}  onPress={props.onSelect}>
-      <Text style={styles.nameText}>{props.name}</Text>
+      <Text style={[styles.nameText,props.chooseStyle]}>{props.name}</Text>
       <Image source={open} style={styles.icon} />
     </TouchableOpacity>
   )

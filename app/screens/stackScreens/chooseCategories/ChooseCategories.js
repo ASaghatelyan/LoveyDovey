@@ -101,7 +101,7 @@ export function ChooseCategories(props) {
             })}
           </View>
           <View style={styles.btnView}>
-            <GlobalButton btnName="Submit" onSubmit={() => props.navigation.navigate('TabNavigation')} />
+            <GlobalButton btnName="Submit" onSubmit={() => props.navigation.replace('TabNavigation')} />
           </View>
         </ScrollView>
         <View style={styles.hintView}>

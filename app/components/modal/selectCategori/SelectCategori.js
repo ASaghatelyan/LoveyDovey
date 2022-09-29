@@ -14,52 +14,59 @@ import he from 'app/assets/img/he.png'
 import mers from 'app/assets/img/mers.png'
 
 export function SelectCategori(props) {
-    const [data,setData]=useState('')
+    const [data, setData] = useState('')
     const [chooseData, setChooseData] = useState([
         {
+            id: 1,
             status: false,
             type: 'Presents',
-            img:gift
+            img: gift
         },
         {
+            id: 2,
             status: false,
             type: 'Positive Words',
-            img:mes
+            img: mes
         },
         {
+            id: 3,
             status: false,
             type: 'Precious Time',
-            img:time
+            img: time
         },
         {
+            id: 4,
             status: false,
             type: 'Positive Acts',
-            img:like
+            img: like
         },
         {
+            id: 5,
             status: false,
             type: 'Physical Touch',
-            img:love
+            img: love
         },
         {
+            id: 6,
             status: false,
             type: 'Passion',
-            img:he
+            img: he
         },
         {
+            id: 7,
             status: false,
             type: 'Peace',
-            img:mers
+            img: mers
         },
     ])
-  
+
     const chooseItem = (ind) => {
         let arr = chooseData
         // arr[ind].status = !arr[ind].status
         arr.filter((item, index) => {
-            if (ind === index) {   
+            if (ind === index) {
                 arr[ind].status = !arr[ind].status
-             }
+            }
             else (arr[index].status = false)
         })
         setChooseData([...arr])
@@ -72,22 +79,23 @@ export function SelectCategori(props) {
 
             <View style={styles.titleView}>
                 <Text style={styles.whosIn}>Choose Category</Text>
-                <TouchableOpacity onPress={()=>props.onClose(data)}>
+                <TouchableOpacity onPress={() => props.onClose(data)}>
                     <Image source={close} style={styles.closeIc} />
                 </TouchableOpacity>
             </View>
             <View style={styles.bottomSide}>
                 {chooseData.map((item, index) => {
-                    return <View key={index}  style={styles.itemView}>
+                    return <View key={index} style={styles.itemView}>
                         <SubmitItem
-                            color={{ color: '#403D3D', fontSize: 16 }} 
+                            color={{ color: '#403D3D', fontSize: 16 }}
                             check={item.status}
                             valueChanged={() => {
-                                setData(chooseData[index].type);
-                                chooseItem(index)}}
+                                setData(chooseData[index]);
+                                chooseItem(index)
+                            }}
                             type={item.type}
                         />
-                        <Image source={item.img} style={styles.imgIc}/>
+                        <Image source={item.img} style={styles.imgIc} />
                     </View>
 
                 })}

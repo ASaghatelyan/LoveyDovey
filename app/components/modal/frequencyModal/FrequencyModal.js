@@ -3,34 +3,40 @@ import React, { useState } from 'react'
 import Modal from 'react-native-modal'
 import { styles } from './style'
 import { SubmitItem } from 'app/components/submitItem'
-import close from 'app/assets/img/close.png' 
+import close from 'app/assets/img/close.png'
 
 export function FrequencyModal(props) {
     const [data, setData] = useState('')
     const [chooseData, setChooseData] = useState([
         {
+            id: 1,
             status: false,
-            type: 'Daily', 
+            type: 'Daily',
         },
         {
+            id: 2,
             status: false,
-            type: 'Bi-Weekly', 
+            type: 'Bi-Weekly',
         },
         {
+            id: 3,
             status: false,
-            type: 'Weekly', 
+            type: 'Weekly',
         },
         {
+            id: 4,
             status: false,
-            type: 'Bi/Monthly', 
+            type: 'Bi/Monthly',
         },
         {
+            id: 5,
             status: false,
-            type: 'Monthly', 
+            type: 'Monthly',
         },
         {
+            id: 6,
             status: false,
-            type: 'Yearly', 
+            type: 'Yearly',
         },
     ])
 
@@ -63,7 +69,7 @@ export function FrequencyModal(props) {
                         color={{ color: '#403D3D', fontSize: 16 }}
                         check={item.status}
                         valueChanged={() => {
-                            setData(chooseData[index].type);
+                            setData(chooseData[index]);
                             chooseItem(index)
                         }}
                         type={item.type}

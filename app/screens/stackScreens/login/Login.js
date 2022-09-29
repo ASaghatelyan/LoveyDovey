@@ -47,7 +47,6 @@ export function Login(props) {
   const onLogin = async () => {
     try {
       let intro = await getIntro()
-
       if (validateEmail(email) && pass.length > 7) {
         let login = {
           email,
@@ -95,6 +94,7 @@ export function Login(props) {
       }
     )
   ).start();
+
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg']
@@ -114,7 +114,7 @@ export function Login(props) {
           translucent={true}
         />
         <ScrollView contentContainerStyle={styles.content}  >
-          <Image source={logo} style={styles.logo} /> 
+          <Image source={logo} style={styles.logo} />
           <Text style={styles.titleLogin}>Log in or sign up to continue</Text>
           <View style={styles.bottomView}>
             <View style={{ width: '100%' }}>

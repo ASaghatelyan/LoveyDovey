@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
-import { BgImage, TabGlobalButton } from 'app/components'
+import { BgImage, LoadingModal, TabGlobalButton } from 'app/components'
 import { TextInput as PaperInput } from 'react-native-paper';
 
 import bg from 'app/assets/img/white.png'
@@ -19,33 +19,39 @@ import axiosInstance from 'app/networking/api';
 
 
 export function Profile(props) {
-    const [text, setText] = useState("");
     const [data, setData] = useState([]);
     const [globalData, setGlobalData] = useState({})
+    const [load, setLoad] = useState(false)
 
-    useEffect(() => {
+    useEffect(() => { 
+        setLoad(!load)
+        console.log(0);
         let requestFunc = async () => {
             try {
+               
                 let res = await axiosInstance.get(`user/detail`)
                 setData(res.data.data);
                 let resCountry = await axiosInstance.get("/country")
                 let resGender = await axiosInstance.get("/gender")
                 let resEducation = await axiosInstance.get(`/education`)
-                let resIncomingLvl = await axiosInstance.get(`/income-level`)
-                console.log();
+                let resIncomingLvl = await axiosInstance.get(`/income-level`) 
                 setGlobalData({
                     resCountry: resCountry.data.data,
                     resGender: resGender.data.data,
                     resEducation: resEducation.data.data,
                     resIncomingLvl: resIncomingLvl.data.data,
                 })
+                console.log(1);
+                setLoad(false)
             } catch (e) {
                 console.log(e, 'err');
             }
         }
-        requestFunc() 
+        requestFunc()
+      
     }, [])
-    console.log(data);
+
+
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -70,7 +76,7 @@ export function Profile(props) {
                     </View>
                     <View style={styles.bottomView}>
                         <View style={styles.avatarView}>
-                            <Image source={data.user_details?.image ? {uri:data.user_details?.image} :user} style={styles.userAvatar} />
+                            <Image source={data.user_details?.image ? { uri: data.user_details?.image } : user} style={styles.userAvatar} />
                         </View>
                         <TabGlobalButton name={`Username`} data={data.name} />
                         <TabGlobalButton name={`Email Address`} data={data.email} />
@@ -82,6 +88,7 @@ export function Profile(props) {
                     </View>
                 </ScrollView>
             </SafeAreaView>
+            <LoadingModal isVisible={load} />
         </View>
     )
 }

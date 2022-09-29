@@ -1,4 +1,4 @@
-import { View, Text, Animated, Image, TouchableOpacity, Easing } from 'react-native'
+import { View, Animated } from 'react-native'
 import React, { useEffect } from 'react'
 import Modal from 'react-native-modal'
 import { styles } from './style'
@@ -42,7 +42,8 @@ export function LoadingModal(props) {
     useEffect(() => {
         let timer = setInterval(() => {
             flipAnimation() 
-        }, 1500); 
+        }, 500); 
+        flipAnimation() 
         return () => {
             clearInterval(timer)
         }

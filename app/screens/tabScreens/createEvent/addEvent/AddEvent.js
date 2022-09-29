@@ -11,20 +11,39 @@ import bg from 'app/assets/img/white.png'
 import { GlobalButton } from 'app/components/globalButton'
 import { TextInput as PaperInput } from 'react-native-paper';
 import moment from 'moment'
-
+import axiosInstance from 'app/networking/api'
 
 export function AddEvent(props) {
-   
-    const [errorModal,setErrorModal]=useState(false)
+
+    const [errorModal, setErrorModal] = useState(false)
     const [modalVisible, setMOdalVisible] = useState(false)
     const [frequencyModal, setFrequencyModal] = useState(false)
     const [calendarModal, setCalendarModal] = useState(false)
     const [endModal, setEndModal] = useState(false)
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState([])
     const [startData, setStartDate] = useState('')
     const [endData, setEndDate] = useState('')
-    const [frequency, setFrequency] = useState('')
+    const [frequency, setFrequency] = useState([])
     const [text, setText] = useState("");
+
+
+    const formData = new FormData()
+    formData.append('category_id', category.id,)
+    formData.append('frequency_id', frequency.id,)
+    formData.append('description', text)
+    formData.append('start', startData,)
+    formData.append('end', endData,)
+
+    let onCreate = async () => {
+        try { 
+            await axiosInstance.post(`user/need-or-want/create`, formData)
+            props.navigation.replace('TabNavigation',{screen:'CreateEventNavigation'})
+            console.log();
+        } catch (e) {
+            console.log(e, 'err');
+        }
+    }
+
 
     return (
         <View style={{ flex: 1, height: '100%' }}>
@@ -40,7 +59,7 @@ export function AddEvent(props) {
                     <View>
                         <Text style={styles.titleText}>Create Want/Need</Text>
                         <TabGlobalButton name="Select Category"
-                            data={category}
+                            data={category.type}
                             onPush={() => setMOdalVisible(!modalVisible)}
                         />
                         <PaperInput
@@ -60,7 +79,7 @@ export function AddEvent(props) {
                             placeholderTextColor={'#979797'}
                             style={styles.description} /> */}
                         <TabGlobalButton name="Frequency"
-                            data={frequency}
+                            data={frequency.type}
                             onPush={() => setFrequencyModal(!frequencyModal)}
                         />
                         <TabGlobalButton name="Start Date"
@@ -69,8 +88,8 @@ export function AddEvent(props) {
                         <TabGlobalButton name="End Date"
                             data={endData}
                             onPush={() => setEndModal(!endModal)}
-                            diffStyle={{ marginBottom:36}} />
-                        <GlobalButton btnName="Submit" onSubmit={()=>props.navigation.navigate('TabNavigation',{screen:'HomeScreen'})}/>
+                            diffStyle={{ marginBottom: 36 }} />
+                        <GlobalButton btnName="Submit" onSubmit={onCreate} />
                     </View>
                 </ScrollView>
                 <SelectCategori
@@ -107,11 +126,11 @@ export function AddEvent(props) {
                         setEndModal(!endModal)
                     }}
                 />
-                <ErrorModal 
-                isVisible={errorModal}
-                onClose={() => {
-                    setErrorModal(!errorModal)
-                }}
+                <ErrorModal
+                    isVisible={errorModal}
+                    onClose={() => {
+                        setErrorModal(!errorModal)
+                    }}
                 />
             </SafeAreaView>
         </View>

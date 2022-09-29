@@ -11,8 +11,23 @@ import bg from 'app/assets/img/white.png'
 import noti from 'app/assets/img/search.png'
 import user from 'app/assets/img/info.png'
 import calendarInfo from 'app/assets/img/calendarInfo.png'
+import axiosInstance from 'app/networking/api'
 
-export function CreateEvent(props) {
+
+export function CreateEvent(props) { 
+    const [data,setData]=useState([])
+    useEffect(() => {
+        let requestFunc = async () => {
+            try {
+                let res =   await axiosInstance.get(`user/need-or-want`)
+                setData(res.data.data);
+            } catch (e) {
+                console.log(e, 'err');
+            }
+        }
+        requestFunc()
+    }, [ ])
+
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -41,7 +56,10 @@ export function CreateEvent(props) {
                         </View>
                     </View>
                     <View >
-                        <CalendarLovey onNavi={(day)=>props.navigation.navigate('AddEvent',{day})}/> 
+                        <CalendarLovey
+                         onNavi={(day)=>props.navigation.navigate('AddEvent',{day})}
+                         data={data}
+                         /> 
                     </View>
                 </ScrollView>
             </SafeAreaView>

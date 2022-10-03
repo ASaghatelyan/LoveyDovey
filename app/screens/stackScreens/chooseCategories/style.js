@@ -53,7 +53,8 @@ export const styles = StyleSheet.create({
     },
     btnView:{
         width:'100%',
-        paddingHorizontal:globalHeight(17)
+        paddingHorizontal:globalHeight(17),
+        marginTop:globalHeight(72)
     },
     hintView:{
         alignItems:'center',

@@ -31,6 +31,16 @@ export function Login(props) {
     return JSON.parse(data)
   }
 
+  let getCategory = async () => {
+    let data = await AsyncStorage.getItem('category', (err, value) => {
+      if (err) {
+        console.log(err)
+      } else {
+      }
+    })
+    return JSON.parse(data)
+  }
+
   const storeData = async (value) => {
     try {
       await AsyncStorage.setItem('token', value)
@@ -47,6 +57,7 @@ export function Login(props) {
   const onLogin = async () => {
     try {
       let intro = await getIntro()
+      let category =await getCategory()
       if (validateEmail(email) && pass.length > 7) {
         let login = {
           email,
@@ -54,7 +65,8 @@ export function Login(props) {
         }
         let response = await axiosInstance.post("/login", login);
         storeData(response.data.data.token)
-        intro == null ? props.navigation.replace('Introduction') : props.navigation.replace('ChooseCategories')
+        console.log(response.data);
+        intro == null ? props.navigation.replace('Introduction') : category ? props.navigation.replace('ChooseCategories') : props.navigation.replace('TabNavigation')
       }
       else if (!email) {
         setErr("Email is not filled")

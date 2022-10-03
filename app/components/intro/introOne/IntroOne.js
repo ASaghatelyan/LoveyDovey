@@ -34,7 +34,7 @@ export function IntroOne(props) {
                     vidRef = ref
                 }}
                 paused={state.paused}
-                source={vid}
+                source={{uri:'https://3228.freelancedeveloper.site/video/welcome.mp4'}}
                 style={styles.video}
             />
             {state.paused ? <TouchableOpacity style={styles.playViwe} onPress={hendlePlay}>

@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, TouchableOpacity, Image, StatusBar, ImageBackground } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { styles } from './style'
 import { IntroFive, IntroFour, IntroOne, IntroThree, IntroTwo } from 'app/components'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,6 +10,9 @@ import cycle from 'app/assets/img/cycle.png'
 import cycleC from 'app/assets/img/colorCycle.png'
 import bg from 'app/assets/img/introBg.png'
 import bgW from 'app/assets/img/introWbg.png'
+import axiosInstance from 'app/networking/api';
+
+
 
 export function Introduction(props) {
     const [count, setCount] = useState(1);
@@ -35,6 +38,18 @@ export function Introduction(props) {
             num: 5
         },
     ]
+
+    useEffect(() => {
+        let requestFunc = async () => {
+            try {
+                let res =   await axiosInstance.get(`user/video/welcome.mp4`)
+              console.log(res,'rreesss');
+            } catch (e) {
+                console.log(e, 'err');
+            }
+        }
+        requestFunc()
+    }, [ ])
 
     const incriment = () => {
         cycleIc.length + 1 > count && setCount(prev => prev + 1)

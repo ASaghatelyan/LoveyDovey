@@ -21,10 +21,10 @@ export function AddEvent(props) {
     const [calendarModal, setCalendarModal] = useState(false)
     const [endModal, setEndModal] = useState(false)
     const [category, setCategory] = useState([])
-    const [startData, setStartDate] = useState('')
-    const [endData, setEndDate] = useState('')
+    const [startData, setStartDate] = useState()
+    const [endData, setEndDate] = useState()
     const [frequency, setFrequency] = useState([])
-    const [text, setText] = useState("");
+    const [text, setText] = useState();
 
 
     const formData = new FormData()
@@ -35,10 +35,13 @@ export function AddEvent(props) {
     formData.append('end', endData,)
 
     let onCreate = async () => {
-        try { 
-            await axiosInstance.post(`user/need-or-want/create`, formData)
-            props.navigation.replace('TabNavigation',{screen:'CreateEventNavigation'})
-            console.log();
+        try {
+            console.log(endData && startData && frequency && text && category);
+            if (startData && endData && frequency && text && category) {
+                await axiosInstance.post(`user/need-or-want/create`, formData)
+                props.navigation.replace('TabNavigation', { screen: 'CreateEventNavigation' })
+            }
+            else { alert('Please fill in all fields') }
         } catch (e) {
             console.log(e, 'err');
         }
@@ -74,10 +77,6 @@ export function AddEvent(props) {
                                 fonts: { regular: 'Roboto-Regular' }
                             }}
                         />
-                        {/* <TextInput
-                            placeholder='Description'
-                            placeholderTextColor={'#979797'}
-                            style={styles.description} /> */}
                         <TabGlobalButton name="Frequency"
                             data={frequency.type}
                             onPush={() => setFrequencyModal(!frequencyModal)}

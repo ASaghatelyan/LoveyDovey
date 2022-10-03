@@ -9,10 +9,7 @@ import { styles } from './style'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BgImage, SubmitItem } from 'app/components'
 import bg from 'app/assets/img/submitBg.png'
-import { GlobalButton } from 'app/components/globalButton';
-import Video from 'react-native-video';
-import vid from 'app/assets/img/video.mp4'
-
+import { GlobalButton } from 'app/components/globalButton'; 
 
 
 export function ChooseCategories(props) {
@@ -53,30 +50,8 @@ export function ChooseCategories(props) {
     setChooseData([...arr])
   }
 
+
   return (
-    // <ScrollView contentContainerStyle={styles.content}>
-    //   <StatusBar barStyle={'light-content'} showHideTransition={false} />
-    //   {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
-    //   {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
-    //   <ImageBackground source={bg} style={styles.bgImage}>
-    //     <Text style={styles.titleText}>What Categories do youwant to start with?</Text>
-    //     <View style={styles.bottomView}>
-    //       {chooseData.map((item, index) => {
-    //         return <SubmitItem
-    //           key={index}
-    //           check={item.status}
-    //           valueChanged={() => chooseItem(index)}
-    //           type={item.type}
-    //         />
-    //       })}
-    //     </View>
-    //     <View style={styles.btnView}>
-    //       <GlobalButton btnName="Submit" />
-    //     </View>
-    //   </ImageBackground>
-
-    // </ScrollView>
-
     <View style={{ flex: 1, height: '100%' }}>
       <BgImage img={bg} />
       <SafeAreaView
@@ -86,8 +61,7 @@ export function ChooseCategories(props) {
           animated={true}
           backgroundColor="transparent"
           barStyle="light-content"
-          translucent={true}
-        />
+          translucent={true} />
         <ScrollView contentContainerStyle={styles.content}  >
           <Text style={styles.titleText}>What Categories do youwant to start with?</Text>
           <View style={styles.bottomView}>
@@ -96,12 +70,13 @@ export function ChooseCategories(props) {
                 key={index}
                 check={item.status}
                 valueChanged={() => chooseItem(index)}
-                type={item.type}
-              />
+                type={item.type} />
             })}
           </View>
           <View style={styles.btnView}>
-            <GlobalButton btnName="Submit" onSubmit={() => props.navigation.replace('TabNavigation')} />
+            <GlobalButton btnName="Submit" onSubmit={() => {
+                AsyncStorage.setItem('category', JSON.stringify(true))
+              props.navigation.replace('TabNavigation')}} />
           </View>
         </ScrollView>
         <View style={styles.hintView}>

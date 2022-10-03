@@ -31,6 +31,8 @@ export function HomeScreen(props) {
         const text = await Clipboard.getString();
         setCopiedText(text);
     };
+
+    
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />

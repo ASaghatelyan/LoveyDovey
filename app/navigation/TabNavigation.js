@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, SafeAreaView } from "react-native";
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, TouchableNativeFeedback } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   BlogScreens,
@@ -8,7 +8,7 @@ import {
 import Home from 'app/assets/img/home.png'
 import Note from 'app/assets/img/note.png'
 import TabCalendar from 'app/assets/img/tabCalendar.png'
-import AddEvent from 'app/assets/img/addEvent.png'
+import AddEvent from 'app/assets/img/pluss.png'
 import Share from 'app/assets/img/share.png'
 import Settings from 'app/assets/img/settings.png'
 import CreateEventNavigation from "./CreateEventNavigation";
@@ -40,8 +40,7 @@ export default function TabNavigation(props) {
             height: 57,
             position: "absolute",
           },
-          unmountOnBlur: true,
-
+          unmountOnBlur: true, 
           tabBarIcon: ({ focused, color, size }) => {
             let imageSource = null;
             if (route.name === "HomeNavigation") {
@@ -61,23 +60,37 @@ export default function TabNavigation(props) {
               imageSource = Settings;
             }
             if (route.name === "CreateEventNavigation") {
-              return (focused ? <Image
-                style={{
-                  height: 68,
-                  width: 68,
-                  resizeMode: "contain",
-                  marginBottom: 50
-                }}
-                source={AddEvent}
-              /> : <Image
-                style={{
-                  height: 68,
-                  width: 68,
-                  resizeMode: "contain",
-                  marginBottom: 50
-                }}
-                source={imageSource}
-              />)
+              return (focused ?
+                <TouchableOpacity
+                  style={{
+                    height: 68,
+                    width: 68,
+                    borderRadius: 100,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: 50,
+                    backgroundColor: '#EB1829',
+                  }}
+                  onPress={() => {
+                    props.navigation.navigate('AddEvent')
+                  }}>
+                  <Image
+                    style={{
+                      height: 40,
+                      width: 40,
+                      resizeMode: 'contain'
+                    }}
+                    source={AddEvent}
+                  />
+                </TouchableOpacity> : <Image
+                  style={{
+                    height: 68,
+                    width: 68,
+                    resizeMode: "contain",
+                    marginBottom: 50
+                  }}
+                  source={imageSource}
+                />)
 
             } else {
               return (

@@ -45,8 +45,8 @@ export function SettingsScreen(props) {
                 onClose={() => setModalVisible(!modatlVisible)}
                 onLogOut={async () => {  
                     setModalVisible(!modatlVisible)
-                    await AsyncStorage.removeItem("token")
                     props.navigation.navigate('Login')
+                    await AsyncStorage.removeItem("token")
                 }}
             />
         </View>

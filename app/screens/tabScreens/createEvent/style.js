@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions,Platform } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 
 let width = Dimensions.get("window").width;
 let height = Dimensions.get("window").height;
@@ -16,21 +16,21 @@ const globalHeight = (a) => {
 
 
 export const styles = StyleSheet.create({
-    mainContainer:{
-     
+    mainContainer: {
+
     },
     content: {
         flexGrow: 1,
-        position: 'relative', 
-        height:'100%', 
-        paddingTop:Platform.OS === 'android' ? globalHeight(46) :null
+        position: 'relative',
+        height: '100%',
+        paddingTop: Platform.OS === 'android' ? globalHeight(46) : null
     },
     bottomView: {
-        width:'100%', 
+        width: '100%',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        paddingHorizontal: globalWidth(17), 
-        paddingVertical:globalHeight(10), 
+        paddingHorizontal: globalWidth(17),
+        paddingVertical: globalHeight(10),
     },
     titleText: {
         fontSize: globalWidth(24),
@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     },
     img: {
         width: globalWidth(19),
-        height: globalHeight(19), 
+        height: globalHeight(19),
         marginLeft: 12
     },
     img2: {
@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
     },
     img3: {
         width: globalWidth(18),
-        height: globalHeight(19), 
+        height: globalHeight(19),
         marginLeft: 12
     },
     infoView: {
@@ -78,6 +78,17 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: globalHeight(37),
     },
-  
+    text: {
+        marginLeft: globalWidth(31),
+        marginTop: globalHeight(48),
+        color:'#EB1829',
+        fontSize: globalWidth(15),
+        fontFamily: "Roboto-Regular",
+    },
+    textIn:{
+        color:'#000',
+        fontSize: globalWidth(14),
+        fontFamily: "Roboto-Regular",
+    },
 });
 

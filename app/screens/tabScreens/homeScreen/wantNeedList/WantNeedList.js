@@ -56,14 +56,14 @@ export function WantNeedList(props) {
         {
             id: 6,
             status: false,
-            type: 'Passion',
-            img: he
+            type: 'Peace',
+            img: mers
         },
         {
             id: 7,
             status: false,
-            type: 'Peace',
-            img: mers
+            type: 'Passion',
+            img: he
         },
     ])
 
@@ -81,8 +81,17 @@ export function WantNeedList(props) {
         requestFunc()
     }, [])
 
-     
-   
+    const chooseItem = (id) => {
+        let arr = data.map((i) => {
+            return i.filter((val, ind) => {
+                return id === val.category_id;
+            })
+        })
+        return arr.filter(item => {
+            return item.length > 0
+        });
+    }
+
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -107,12 +116,16 @@ export function WantNeedList(props) {
                             return (
                                 <TouchableOpacity key={index}
                                     style={styles.itemView}
-                                    onPress={() => props.navigation.navigate('WantNeedItem',
-                                        {
-                                            title: item.type,
-                                            img: item.img,
-                                            data: chooseData
-                                        })}>
+                                    onPress={() => {
+                                        props.navigation.navigate('WantNeedItem',
+                                            {
+                                                title: item.type,
+                                                img: item.img,
+                                                data: chooseItem(item.id)
+                                            }) 
+                                    }
+
+                                    }>
                                     <Text style={styles.title}>{item.type}</Text>
                                     <Image source={item.img} style={[styles.icon, index === 2 && { width: 22, height: 22 }]} />
                                 </TouchableOpacity>
@@ -122,6 +135,6 @@ export function WantNeedList(props) {
 
                 </ScrollView>
             </SafeAreaView>
-        </View>
+        </View >
     )
 }

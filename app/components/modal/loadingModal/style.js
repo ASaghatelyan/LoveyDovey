@@ -15,6 +15,8 @@ const globalHeight = (a) => {
 
 export const styles = StyleSheet.create({
     modal: { 
+        flex: 1,
+        
         borderRadius: 2,
         alignItems: 'center',
         justifyContent: 'center'

@@ -11,32 +11,32 @@ export function FrequencyModal(props) {
         {
             id: 1,
             status: false,
-            type: 'Daily',
+            name: 'Daily',
         },
         {
             id: 2,
             status: false,
-            type: 'Bi-Weekly',
+            name: 'Bi-Weekly',
         },
         {
             id: 3,
             status: false,
-            type: 'Weekly',
+            name: 'Weekly',
         },
         {
             id: 4,
             status: false,
-            type: 'Bi/Monthly',
+            name: 'Bi/Monthly',
         },
         {
             id: 5,
             status: false,
-            type: 'Monthly',
+            name: 'Monthly',
         },
         {
             id: 6,
             status: false,
-            type: 'Yearly',
+            name: 'Yearly',
         },
     ])
 
@@ -72,7 +72,7 @@ export function FrequencyModal(props) {
                             setData(chooseData[index]);
                             chooseItem(index)
                         }}
-                        type={item.type}
+                        name={item.name}
                     />)
                 })}
             </View>

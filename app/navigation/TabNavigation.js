@@ -14,6 +14,7 @@ import Settings from 'app/assets/img/settings.png'
 import CreateEventNavigation from "./CreateEventNavigation";
 import SettingsNavigation from "./SettingsNavigation";
 import HomeNavigation from "./HomeNavigation";
+import { useIsFocused } from '@react-navigation/native';
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 const Tab = createBottomTabNavigator();
 let width = Dimensions.get("window").width;
@@ -21,7 +22,9 @@ let width = Dimensions.get("window").width;
 
 
 
+
 export default function TabNavigation(props) {
+  const isFocused = useIsFocused();
 
 
   return (
@@ -40,7 +43,8 @@ export default function TabNavigation(props) {
             height: 57,
             position: "absolute",
           },
-          unmountOnBlur: true, 
+
+          unmountOnBlur: true,
           tabBarIcon: ({ focused, color, size }) => {
             let imageSource = null;
             if (route.name === "HomeNavigation") {
@@ -62,6 +66,7 @@ export default function TabNavigation(props) {
             if (route.name === "CreateEventNavigation") {
               return (focused ?
                 <TouchableOpacity
+                  {...props}
                   style={{
                     height: 68,
                     width: 68,
@@ -72,7 +77,8 @@ export default function TabNavigation(props) {
                     backgroundColor: '#EB1829',
                   }}
                   onPress={() => {
-                    props.navigation.navigate('AddEvent')
+                    // props.navigation.navigate('AddEvent')
+                    // alert('eeeeee')
                   }}>
                   <Image
                     style={{
@@ -82,7 +88,8 @@ export default function TabNavigation(props) {
                     }}
                     source={AddEvent}
                   />
-                </TouchableOpacity> : <Image
+                </TouchableOpacity>
+                : <Image
                   style={{
                     height: 68,
                     width: 68,
@@ -123,6 +130,7 @@ export default function TabNavigation(props) {
         }
         )
         }
+
       >
         <Tab.Screen name="HomeNavigation" component={HomeNavigation}
           options={({ route }) => ({
@@ -179,14 +187,23 @@ export default function TabNavigation(props) {
               ((route) => {
                 const routeName = getFocusedRouteNameFromRoute(route) ?? ""
                 if (routeName === "AddEvent") { () => null }
-
               })(route),
             tabBarStyle: ((route) => {
               const routeName = getFocusedRouteNameFromRoute(route) ?? ""
               if (routeName === "AddEvent") { return { display: 'none' } }
               return styles.generalStyle
             })(route),
+
           })}
+          listeners={({ navigation, route }) => ({
+            tabPress: (e) => {
+               navigation.navigate('AddEvent');
+              // props.navigation.navigate('CreateEventNavigation',{screen:'CreateEvent'})
+            },
+           
+          })}
+         
+
         />
         <Tab.Screen name="ShareScreen" component={ShareScreen}
           options={{

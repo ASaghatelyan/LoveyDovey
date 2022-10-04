@@ -46,15 +46,14 @@ export function CreateEvent(props) {
                 let obj = monthInfo
                 addTime(Object.values(res.data.data)).map((item, ind) => {
                     item.map((date, index) => {
-                        console.log(item[0] ===item[ item.length - 1],'ss');
-                          if (item[0] === item[ item.length - 1]) {
-                            obj[date] = {disabled: true, startingDay: true , endingDay: true, color: '#EB1829', textColor: '#403D3D' }
-                        } 
+                        if (item[0] === item[item.length - 1]) {
+                            obj[date] = { disabled: true, startingDay: true, endingDay: true, color: '#EB1829', textColor: '#403D3D' }
+                        }
                         else if (index === 0) {
                             obj[date] = { startingDay: true, color: '#EB1829', textColor: '#403D3D' }
                         } else if (index === item.length - 1) {
                             obj[date] = { selected: true, endingDay: true, color: '#EB1829', textColor: '#403D3D' }
-                        }  else { 
+                        } else {
                             obj[date] = { color: '#EB1829', textColor: '#403D3D' }
                         }
                     })

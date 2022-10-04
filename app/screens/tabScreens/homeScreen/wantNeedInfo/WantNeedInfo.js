@@ -11,7 +11,7 @@ import { TextInput as PaperInput } from 'react-native-paper';
 
 import bg from 'app/assets/img/white.png'
 import back from 'app/assets/img/back.png'
-import phone from 'app/assets/img/ph.png'
+import edit from 'app/assets/img/edit.png'
 import loc from 'app/assets/img/loc.png'
 import mess from 'app/assets/img/mess.png'
 import { GlobalButton } from 'app/components/globalButton';
@@ -27,6 +27,7 @@ import moment from 'moment'
 
 export function WantNeedInfo(props) {
     const [text, setText] = useState("");
+  
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -45,39 +46,38 @@ export function WantNeedInfo(props) {
                         <View style={styles.gFlex}>
                             <Text style={styles.titleText}>Want/Need</Text>
                         </View>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate('WantNeedEdit',props.route.params)}>
+                            <Image source={edit} style={styles.edit}/>
+                        </TouchableOpacity>
                     </View>
                     <ScrollView contentContainerStyle={[styles.content, { paddingHorizontal: 16 }]}  >
                         <View>
                             <TabGlobalButton name="Select Category" 
-                                onPush={() => setMOdalVisible(!modalVisible)}
+                                data={props.route.params.category.name}
                             />
-                            <PaperInput
-                                label="Desgription"
-                                value={text}
-                                onChangeText={text => setText(text)}
-                                style={styles.description}
-                                theme={{
-                                    colors: {
-                                        placeholder: '#FFF', text: '#FFF', primary: '#484545',
-                                    },
-                                    fonts: { regular: 'Roboto-Regular' }
-                                }}
-                            />
+                         
+                            <View style={styles.description}>
+                                <Text style={styles.descriptionText}>Description</Text>
+                                <Text style={styles.infoText}>{props.route.params.description}</Text>
+                            </View>
                             {/* <TextInput
                             placeholder='Description'
                             placeholderTextColor={'#979797'}
                             style={styles.description} /> */}
                             <TabGlobalButton name="Frequency"
-                                onPush={() => setFrequencyModal(!frequencyModal)}
+                                     data={props.route.params.frequency.name}
                             />
                             <TabGlobalButton name="Start Date"
-                                onPush={() => setCalendarModal(!calendarModal)} />
+                                     data={  moment( props.route.params.start).format('DD MMM, YYYY')} />
                             <TabGlobalButton name="End Date"
-                                onPush={() => setEndModal(!endModal)} 
+                                      data={
+                                        moment( props.route.params.end).format('DD MMM, YYYY')
+                                       }
                                 diffStyle={{ marginBottom:36}}
                                 />
-                            <GlobalButton diffStyle={{ backgroundColor: '#C4C0BF'}}  btnName="Mark as Missed" onSubmit={() => props.navigation.navigate('TabNavigation', { screen: 'HomeScreen' })} />
-                            <GlobalButton btnName="Mark as Done" onSubmit={() => props.navigation.navigate('TabNavigation', { screen: 'HomeScreen' })} />
+                            <GlobalButton diffStyle={{ backgroundColor: '#C4C0BF'}}  btnName="Mark as Missed" onSubmit={() => {}} />
+                           
+                            <GlobalButton btnName="Mark as Done" onSubmit={() => {}} />
                         </View>
                     </ScrollView>
 

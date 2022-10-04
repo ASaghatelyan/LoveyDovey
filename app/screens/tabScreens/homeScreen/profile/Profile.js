@@ -24,7 +24,7 @@ export function Profile(props) {
     const [load, setLoad] = useState(false)
 
     useEffect(() => { 
-        setLoad(!load)
+        setLoad(true)
         console.log(0);
         let requestFunc = async () => {
             try {
@@ -88,7 +88,9 @@ export function Profile(props) {
                     </View>
                 </ScrollView>
             </SafeAreaView>
+          
             <LoadingModal isVisible={load} />
+         
         </View>
     )
 }

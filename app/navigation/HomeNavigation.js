@@ -7,7 +7,9 @@ import {
   Notification,
   WantNeedList,
   WantNeedInfo,
-  WantNeedItem
+  WantNeedItem,
+  WantNeedEdit,
+  AddEvent
 } from "app/screens";
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -28,6 +30,8 @@ export default function HomeNavigation() {
       <Stack.Screen name="WantNeedList" component={WantNeedList} />
       <Stack.Screen name="WantNeedItem" component={WantNeedItem} />
       <Stack.Screen name="WantNeedInfo" component={WantNeedInfo} />
+      <Stack.Screen name="WantNeedEdit" component={WantNeedEdit} />
+      <Stack.Screen name="AddEvent" component={AddEvent} />
 
 
     </Stack.Navigator>

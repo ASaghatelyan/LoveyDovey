@@ -5,12 +5,15 @@ import { styles } from './style'
 import logo from 'app/assets/img/logo.png'
 
 export function LoadingModal(props) {
+
     let animatedValue = new Animated.Value(0);
     let currentValue = 0;
+
 
     animatedValue.addListener(({ value }) => {
         currentValue = value;
     });
+
 
     const flipAnimation = () => {
         if (currentValue >= 90) {
@@ -39,15 +42,15 @@ export function LoadingModal(props) {
         transform: [{ rotateY: setInterpolate }],
     };
 
+
+    let timer = setInterval(() => {
+        flipAnimation()
+    }, 500);
+
     useEffect(() => {
-        let timer = setInterval(() => {
-            flipAnimation() 
-        }, 500); 
-        flipAnimation() 
-        return () => {
-            clearInterval(timer)
-        }
+        return clearInterval(timer)
     }, [])
+
 
     return (
         <Modal

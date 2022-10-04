@@ -15,11 +15,22 @@ import phone from 'app/assets/img/ph.png'
 import loc from 'app/assets/img/loc.png'
 import mess from 'app/assets/img/mess.png'
 import { GlobalButton } from 'app/components/globalButton';
+import axiosInstance from 'app/networking/api';
 
 
 
 export function ContactUs(props) {
     const [text, setText] = useState("");
+ 
+    const onSend = async () => {
+        try {
+            let res = await axiosInstance.post(`user/message`, {text})
+       setText('')
+        } catch (e) {
+            console.log(e, 'err');
+        }
+    }
+    
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -71,7 +82,7 @@ export function ContactUs(props) {
                         />
                     </View>
                     <View style={styles.btnView}>
-                        <GlobalButton btnName='Send' onPush={() => { }} />
+                        <GlobalButton btnName='Send' onSubmit={onSend} />
                     </View>
                 </ScrollView>
             </SafeAreaView>

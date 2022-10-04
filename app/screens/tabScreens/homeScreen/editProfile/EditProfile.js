@@ -67,6 +67,7 @@ export function EditProfile(props) {
 
 
     useEffect(() => {
+        setLoad(true)
         let requestFunc = async () => {
             try {
                 let resState = await axiosInstance.get(`/state/?country=${country}`)
@@ -74,6 +75,7 @@ export function EditProfile(props) {
                     ...globalData,
                     resState: resState.data.data,
                 })
+                setLoad(false)
             } catch (e) {
                 console.log(e, 'err');
             }

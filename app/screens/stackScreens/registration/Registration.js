@@ -93,7 +93,8 @@ export function Registration(props) {
     }
 
     return (
-        <ScrollView contentContainerStyle={styles.content}>
+        <ScrollView contentContainerStyle={styles.content}    showsVerticalScrollIndicator={false}
+        bounces={false}>
             <StatusBar barStyle={'light-content'} showHideTransition={false} translucent />
             {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
             {Platform.OS === 'android' && StatusBar.setTranslucent(true)}

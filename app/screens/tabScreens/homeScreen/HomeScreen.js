@@ -32,7 +32,7 @@ export function HomeScreen(props) {
         setCopiedText(text);
     };
 
-    
+
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -51,16 +51,16 @@ export function HomeScreen(props) {
                     <View style={styles.titleView}>
                         <Text style={styles.titleText}>Home</Text>
                         <View style={styles.gFlex}>
-                            <TouchableOpacity onPress={()=>props.navigation.navigate('WantNeedList')}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('WantNeedList')}>
                                 <Image source={list} style={styles.img} />
                             </TouchableOpacity>
-                            <TouchableOpacity  onPress={()=>props.navigation.navigate('Profile')}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
                                 <Image source={user} style={styles.img} />
                             </TouchableOpacity>
                             <TouchableOpacity>
                                 <Image source={refresh} style={styles.img2} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>props.navigation.navigate('Notification')}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('Notification')}>
                                 <Image source={noti} style={styles.img3} />
                             </TouchableOpacity>
                         </View>

@@ -6,7 +6,7 @@ import {
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { BgImage, Input } from 'app/components'
+import { BgImage, Input, LoadingModal } from 'app/components'
 import { GlobalButton } from 'app/components/globalButton'
 
 import bg from 'app/assets/img/bg.png'
@@ -20,6 +20,7 @@ export function Login(props) {
   const [pass, setPass] = useState('')
   const [showHidePass, setShowHidePass] = useState(true)
   const [err, setErr] = useState('')
+  const [load, setLoad] = useState(false)
 
   let getIntro = async () => {
     let data = await AsyncStorage.getItem('intro', (err, value) => {
@@ -55,9 +56,11 @@ export function Login(props) {
   }
 
   const onLogin = async () => {
+    setLoad(true)
     try {
       let intro = await getIntro()
-      let category =await getCategory()
+      let category = await getCategory()
+    
       if (validateEmail(email) && pass.length > 7) {
         let login = {
           email,
@@ -66,7 +69,7 @@ export function Login(props) {
         let response = await axiosInstance.post("/login", login);
         storeData(response.data.data.token)
         console.log(response.data);
-        intro == null ? props.navigation.replace('Introduction') : category ? props.navigation.replace('ChooseCategories') : props.navigation.replace('TabNavigation')
+        intro == null ? props.navigation.replace('Introduction') : !category ? props.navigation.replace('ChooseCategories') : props.navigation.replace('TabNavigation')
       }
       else if (!email) {
         setErr("Email is not filled")
@@ -83,6 +86,7 @@ export function Login(props) {
       else {
         setErr("Incorrect email address");
       }
+      setLoad(false)
     } catch (e) {
       console.log(e, 'err');
       setErr(e.response.data.message);
@@ -114,7 +118,7 @@ export function Login(props) {
   })
 
   return (
-    <View style={{ flex: 1, height: '100%', }}>
+    <View style={{ flex: 1, }}>
       <BgImage img={bg} />
       <SafeAreaView
         style={styles.mainContainer}>
@@ -125,7 +129,10 @@ export function Login(props) {
           barStyle="light-content"
           translucent={true}
         />
-        <ScrollView contentContainerStyle={styles.content}  >
+        <ScrollView contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+        >
           <Image source={logo} style={styles.logo} />
           <Text style={styles.titleLogin}>Log in or sign up to continue</Text>
           <View style={styles.bottomView}>
@@ -163,6 +170,7 @@ export function Login(props) {
           </View>
         </ScrollView>
       </SafeAreaView>
+      <LoadingModal isVisible={load}/>
     </View>
   )
 }

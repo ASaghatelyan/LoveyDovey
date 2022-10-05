@@ -23,34 +23,39 @@ export function Profile(props) {
     const [globalData, setGlobalData] = useState({})
     const [load, setLoad] = useState(false)
 
-    useEffect(() => { 
-        setLoad(true)
-        console.log(0);
-        let requestFunc = async () => {
-            try {
-               
-                let res = await axiosInstance.get(`user/detail`)
-                setData(res.data.data);
-                let resCountry = await axiosInstance.get("/country")
-                let resGender = await axiosInstance.get("/gender")
-                let resEducation = await axiosInstance.get(`/education`)
-                let resIncomingLvl = await axiosInstance.get(`/income-level`) 
-                setGlobalData({
-                    resCountry: resCountry.data.data,
-                    resGender: resGender.data.data,
-                    resEducation: resEducation.data.data,
-                    resIncomingLvl: resIncomingLvl.data.data,
-                })
-                console.log(1);
-                setLoad(false)
-            } catch (e) {
-                console.log(e, 'err');
-            }
+    let requestFunc = async () => {
+        try {
+            let res = await axiosInstance.get(`user/detail`)
+            setData(res.data.data);
+            let resCountry = await axiosInstance.get("/country")
+            let resGender = await axiosInstance.get("/gender")
+            let resEducation = await axiosInstance.get(`/education`)
+            let resIncomingLvl = await axiosInstance.get(`/income-level`) 
+            setGlobalData({
+                resCountry: resCountry.data.data,
+                resGender: resGender.data.data,
+                resEducation: resEducation.data.data,
+                resIncomingLvl: resIncomingLvl.data.data,
+            })
+            setLoad(false)
+        } catch (e) {
+            console.log(e, 'err');
         }
-        requestFunc()
-      
-    }, [])
+    }
 
+    // useEffect(() => { 
+    //     setLoad(true) 
+    //     requestFunc()
+      
+    // }, [])
+    useEffect(() => {
+        const unsubscribe = props.navigation.addListener('focus', () => {
+            setLoad(true) 
+         
+            requestFunc()
+        });
+        return unsubscribe;
+    }, [props.navigation]);
 
     return (
         <View style={{ flex: 1, height: '100%' }}>

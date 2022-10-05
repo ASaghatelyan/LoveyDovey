@@ -47,7 +47,7 @@ export function ProfileChangeModal(props) {
                             props.onChoose(props.data[index])
                             // console.log(props.data[index]);
                         }}
-                        type={item.name}
+                        name={item.name}
                     />)
                 })}
             </View>

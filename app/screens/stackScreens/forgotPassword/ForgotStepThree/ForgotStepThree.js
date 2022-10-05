@@ -18,6 +18,7 @@ export function ForgotStepThree(props) {
   const [pass, setPass] = useState('')
   const [showHidePass, setShowHidePass] = useState(true)
   const [err, setErr] = useState('')
+
   return (
     <View style={{ flex: 1, height: '100%', }}>
       <BgImage img={bg} />
@@ -54,7 +55,7 @@ export function ForgotStepThree(props) {
                 secure={showHidePass}
                 handleShowPass={() => setShowHidePass(!showHidePass)}
               />
-              <GlobalButton btnName="Continue" onSubmit={() => props.navigation.navigate('Login')} />
+              <GlobalButton diffStyle={{marginTop:38}} btnName="Continue" onSubmit={() => props.navigation.navigate('Login')} />
               {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
             </View>
           </View>

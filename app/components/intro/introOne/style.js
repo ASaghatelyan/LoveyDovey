@@ -15,12 +15,15 @@ const globalHeight = (a) => {
 
 export const styles = StyleSheet.create({
     content: {
-        alignItems: 'center',
-        marginTop: globalHeight(50),
+        alignItems: 'center',  
         marginBottom: globalHeight(100),
         borderRadius: 8,
-        overflow: 'hidden',
-        position: 'relative',marginTop:height/3.5
+        overflow:'hidden',
+        position: 'relative',
+        marginTop:height/3.5,
+        backgroundColor:'#fff',
+        flex:1, 
+        
     },
     img: {
         width: globalWidth(264),
@@ -30,6 +33,14 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFF'
+    },
+    textView:{
+        backgroundColor: '#FFF', 
+        alignItems: 'center',
+        // width:globalWidth(264),
+        borderBottomLeftRadius:8,
+        borderBottomRightRadius:8,
+        width:'100%'
     },
     title: {
         fontFamily: 'Roboto-Medium',
@@ -48,7 +59,8 @@ export const styles = StyleSheet.create({
     },
     video: {
         width: '100%',
-        height: globalHeight(166),
+        height: '50%', 
+        borderTopLeftRadius:8,
     },
     playViwe: {
         position: 'absolute', 

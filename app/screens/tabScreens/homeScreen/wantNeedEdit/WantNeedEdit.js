@@ -16,7 +16,6 @@ import axiosInstance from 'app/networking/api'
 
 
 export function WantNeedEdit(props) {
-
     const [errorModal, setErrorModal] = useState(false)
     const [modalVisible, setMOdalVisible] = useState(false)
     const [frequencyModal, setFrequencyModal] = useState(false)
@@ -27,18 +26,13 @@ export function WantNeedEdit(props) {
     const [endData, setEndDate] = useState(props.route.params?.end)
     const [frequency, setFrequency] = useState(props.route.params?.frequency)
     const [text, setText] = useState(props.route.params.description);
-
-    const [data, setData] = useState(
-        props.route.params
-    )
-
+    const [data, setData] = useState(props.route.params)
 
     let onUpdate = async () => {
         try {
             if (startData && endData && frequency && text && category) {
-                let res = await axiosInstance.post(`user/need-or-want/update`, data)
-                console.log(res);
-                props.navigation.replace('TabNavigation', { screen: 'WantNeedList' })
+                await axiosInstance.post(`user/need-or-want/update`, data)
+                props.navigation.replace('WantNeedList')
             }
             else { alert('Please fill in all fields') }
         } catch (e) {
@@ -46,7 +40,15 @@ export function WantNeedEdit(props) {
         }
     }
 
-    console.log(data, 'fffff');
+    let onDelete = async () => {
+        try {
+            await axiosInstance.post(`user/need-or-want/delete`, { id: props.route.params.id })
+            props.navigation.replace('WantNeedList')
+
+        } catch (e) {
+            console.log(e, 'err');
+        }
+    }
 
     return (
         <View style={{ flex: 1, height: '100%' }}>
@@ -55,7 +57,6 @@ export function WantNeedEdit(props) {
                 style={styles.mainContainer}>
                 <StatusBar
                     animated={true}
-                    // backgroundColor="transparent"
                     barStyle='dark-content'
                     translucent={true} />
                 <ScrollView contentContainerStyle={styles.content}  >
@@ -102,9 +103,7 @@ export function WantNeedEdit(props) {
                         <GlobalButton
                             diffStyle={{ backgroundColor: '#F5F5F5', borderWidth: 1, borderColor: '#EB1829' }}
                             textStyle={{ color: '#EB1829' }} btnName="Delete"
-                            onSubmit={() => {
-
-                            }} />
+                            onSubmit={onDelete} />
                         <GlobalButton btnName="Save" onSubmit={onUpdate} />
                     </View>
                 </ScrollView>
@@ -114,16 +113,14 @@ export function WantNeedEdit(props) {
                         setCategory(info)
                         data.category_id = info.id
                         setMOdalVisible(!modalVisible)
-                    }}
-                />
+                    }} />
                 <FrequencyModal
                     isVisible={frequencyModal}
                     onClose={(info) => {
                         setFrequency(info)
                         data.frequency_id = info.id
                         setFrequencyModal(!frequencyModal)
-                    }}
-                />
+                    }} />
                 <CalendarModal
                     isVisible={calendarModal}
                     onNavi={(day) => {
@@ -133,8 +130,7 @@ export function WantNeedEdit(props) {
                     }}
                     onClose={(info) => {
                         setCalendarModal(!calendarModal)
-                    }}
-                />
+                    }} />
                 <CalendarModal
                     isVisible={endModal}
                     onNavi={(day) => {
@@ -144,14 +140,12 @@ export function WantNeedEdit(props) {
                     }}
                     onClose={(info) => {
                         setEndModal(!endModal)
-                    }}
-                />
+                    }} />
                 <ErrorModal
                     isVisible={errorModal}
                     onClose={() => {
                         setErrorModal(!errorModal)
-                    }}
-                />
+                    }} />
             </SafeAreaView>
         </View>
     )

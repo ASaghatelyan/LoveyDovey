@@ -122,10 +122,8 @@ export function WantNeedList(props) {
                                                 title: item.type,
                                                 img: item.img,
                                                 data: chooseItem(item.id)
-                                            }) 
-                                    }
-
-                                    }>
+                                            })
+                                    }}>
                                     <Text style={styles.title}>{item.type}</Text>
                                     <Image source={item.img} style={[styles.icon, index === 2 && { width: 22, height: 22 }]} />
                                 </TouchableOpacity>

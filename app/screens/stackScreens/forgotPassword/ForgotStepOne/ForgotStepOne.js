@@ -33,8 +33,7 @@ export function ForgotStepOne(props) {
                     barStyle="light-content"
                     translucent={true}
                 />
-                <ScrollView contentContainerStyle={styles.content}  >
-
+                <ScrollView contentContainerStyle={styles.content}  > 
                     <Text style={styles.titleLogin}>Forgot Password</Text>
                     <View style={styles.bottomView}>
                         <View style={{ width: '100%' }}>
@@ -44,7 +43,7 @@ export function ForgotStepOne(props) {
                                 inputBtnIcon={styles.emailIc}
                                 inputBtnView={styles.emailView}
                             />
-                            <GlobalButton btnName="Continue" onSubmit={() => props.navigation.navigate('ForgotPassNavigation', { screen: "ForgotStepTwo" })} />
+                            <GlobalButton btnName="Continue" diffStyle={{marginTop:38}} onSubmit={() => props.navigation.navigate('ForgotPassNavigation', { screen: "ForgotStepTwo" })} />
                             {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
 
                         </View>

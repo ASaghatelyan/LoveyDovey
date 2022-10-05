@@ -1,33 +1,46 @@
 import {
     View, Text, ScrollView,
     TouchableOpacity, StatusBar,
-    ImageBackground, Image,
-    SafeAreaView, SafeAreaProvider,
+    Image, SafeAreaView,
 } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { styles } from './style'
 import { BgImage, TabGlobalButton } from 'app/components'
-import { TextInput as PaperInput } from 'react-native-paper';
-
 import bg from 'app/assets/img/white.png'
 import back from 'app/assets/img/back.png'
 import edit from 'app/assets/img/edit.png'
-import loc from 'app/assets/img/loc.png'
-import mess from 'app/assets/img/mess.png'
 import { GlobalButton } from 'app/components/globalButton';
-import gift from 'app/assets/img/gif.png'
-import mes from 'app/assets/img/mes.png'
-import time from 'app/assets/img/time.png'
-import like from 'app/assets/img/like.png'
-import love from 'app/assets/img/love.png'
-import he from 'app/assets/img/he.png'
-import mers from 'app/assets/img/mers.png'
 import moment from 'moment'
+import axiosInstance from 'app/networking/api'
 
 
 export function WantNeedInfo(props) {
-    const [text, setText] = useState("");
-  
+    let onMissed = async () => {
+        try {
+            await axiosInstance.post(`user/need-or-want/status/update`, {
+                id: props.route.params.id,
+                status: 'Missed'
+            })
+            props.navigation.replace('WantNeedList')
+        } catch (e) {
+            console.log(e, 'err');
+        }
+    }
+
+    let onDone = async () => {
+        try {
+            await axiosInstance.post(`user/need-or-want/delete`, {
+                id: props.route.params.id,
+                status: 'Done'
+            })
+            props.navigation.replace('WantNeedList')
+
+        } catch (e) {
+            console.log(e, 'err');
+        }
+    }
+
+
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -46,16 +59,16 @@ export function WantNeedInfo(props) {
                         <View style={styles.gFlex}>
                             <Text style={styles.titleText}>Want/Need</Text>
                         </View>
-                        <TouchableOpacity onPress={()=>props.navigation.navigate('WantNeedEdit',props.route.params)}>
-                            <Image source={edit} style={styles.edit}/>
+                        <TouchableOpacity onPress={() => props.navigation.replace('WantNeedEdit', props.route.params)}>
+                            <Image source={edit} style={styles.edit} />
                         </TouchableOpacity>
                     </View>
                     <ScrollView contentContainerStyle={[styles.content, { paddingHorizontal: 16 }]}  >
                         <View>
-                            <TabGlobalButton name="Select Category" 
+                            <TabGlobalButton name="Select Category"
                                 data={props.route.params.category.name}
                             />
-                         
+
                             <View style={styles.description}>
                                 <Text style={styles.descriptionText}>Description</Text>
                                 <Text style={styles.infoText}>{props.route.params.description}</Text>
@@ -65,19 +78,18 @@ export function WantNeedInfo(props) {
                             placeholderTextColor={'#979797'}
                             style={styles.description} /> */}
                             <TabGlobalButton name="Frequency"
-                                     data={props.route.params.frequency.name}
+                                data={props.route.params.frequency.name}
                             />
                             <TabGlobalButton name="Start Date"
-                                     data={  moment( props.route.params.start).format('DD MMM, YYYY')} />
+                                data={moment(props.route.params.start).format('DD MMM, YYYY')} />
                             <TabGlobalButton name="End Date"
-                                      data={
-                                        moment( props.route.params.end).format('DD MMM, YYYY')
-                                       }
-                                diffStyle={{ marginBottom:36}}
-                                />
-                            <GlobalButton diffStyle={{ backgroundColor: '#C4C0BF'}}  btnName="Mark as Missed" onSubmit={() => {}} />
-                           
-                            <GlobalButton btnName="Mark as Done" onSubmit={() => {}} />
+                                data={
+                                    moment(props.route.params.end).format('DD MMM, YYYY')
+                                }
+                                diffStyle={{ marginBottom: 36 }}
+                            />
+                            <GlobalButton diffStyle={{ backgroundColor: '#C4C0BF' }} btnName="Mark as Missed" onSubmit={onMissed} />
+                            <GlobalButton btnName="Mark as Done" onSubmit={onDone} />
                         </View>
                     </ScrollView>
 

@@ -16,31 +16,31 @@ export function ChooseCategories(props) {
   const [chooseData, setChooseData] = useState([
     {
       status: false,
-      type: 'Presents'
+      name: 'Presents'
     },
     {
       status: false,
-      type: 'Positive Words'
+      name: 'Positive Words'
     },
     {
       status: false,
-      type: 'Precious Time'
+      name: 'Precious Time'
     },
     {
       status: false,
-      type: 'Positive Acts'
+      name: 'Positive Acts'
     },
     {
       status: false,
-      type: 'Physical Touch'
+      name: 'Physical Touch'
     },
     {
       status: false,
-      type: 'Passion'
+      name: 'Passion'
     },
     {
       status: false,
-      type: 'Peace'
+      name: 'Peace'
     },
   ])
 
@@ -70,7 +70,7 @@ export function ChooseCategories(props) {
                 key={index}
                 check={item.status}
                 valueChanged={() => chooseItem(index)}
-                type={item.type} />
+                name={item.name} />
             })}
           </View>
           <View style={styles.btnView}>

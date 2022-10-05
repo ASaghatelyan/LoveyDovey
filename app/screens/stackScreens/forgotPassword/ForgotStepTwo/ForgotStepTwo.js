@@ -48,7 +48,7 @@ export function ForgotStepTwo(props) {
                                 secure={showHidePass}
                                 handleShowPass={() => setShowHidePass(!showHidePass)}
                             /> 
-                            <GlobalButton btnName="Continue" onSubmit={() => props.navigation.navigate('ForgotPassNavigation', { screen: "ForgotStepThree" })} />
+                            <GlobalButton diffStyle={{marginTop:38}} btnName="Continue" onSubmit={() => props.navigation.navigate('ForgotPassNavigation', { screen: "ForgotStepThree" })} />
                             {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
                             <View style={styles.resendView}>
                                 <Text style={styles.noAccount}>I don’t receive a code</Text>

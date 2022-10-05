@@ -8,7 +8,7 @@ import {
   Introduction,
   ChooseCategories
 } from "app/screens";
-import  ForgotPassNavigation  from "./ForgotPassNavigation";
+import ForgotPassNavigation from "./ForgotPassNavigation";
 
 const Stack = createStackNavigator();
 
@@ -26,7 +26,6 @@ export default function StackNavigation() {
       <Stack.Screen name="ChooseCategories" component={ChooseCategories} />
       <Stack.Screen name="TermsCondition" component={TermsCondition} />
       <Stack.Screen name="ForgotPassNavigation" component={ForgotPassNavigation} />
-
     </Stack.Navigator>
   )
 }

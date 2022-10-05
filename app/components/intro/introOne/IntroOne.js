@@ -33,6 +33,7 @@ export function IntroOne(props) {
                 ref={ref => {
                     vidRef = ref
                 }}
+                resizeMode={'cover'}
                 paused={state.paused}
                 source={{uri:'https://3228.freelancedeveloper.site/video/welcome.mp4'}}
                 style={styles.video}
@@ -40,9 +41,7 @@ export function IntroOne(props) {
             {state.paused ? <TouchableOpacity style={styles.playViwe} onPress={hendlePlay}>
                 <Image source={play} style={styles.play} />
             </TouchableOpacity> : null}
-            <View style={{
-                backgroundColor: '#FFF', alignItems: 'center',
-            }}>
+            <View style={styles.textView}>
                 <Text style={styles.title}>How It Works</Text>
                 <Text style={styles.infoText}>LoveyDovey is designed to help two people in love communicate and engage at deeper levels about what they truly want and need in the relationship.</Text>
             </View>

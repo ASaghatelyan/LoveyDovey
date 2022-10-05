@@ -6,8 +6,7 @@ let height = Dimensions.get("window").height;
 export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
-        position: 'relative',
-        height: '100%',
+        position: 'relative', 
         alignItems: 'center',
         paddingHorizontal: 16,
         marginBottom: 37,

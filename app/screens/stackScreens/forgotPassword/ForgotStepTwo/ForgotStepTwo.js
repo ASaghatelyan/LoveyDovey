@@ -6,9 +6,9 @@ import {
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { BgImage, Input } from 'app/components'
+import axiosInstance from 'app/networking/api';
+import { BgImage, Input, LoadingModal } from 'app/components'
 import { GlobalButton } from 'app/components/globalButton'
-
 import bg from 'app/assets/img/forgotBg.png'
 import logo from 'app/assets/img/logo.png'
 import lock from 'app/assets/img/lock.png'
@@ -17,9 +17,39 @@ import back from 'app/assets/img/back.png'
 
 export function ForgotStepTwo(props) {
     const [err, setErr] = useState('')
-    const [pass, setPass] = useState('')
-    const [confirmPass,setConfirmPass]=useState('')
+    const [code, setcode] = useState('')
     const [showHidePass, setShowHidePass] = useState(true)
+    const { email } = props.route.params
+    const [load, setLoad] = useState(false)
+
+    let onSencCode = async () => {
+        try {
+            await axiosInstance.post(`forgot/password`, {
+                email,
+            })
+        } catch (e) {
+            console.log(e, 'err');
+        }
+    }
+
+    let onVerifyCode = async () => {
+        try {
+            setLoad(true)
+            if (code) {
+                await axiosInstance.post(`verify/pin`, { email, token: code })
+                setLoad(false),
+                    props.navigation.navigate("ForgotStepThree", email)
+                setcode('')
+            } else (
+                setLoad(false),
+                setErr('Code is not filled'))
+
+        } catch (e) {
+            console.log(e, 'err');
+            setErr(e.response.data.data.error) 
+        }
+    }
+
     return (
         <View style={{ flex: 1, height: '100%', }}>
             <BgImage img={bg} />
@@ -41,18 +71,20 @@ export function ForgotStepTwo(props) {
                         <View style={{ width: '100%' }}>
                             <Text style={styles.infoText}>Please , enter the code we send you by email</Text>
                             <Input
-                                placeholder='****'
+                                placeholder='******'
                                 inputBtn={lock}
                                 inputBtnIcon={styles.lockIc}
                                 inputBtnView={styles.lockView}
                                 secure={showHidePass}
                                 handleShowPass={() => setShowHidePass(!showHidePass)}
-                            /> 
-                            <GlobalButton diffStyle={{marginTop:38}} btnName="Continue" onSubmit={() => props.navigation.navigate('ForgotPassNavigation', { screen: "ForgotStepThree" })} />
+                                value={code}
+                                onChange={(text) => setcode(text)}
+                            />
+                            <GlobalButton diffStyle={{ marginTop: 38 }} btnName="Continue" onSubmit={onVerifyCode} />
                             {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
                             <View style={styles.resendView}>
                                 <Text style={styles.noAccount}>I don’t receive a code</Text>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={onSencCode}>
                                     <Text style={styles.regText}>RESEND</Text>
                                 </TouchableOpacity>
                             </View>
@@ -63,6 +95,7 @@ export function ForgotStepTwo(props) {
                     </View>
                 </ScrollView>
             </SafeAreaView>
+            <LoadingModal isVisible={load} />
         </View>
     )
 }

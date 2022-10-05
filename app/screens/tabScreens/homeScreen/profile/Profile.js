@@ -43,11 +43,7 @@ export function Profile(props) {
         }
     }
 
-    // useEffect(() => { 
-    //     setLoad(true) 
-    //     requestFunc()
-      
-    // }, [])
+  
     useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
             setLoad(true) 

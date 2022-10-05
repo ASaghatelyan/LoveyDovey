@@ -12,6 +12,7 @@ import img1 from 'app/assets/img/img1.png'
 import img2 from 'app/assets/img/img2.png'
 import img3 from 'app/assets/img/img3.png'
 import play from 'app/assets/img/play.png'
+import axiosInstance from 'app/networking/api'
 
 export function BlogScreens(props) {
     let data = [
@@ -28,13 +29,31 @@ export function BlogScreens(props) {
             text: 'Tell us your thoughts'
         },
     ]
+
+    let requestFunc = async () => {
+        try {
+            let res = await axiosInstance.get(`user/videos`)
+            console.log(res);
+
+        } catch (e) {
+            console.log(e, 'err');
+        }
+    }
+
+    useEffect(() => {
+        const unsubscribe = props.navigation.addListener('focus', () => {
+            requestFunc()
+        });
+        return unsubscribe;
+    }, [props.navigation]);
+
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
             <SafeAreaView
                 style={styles.mainContainer}>
-                <StatusBar 
-                    animated={true} 
+                <StatusBar
+                    animated={true}
                     barStyle="dark-content"
                     translucent={true}
                 />

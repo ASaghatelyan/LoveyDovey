@@ -121,7 +121,7 @@ export function Login(props) {
     <View style={{ flex: 1, }}>
       <BgImage img={bg} />
       <SafeAreaView
-        style={styles.mainContainer}>
+        style={{flex:1}}>
         <StatusBar
           //backgroundColor={'#11161f'}
           animated={true}

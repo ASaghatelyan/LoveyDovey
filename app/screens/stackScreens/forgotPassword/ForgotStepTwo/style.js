@@ -24,6 +24,14 @@ export const styles = StyleSheet.create({
         marginBottom:globalHeight( 37),
         marginTop:globalHeight(240)
     },
+    err: {
+        fontSize: 14,
+        fontFamily: "Roboto-Bold",
+        color: 'red',
+        textAlign: 'center',
+        lineHeight: 18,
+        marginTop: 6
+    },
     infoText: {
         fontSize: globalWidth(14),
         fontFamily: "Roboto-Medium",

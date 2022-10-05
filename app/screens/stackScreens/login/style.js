@@ -60,8 +60,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: 35
+        justifyContent: 'space-between', 
     },
     gFlex: {
         flexDirection: 'row',

@@ -33,15 +33,14 @@ export function CreateEvent(props) {
             return item.map((item, index) => {
                 arr.push(getRange(item.start, item.end))
             })
-        })
-
+        }) 
         return arr
     }
 
     useEffect(() => {
         let requestFunc = async () => {
             try {
-                let res = await axiosInstance.get(`user/need-or-want`)
+                let res = await axiosInstance.get(`/user/need-or-want`)
                 setData(res.data.data);
                 let obj = monthInfo
                 addTime(Object.values(res.data.data)).map((item, ind) => {

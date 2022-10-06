@@ -25,7 +25,7 @@ export function Profile(props) {
 
     let requestFunc = async () => {
         try {
-            let res = await axiosInstance.get(`user/detail`)
+            let res = await axiosInstance.get(`/user/detail`)
             setData(res.data.data);
             let resCountry = await axiosInstance.get("/country")
             let resGender = await axiosInstance.get("/gender")
@@ -40,19 +40,25 @@ export function Profile(props) {
             setLoad(false)
         } catch (e) {
             console.log(e, 'err');
+            setLoad(false)
         }
     }
 
   
-    useEffect(() => {
-        const unsubscribe = props.navigation.addListener('focus', () => {
-            setLoad(true) 
-         
-            requestFunc()
-        });
-        return unsubscribe;
-    }, [props.navigation]);
+    // useEffect(() => {
+    //     const unsubscribe = props.navigation.addListener('focus', () => {
+    //         setLoad(true)  
+    //         requestFunc()
+    //     });
+    //     return unsubscribe;
+    // }, [props.navigation]);
 
+    useEffect(() => {
+        requestFunc()
+    
+     
+    }, [ ])
+    
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />

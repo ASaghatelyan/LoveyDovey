@@ -17,7 +17,7 @@ import axiosInstance from 'app/networking/api'
 export function WantNeedInfo(props) {
     let onMissed = async () => {
         try {
-            await axiosInstance.post(`user/need-or-want/status/update`, {
+            await axiosInstance.post(`/user/need-or-want/status/update`, {
                 id: props.route.params.id,
                 status: 'Missed'
             })
@@ -29,7 +29,7 @@ export function WantNeedInfo(props) {
 
     let onDone = async () => {
         try {
-            await axiosInstance.post(`user/need-or-want/delete`, {
+            await axiosInstance.post(`/user/need-or-want/delete`, {
                 id: props.route.params.id,
                 status: 'Done'
             })

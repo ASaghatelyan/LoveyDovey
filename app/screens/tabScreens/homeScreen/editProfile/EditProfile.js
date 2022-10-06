@@ -42,28 +42,28 @@ export function EditProfile(props) {
     const [education, setEducation] = useState({ id: 1, name: 'Education' })
 
 
-    // useEffect(() => {
-    //     setLoad(true)
-    //     let requestFunc = async () => {
-    //         try {
-    //             let resCountry = await axiosInstance.get("/country")
-    //             let resGender = await axiosInstance.get("/gender")
-    //             let resEducation = await axiosInstance.get(`/education`)
-    //             let resIncomingLvl = await axiosInstance.get(`/income-level`)
-    //             console.log();
-    //             setGlobalData({
-    //                 resCountry: resCountry.data.data,
-    //                 resGender: resGender.data.data,
-    //                 resEducation: resEducation.data.data,
-    //                 resIncomingLvl: resIncomingLvl.data.data,
-    //             })
-    //             setLoad(false)
-    //         } catch (e) {
-    //             console.log(e, 'err');
-    //         }
-    //     }
-    //     requestFunc()
-    // }, [])
+    useEffect(() => {
+        setLoad(true)
+        let requestFunc = async () => {
+            try {
+                let resCountry = await axiosInstance.get("/country")
+                let resGender = await axiosInstance.get("/gender")
+                let resEducation = await axiosInstance.get(`/education`)
+                let resIncomingLvl = await axiosInstance.get(`/income-level`)
+                console.log();
+                setGlobalData({
+                    resCountry: resCountry.data.data,
+                    resGender: resGender.data.data,
+                    resEducation: resEducation.data.data,
+                    resIncomingLvl: resIncomingLvl.data.data,
+                })
+                setLoad(false)
+            } catch (e) {
+                console.log(e, 'err');
+            }
+        }
+        requestFunc()
+    }, [])
 
 
     useEffect(() => {

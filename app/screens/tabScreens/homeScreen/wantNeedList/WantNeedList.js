@@ -72,7 +72,7 @@ export function WantNeedList(props) {
     useEffect(() => {
         let requestFunc = async () => {
             try {
-                let res = await axiosInstance.get(`user/need-or-want`)
+                let res = await axiosInstance.get(`/user/need-or-want`)
                 setData(Object.values(res.data.data))
             } catch (e) {
                 console.log(e, 'err');

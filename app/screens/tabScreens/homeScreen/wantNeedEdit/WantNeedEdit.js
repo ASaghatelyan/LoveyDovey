@@ -31,7 +31,7 @@ export function WantNeedEdit(props) {
     let onUpdate = async () => {
         try {
             if (startData && endData && frequency && text && category) {
-                await axiosInstance.post(`user/need-or-want/update`, data)
+                await axiosInstance.post(`/user/need-or-want/update`, data)
                 props.navigation.replace('WantNeedList')
             }
             else { alert('Please fill in all fields') }
@@ -42,7 +42,7 @@ export function WantNeedEdit(props) {
 
     let onDelete = async () => {
         try {
-            await axiosInstance.post(`user/need-or-want/delete`, { id: props.route.params.id })
+            await axiosInstance.post(`/user/need-or-want/delete`, { id: props.route.params.id })
             props.navigation.replace('WantNeedList')
 
         } catch (e) {

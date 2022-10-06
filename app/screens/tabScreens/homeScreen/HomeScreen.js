@@ -16,6 +16,7 @@ import userh from 'app/assets/img/userh.png'
 import me from 'app/assets/img/me.png'
 import add from 'app/assets/img/add.png'
 import Clipboard from '@react-native-clipboard/clipboard';
+import axiosInstance from 'app/networking/api'
 
 
 export function HomeScreen(props) {
@@ -32,6 +33,27 @@ export function HomeScreen(props) {
         setCopiedText(text);
     };
 
+    const onGetLover = async () => {
+        try {
+         let res =   await axiosInstance.get(`user/invitation/lover`)
+         console.log(res.data.data,'ressssss');
+         } catch (e) {
+            console.log(e, 'err');
+        }
+    }
+    const onGetLoverMatch = async () => {
+        try {
+         let res =   await axiosInstance.get(`user/lover-match`)
+         console.log(res.data.data,'ressssss');
+         } catch (e) {
+            console.log(e, 'err');
+        }
+    }
+    useEffect(() => {
+        // onGetLover()
+        // onGetLoverMatch()
+    }, [ ])
+    
 
     return (
         <View style={{ flex: 1, height: '100%' }}>

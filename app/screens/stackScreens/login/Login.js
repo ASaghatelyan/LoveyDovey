@@ -90,6 +90,7 @@ export function Login(props) {
     } catch (e) {
       console.log(e, 'err');
       setErr(e.response.data.message);
+      setLoad(false)
       // if (e.response.status === 401) {
       //   let data = { email, type: "email" };
       //   props.navigation.navigate("SignUp", data);

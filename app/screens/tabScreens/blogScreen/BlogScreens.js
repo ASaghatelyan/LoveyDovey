@@ -6,36 +6,23 @@ import {
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
-import { BgImage } from 'app/components'
-import bg from 'app/assets/img/white.png'
-import img1 from 'app/assets/img/img1.png'
-import img2 from 'app/assets/img/img2.png'
-import img3 from 'app/assets/img/img3.png'
-import play from 'app/assets/img/play.png'
+import { BgImage, LoadingModal } from 'app/components'
+import bg from 'app/assets/img/white.png' 
 import axiosInstance from 'app/networking/api'
+import Video from 'react-native-video'
 
 export function BlogScreens(props) {
-    let data = [
-        {
-            img: img1,
-            text: 'Share wants/needs most difficult to talk about'
-        },
-        {
-            img: img2,
-            text: 'What would you ask our relationship expert?'
-        },
-        {
-            img: img3,
-            text: 'Tell us your thoughts'
-        },
-    ]
+    const [data, setData] = useState([])
+    const [load, setLoad] = useState(false)
 
-    let requestFunc = async () => {
+    const requestFunc = async () => {
         try {
-            let res = await axiosInstance.get(`user/videos`)
-            console.log(res);
-
+            setLoad(true)
+            let res = await axiosInstance.get(`user/videos`) 
+            setData(res.data.data)
+            setLoad(false)
         } catch (e) {
+            setLoad(false)
             console.log(e, 'err');
         }
     }
@@ -61,19 +48,20 @@ export function BlogScreens(props) {
                     <Text style={styles.titleText}>Blogs</Text>
                     <View style={styles.bottomView}>
                         {data.map((item, index) => {
-                            return <TouchableOpacity key={index} style={styles.itemView}>
+                            console.log(item.url);
+                            return <TouchableOpacity key={index} style={styles.itemView}
+                                onPress={() => props.navigation.navigate('BlogInfo',item)}
+                            >
                                 <View style={styles.imgView}>
-                                    <ImageBackground source={item.img} style={styles.img}>
-                                        <Image source={play} style={styles.playBtn} />
-                                    </ImageBackground>
-                                    <Text style={styles.text}>{item.text}</Text>
+                                    <Video style={styles.video} source={{ uri: item.url }} resizeMode='cover' paused={true} />
+                                    <Text style={styles.text}>{item.name}</Text>
                                 </View>
                             </TouchableOpacity>
                         })}
-                    </View>
-
+                    </View> 
                 </ScrollView>
             </SafeAreaView>
+            <LoadingModal isVisible={load} />
         </View>
     )
 }

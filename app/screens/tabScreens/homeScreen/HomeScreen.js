@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { styles } from './style'
-import { BgImage, LinkCopySuccesModal, ProgressBar } from 'app/components'
+import { BgImage, LinkCopySuccesModal, LoadingModal, ProgressBar } from 'app/components'
 import bg from 'app/assets/img/white.png'
 import noti from 'app/assets/img/notification.png'
 import user from 'app/assets/img/user.png'
@@ -17,12 +17,68 @@ import me from 'app/assets/img/me.png'
 import add from 'app/assets/img/add.png'
 import Clipboard from '@react-native-clipboard/clipboard';
 import axiosInstance from 'app/networking/api'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export function HomeScreen(props) {
     const [addPartner, setAddPartner] = useState(false)
     const [copiedText, setCopiedText] = useState('');
     const [modalVisable, setModalVisable] = useState(false);
+    const [load, setLoad] = useState(false)
+    const [category, setCategory] = useState([])
+    const [userInfo, setUserInfo] = useState([])
+    const [reload, setReload] = useState(false)
+    const [chooseData, setChooseData] = useState([
+        {
+            id: 1,
+            color: '#F5BE3D',
+            name: 'Presents',
+
+        },
+        {
+            id: 2,
+            color: '#96CE58',
+            name: 'Positive Words',
+        },
+        {
+            id: 3,
+            color: '#2E76E0',
+            name: 'Precious Time',
+
+        },
+        {
+            id: 4,
+            color: '#CB0F1D',
+            name: 'Positive Acts',
+
+        },
+        {
+            id: 5,
+            color: '#2AB4A2',
+            name: 'Physical Touch',
+
+        },
+        {
+            id: 6,
+            color: '#AE297A',
+            name: 'Passion',
+        },
+        {
+            id: 7,
+            color: '#25BFD7',
+            name: 'Peace',
+
+        },
+    ])
+
+    let getUserInfo = async () => {
+        let data = await AsyncStorage.getItem('user', (err, value) => {
+            if (err) {
+                console.log(err)
+            } else {
+            }
+        })
+        return JSON.parse(data)
+    }
 
     const copyToClipboard = () => {
         Clipboard.setString('hello world');
@@ -35,25 +91,34 @@ export function HomeScreen(props) {
 
     const onGetLover = async () => {
         try {
-         let res =   await axiosInstance.get(`user/invitation/lover`)
-         console.log(res.data.data,'ressssss');
-         } catch (e) {
+            setLoad(true)
+            let res = await axiosInstance.get(`user/invitation/lover`)
+
+            setLoad(false)
+        } catch (e) {
+            setLoad(false)
             console.log(e, 'err');
         }
     }
     const onGetLoverMatch = async () => {
+        let info = await getUserInfo()
+        setUserInfo(info[0])
         try {
-         let res =   await axiosInstance.get(`user/lover-match`)
-         console.log(res.data.data,'ressssss');
-         } catch (e) {
+            setLoad(true)
+            let res = await axiosInstance.get(`user/lover-match`)
+            setCategory(res.data.data.category_id);
+            setLoad(false)
+        } catch (e) {
             console.log(e, 'err');
+            setLoad(false)
         }
     }
     useEffect(() => {
-        // onGetLover()
-        // onGetLoverMatch()
-    }, [ ])
-    
+        onGetLover()
+        onGetLoverMatch()
+    }, [reload])
+
+    console.log(category);
 
     return (
         <View style={{ flex: 1, height: '100%' }}>
@@ -79,7 +144,7 @@ export function HomeScreen(props) {
                             <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
                                 <Image source={user} style={styles.img} />
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => setReload(!reload)}>
                                 <Image source={refresh} style={styles.img2} />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => props.navigation.navigate('Notification')}>
@@ -91,14 +156,14 @@ export function HomeScreen(props) {
                         <Text style={styles.copiedText}>{copiedText}</Text>
                         <View style={styles.itemView}>
                             <View style={{ flex: 1 }}>
-                                <ProgressBar categoryName='Presents' procent='12' color='#F5BE3D' />
-                                <ProgressBar categoryName='Positive Words' procent='22' color='#96CE58' />
-                                <ProgressBar categoryName='Precious Time' procent='32' color='#2E76E0' />
-                                <ProgressBar categoryName='Positive Acts' procent='42' color='#CB0F1D' />
-                                <ProgressBar categoryName='Physical Touch' procent='52' color='#2AB4A2' />
-                                <ProgressBar categoryName='Passion' procent='62' color='#AE297A' />
-                                <ProgressBar categoryName='Peace' procent='72' color='#25BFD7' />
+                                {chooseData.map((item, index) => {
+                                    return category.length > 0 ? category.map((val, ind) => {
+                                        return <ProgressBar categoryName={item.name} procent='0' />
+                                    }) : <ProgressBar categoryName={item.name} procent='0' />
+                                })}
+
                             </View>
+
                             {addPartner ? <Image source={me} style={styles.me} /> :
                                 <TouchableOpacity style={styles.rightSide} onPress={() => {
                                     copyToClipboard()
@@ -112,16 +177,18 @@ export function HomeScreen(props) {
                         <View style={styles.itemView}>
                             <View style={styles.leftSide}>
                                 <Image source={userh} style={styles.userH} />
-                                <Text style={styles.name}>Name</Text>
+                                <Text style={styles.name}>{userInfo.name}</Text>
                             </View>
                             <View style={{ flex: 1 }}>
-                                <ProgressBar categoryName='Presents' procent='12' color='#F5BE3D' />
-                                <ProgressBar categoryName='Positive Words' procent='22' color='#96CE58' />
-                                <ProgressBar categoryName='Precious Time' procent='32' color='#2E76E0' />
-                                <ProgressBar categoryName='Positive Acts' procent='42' color='#CB0F1D' />
-                                <ProgressBar categoryName='Physical Touch' procent='52' color='#2AB4A2' />
-                                <ProgressBar categoryName='Passion' procent='62' color='#AE297A' />
-                                <ProgressBar categoryName='Peace' procent='72' color='#25BFD7' />
+                                {chooseData.map((item, index) => {
+                                 return   category.length>0 ?   category.map((val, ind) => {
+                                        if (item.id === val) {
+                                            return <ProgressBar categoryName={item.name} color={item.color} procent='100' />
+                                        }
+                                        else { return <ProgressBar categoryName={item.name} procent='0' /> }
+                                    }):      <ProgressBar categoryName={item.name} procent='0' />  
+                                     
+                                })}
                             </View>
                         </View>
                     </View>
@@ -131,6 +198,7 @@ export function HomeScreen(props) {
                     onClose={() => setModalVisable(!modalVisable)}
                 />
             </SafeAreaView>
+            <LoadingModal isVisible={load} />
         </View>
     )
 }

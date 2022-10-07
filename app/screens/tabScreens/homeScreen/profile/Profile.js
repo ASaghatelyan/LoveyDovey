@@ -45,19 +45,15 @@ export function Profile(props) {
     }
 
   
-    // useEffect(() => {
-    //     const unsubscribe = props.navigation.addListener('focus', () => {
-    //         setLoad(true)  
-    //         requestFunc()
-    //     });
-    //     return unsubscribe;
-    // }, [props.navigation]);
-
     useEffect(() => {
-        requestFunc()
+        const unsubscribe = props.navigation.addListener('focus', () => {
+            setLoad(true)  
+            requestFunc()
+        });
+        return unsubscribe;
+    }, [props.navigation]);
+
     
-     
-    }, [ ])
     
     return (
         <View style={{ flex: 1, height: '100%' }}>

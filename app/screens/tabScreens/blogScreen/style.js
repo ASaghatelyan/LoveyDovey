@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
             height: 3,
         },
         shadowOpacity: 0.29,
-        shadowRadius: 4.65, 
+        shadowRadius: 4.65,
         elevation: 7,
     },
     bottomView: {
@@ -75,17 +75,10 @@ export const styles = StyleSheet.create({
     },
     imgView: {
         flexDirection: 'row',
-    },
-    img: {
-        width: globalWidth(82),
-        height: globalHeight(96),
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    playBtn: {
-        width: globalWidth(22),
-        height: globalHeight(22),
-
-    },
+    }, 
+    video: {
+        width: globalWidth(111),
+        height: globalHeight(102)
+    }
 });
 

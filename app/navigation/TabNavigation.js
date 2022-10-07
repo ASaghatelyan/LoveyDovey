@@ -14,6 +14,7 @@ import Settings from 'app/assets/img/settings.png'
 import CreateEventNavigation from "./CreateEventNavigation";
 import SettingsNavigation from "./SettingsNavigation";
 import HomeNavigation from "./HomeNavigation";
+import BlogNavigation from "./BlogNavigation";
 import { useIsFocused } from '@react-navigation/native';
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 const Tab = createBottomTabNavigator();
@@ -51,7 +52,7 @@ export default function TabNavigation(props) {
 
               imageSource = Home;
             }
-            if (route.name === "BlogScreens") {
+            if (route.name === "BlogNavigation") {
               imageSource = Note;
             }
             if (route.name === "CreateEventNavigation") {
@@ -169,10 +170,27 @@ export default function TabNavigation(props) {
             })(route),
           })}
         />
-        <Tab.Screen name="BlogScreens" component={BlogScreens}
-          options={{
-            title: ''
-          }}
+        <Tab.Screen name="BlogNavigation" component={BlogNavigation}
+        options={({ route }) => ({
+          title: '',
+          tabBarVisible:
+            ((route) => {
+              const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+              if (routeName === "BlogInfo") { return false }
+              return true
+            })(route),
+          tabBarButton:
+            ((route) => {
+              const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+              if (routeName === "BlogInfo") { () => null }
+            })(route),
+          tabBarStyle: ((route) => {
+            const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+            if (routeName === "BlogInfo") { return { display: 'none' } }
+            return styles.generalStyle
+          })(route),
+
+        })}
         />
         <Tab.Screen name="CreateEventNavigation" component={CreateEventNavigation}
           options={({ route }) => ({

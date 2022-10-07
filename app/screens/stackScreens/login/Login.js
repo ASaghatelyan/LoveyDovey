@@ -50,6 +50,14 @@ export function Login(props) {
     }
   }
 
+  const storeUserInfo = async (value) => {
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify(value))
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   let validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
@@ -67,8 +75,8 @@ export function Login(props) {
           password: pass,
         }
         let response = await axiosInstance.post("/login", login);
-        storeData(response.data.data.token)
-        console.log(response.data);
+        storeData(response.data.data.token) 
+        storeUserInfo([response.data.data]) 
         intro == null ? props.navigation.replace('Introduction') : !category ? props.navigation.replace('ChooseCategories') : props.navigation.replace('TabNavigation')
       }
       else if (!email) {

@@ -5,7 +5,7 @@ import { styles } from './style'
 export function ProgressBar(props) {
     const [procent, setProcent] = useState(`${props.procent}%`)
     return (
-        <View style={{width:'100%',marginBottom:6}}>
+        <View style={{width:'100%',marginBottom:6}} key={props.keys}>
             <Text style={styles.categoryText}>{props.categoryName}</Text>
         <View style={styles.progressBar}>
             <Animated.View style={[StyleSheet.absoluteFill,

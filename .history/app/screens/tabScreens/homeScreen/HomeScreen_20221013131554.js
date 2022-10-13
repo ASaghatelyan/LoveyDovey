@@ -79,7 +79,17 @@ export function HomeScreen(props) {
         })
         return JSON.parse(data)
     }
- 
+
+
+    let getPartner = async () => {
+        let data = await AsyncStorage.getItem('partner', (err, value) => {
+            if (err) {
+                console.log(err)
+            } else {
+            }
+        })
+        return JSON.parse(data)
+    }
 
     const copyToClipboard = () => {
         Clipboard.setString('hello world');
@@ -94,7 +104,7 @@ export function HomeScreen(props) {
         try {
             setLoad(true)
             await axiosInstance.get(`user/invitation/lover`)
-            // AsyncStorage.setItem('partner', JSON.stringify(true))
+            AsyncStorage.setItem('partner', JSON.stringify(true))
             setLoad(false)
         } catch (e) {
             setLoad(false)
@@ -115,7 +125,7 @@ export function HomeScreen(props) {
             setLoad(false)
         }
     }
-console.log(category,'ddd');
+
     useEffect(() => {
         onGetLover()
         onGetLoverMatch()

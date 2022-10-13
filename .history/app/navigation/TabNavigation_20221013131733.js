@@ -28,7 +28,7 @@ let width = Dimensions.get("window").width;
 
 export default function TabNavigation(props) {
   const [add, setAdd] = useState(null)
-  const [modalVisable, setModalVisable] = useState(false)
+  const [modalVisable,setModalVisable]=useState(false)
   const isFocused = useIsFocused();
   let getPartner = async () => {
     let data = await AsyncStorage.getItem('partner', (err, value) => {
@@ -237,7 +237,7 @@ export default function TabNavigation(props) {
           })}
           listeners={({ navigation, route }) => ({
             tabPress: (e) => {
-              add ? navigation.navigate('AddEvent') : setModalVisable(!modalVisable);
+              add && navigation.navigate('AddEvent'); 
               // props.navigation.navigate('CreateEventNavigation',{screen:'CreateEvent'})
             },
 
@@ -288,10 +288,9 @@ export default function TabNavigation(props) {
 
 
       </Tab.Navigator>
-      <ErrorModal
-        isVisible={modalVisable}
-        onClose={() => setModalVisable(!modalVisable)}
-      />
+<ErrorModal
+isVisible:{modalVisable}
+/>
     </>
 
   );

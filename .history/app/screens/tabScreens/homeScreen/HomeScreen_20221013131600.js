@@ -79,6 +79,8 @@ export function HomeScreen(props) {
         })
         return JSON.parse(data)
     }
+
+
  
 
     const copyToClipboard = () => {
@@ -94,7 +96,7 @@ export function HomeScreen(props) {
         try {
             setLoad(true)
             await axiosInstance.get(`user/invitation/lover`)
-            // AsyncStorage.setItem('partner', JSON.stringify(true))
+            AsyncStorage.setItem('partner', JSON.stringify(true))
             setLoad(false)
         } catch (e) {
             setLoad(false)
@@ -115,7 +117,7 @@ export function HomeScreen(props) {
             setLoad(false)
         }
     }
-console.log(category,'ddd');
+
     useEffect(() => {
         onGetLover()
         onGetLoverMatch()

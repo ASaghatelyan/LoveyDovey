@@ -94,7 +94,7 @@ export function HomeScreen(props) {
         try {
             setLoad(true)
             await axiosInstance.get(`user/invitation/lover`)
-            // AsyncStorage.setItem('partner', JSON.stringify(true))
+            AsyncStorage.setItem('partner', JSON.stringify(true))
             setLoad(false)
         } catch (e) {
             setLoad(false)

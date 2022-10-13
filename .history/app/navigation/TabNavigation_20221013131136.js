@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState ,useEffect} from "react";
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, TouchableNativeFeedback } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -17,8 +17,6 @@ import HomeNavigation from "./HomeNavigation";
 import BlogNavigation from "./BlogNavigation";
 import { useIsFocused } from '@react-navigation/native';
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ErrorModal } from "app/components";
 const Tab = createBottomTabNavigator();
 let width = Dimensions.get("window").width;
 
@@ -27,27 +25,7 @@ let width = Dimensions.get("window").width;
 
 
 export default function TabNavigation(props) {
-  const [add, setAdd] = useState(null)
-  const [modalVisable, setModalVisable] = useState(false)
   const isFocused = useIsFocused();
-  let getPartner = async () => {
-    let data = await AsyncStorage.getItem('partner', (err, value) => {
-      if (err) {
-        console.log(err)
-      } else {
-      }
-    })
-    return JSON.parse(data)
-  }
-
-  let getGetData = async () => {
-    let data = await getPartner()
-    setAdd(data)
-  }
-
-  useEffect(() => {
-    getGetData()
-  }, [])
 
 
   return (
@@ -193,26 +171,26 @@ export default function TabNavigation(props) {
           })}
         />
         <Tab.Screen name="BlogNavigation" component={BlogNavigation}
-          options={({ route }) => ({
-            title: '',
-            tabBarVisible:
-              ((route) => {
-                const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-                if (routeName === "BlogInfo") { return false }
-                return true
-              })(route),
-            tabBarButton:
-              ((route) => {
-                const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-                if (routeName === "BlogInfo") { () => null }
-              })(route),
-            tabBarStyle: ((route) => {
+        options={({ route }) => ({
+          title: '',
+          tabBarVisible:
+            ((route) => {
               const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-              if (routeName === "BlogInfo") { return { display: 'none' } }
-              return styles.generalStyle
+              if (routeName === "BlogInfo") { return false }
+              return true
             })(route),
+          tabBarButton:
+            ((route) => {
+              const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+              if (routeName === "BlogInfo") { () => null }
+            })(route),
+          tabBarStyle: ((route) => {
+            const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+            if (routeName === "BlogInfo") { return { display: 'none' } }
+            return styles.generalStyle
+          })(route),
 
-          })}
+        })}
         />
         <Tab.Screen name="CreateEventNavigation" component={CreateEventNavigation}
           options={({ route }) => ({
@@ -237,12 +215,12 @@ export default function TabNavigation(props) {
           })}
           listeners={({ navigation, route }) => ({
             tabPress: (e) => {
-              add ? navigation.navigate('AddEvent') : setModalVisable(!modalVisable);
+               navigation.navigate('AddEvent');
               // props.navigation.navigate('CreateEventNavigation',{screen:'CreateEvent'})
             },
-
+           
           })}
-
+         
 
         />
         <Tab.Screen name="ShareScreen" component={ShareScreen}
@@ -288,10 +266,7 @@ export default function TabNavigation(props) {
 
 
       </Tab.Navigator>
-      <ErrorModal
-        isVisible={modalVisable}
-        onClose={() => setModalVisable(!modalVisable)}
-      />
+
     </>
 
   );

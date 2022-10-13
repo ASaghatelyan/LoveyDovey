@@ -79,7 +79,6 @@ export function HomeScreen(props) {
         })
         return JSON.parse(data)
     }
- 
 
     const copyToClipboard = () => {
         Clipboard.setString('hello world');
@@ -93,8 +92,8 @@ export function HomeScreen(props) {
     const onGetLover = async () => {
         try {
             setLoad(true)
-            await axiosInstance.get(`user/invitation/lover`)
-            // AsyncStorage.setItem('partner', JSON.stringify(true))
+            let res = await axiosInstance.get(`user/invitation/lover`)
+console.log(res);
             setLoad(false)
         } catch (e) {
             setLoad(false)
@@ -103,7 +102,7 @@ export function HomeScreen(props) {
     }
 
     const onGetLoverMatch = async () => {
-        let info = await getUserInfo() 
+        let info = await getUserInfo()
         setUserInfo(info[0])
         try {
             setLoad(true)
@@ -115,7 +114,7 @@ export function HomeScreen(props) {
             setLoad(false)
         }
     }
-console.log(category,'ddd');
+
     useEffect(() => {
         onGetLover()
         onGetLoverMatch()
@@ -159,8 +158,8 @@ console.log(category,'ddd');
                             <View style={{ flex: 1 }}>
                                 {chooseData.map((item, index) => {
                                     return category.length > 0 ? category.map((val, ind) => {
-                                        return <ProgressBar categoryName={item.name} procent='0' />
-                                    }) : <ProgressBar categoryName={item.name} procent='0' />
+                                        return <ProgressBar categoryName={item.name} procent='0'   />
+                                    }) : <ProgressBar categoryName={item.name} procent='0'   />
                                 })}
 
                             </View>
@@ -184,10 +183,10 @@ console.log(category,'ddd');
                                 {chooseData.map((item, index) => {
                                     return category.length > 0 ? category.map((val, ind) => {
                                         if (item.id === val) {
-                                            return <ProgressBar categoryName={item.name} color={item.color} procent='100' />
+                                            return <ProgressBar categoryName={item.name} color={item.color} procent='100'  />
                                         }
-                                        else { return <ProgressBar categoryName={item.name} procent='0' /> }
-                                    }) : <ProgressBar categoryName={item.name} procent='0' />
+                                        else { return <ProgressBar categoryName={item.name} procent='0'   /> }
+                                    }) : <ProgressBar categoryName={item.name} procent='0'  />
 
                                 })}
                             </View>

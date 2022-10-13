@@ -237,7 +237,7 @@ export default function TabNavigation(props) {
           })}
           listeners={({ navigation, route }) => ({
             tabPress: (e) => {
-              add ? navigation.navigate('AddEvent') : setModalVisable(!modalVisable);
+              add && navigation.navigate('AddEvent');
               // props.navigation.navigate('CreateEventNavigation',{screen:'CreateEvent'})
             },
 
@@ -290,7 +290,6 @@ export default function TabNavigation(props) {
       </Tab.Navigator>
       <ErrorModal
         isVisible={modalVisable}
-        onClose={() => setModalVisable(!modalVisable)}
       />
     </>
 

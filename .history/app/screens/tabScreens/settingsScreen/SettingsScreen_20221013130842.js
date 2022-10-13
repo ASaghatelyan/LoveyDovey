@@ -39,7 +39,7 @@ export function SettingsScreen(props) {
                         <TabGlobalButton name="Intro Slides" img={term} props={props} onPush={() => console.log(props.navigation.navigate('IntroSlides'))} />
                         <TabGlobalButton name="Logout" img={logOut} onPush={async() => {
                             await AsyncStorage.removeItem('user')
-                            await AsyncStorage.removeItem('partner')
+                            await AsyncStorage.removeItem('user')
                             setModalVisible(!modatlVisible)}} />
                     </View>
                 </ScrollView>

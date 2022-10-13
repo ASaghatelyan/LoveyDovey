@@ -17,8 +17,6 @@ import HomeNavigation from "./HomeNavigation";
 import BlogNavigation from "./BlogNavigation";
 import { useIsFocused } from '@react-navigation/native';
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ErrorModal } from "app/components";
 const Tab = createBottomTabNavigator();
 let width = Dimensions.get("window").width;
 
@@ -27,8 +25,6 @@ let width = Dimensions.get("window").width;
 
 
 export default function TabNavigation(props) {
-  const [add, setAdd] = useState(null)
-  const [modalVisable, setModalVisable] = useState(false)
   const isFocused = useIsFocused();
   let getPartner = async () => {
     let data = await AsyncStorage.getItem('partner', (err, value) => {
@@ -40,13 +36,13 @@ export default function TabNavigation(props) {
     return JSON.parse(data)
   }
 
-  let getGetData = async () => {
-    let data = await getPartner()
-    setAdd(data)
+  let getGetData = async() => {
+let data = await 
   }
-
   useEffect(() => {
-    getGetData()
+
+
+
   }, [])
 
 
@@ -237,7 +233,7 @@ export default function TabNavigation(props) {
           })}
           listeners={({ navigation, route }) => ({
             tabPress: (e) => {
-              add ? navigation.navigate('AddEvent') : setModalVisable(!modalVisable);
+              navigation.navigate('AddEvent');
               // props.navigation.navigate('CreateEventNavigation',{screen:'CreateEvent'})
             },
 
@@ -288,10 +284,7 @@ export default function TabNavigation(props) {
 
 
       </Tab.Navigator>
-      <ErrorModal
-        isVisible={modalVisable}
-        onClose={() => setModalVisable(!modalVisable)}
-      />
+
     </>
 
   );

@@ -42,7 +42,7 @@ export default function TabNavigation(props) {
 
   let getGetData = async () => {
     let data = await getPartner()
-    console.log(data,'parte');
+    console.log(data);
     setAdd(data)
   }
 

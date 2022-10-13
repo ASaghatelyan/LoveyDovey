@@ -93,10 +93,10 @@ export function HomeScreen(props) {
     const onGetLover = async () => {
         try {
             setLoad(true)
-            let res = await axiosInstance.get(`user/invitation/lover`)
-            await AsyncStorage.setItem('partner', JSON.stringify(true))
+            await axiosInstance.get(`user/invitation/lover`)
+            // await AsyncStorage.setItem('partner', JSON.stringify(true))
             setLoad(false)
-            console.log(res, 'partnors');
+            
         } catch (e) {
             setLoad(false)
             console.log(e, 'err3');
@@ -157,25 +157,15 @@ export function HomeScreen(props) {
                     <View style={styles.bottomView}>
                         <Text style={styles.copiedText}>{copiedText}</Text>
                         <View style={styles.itemView}>
-                            {/* <View style={{ flex: 1 }}>
+                            <View style={{ flex: 1 }}>
                                 {chooseData.map((item, index) => {
                                     return category.length > 0 ? category.map((val, ind) => {
                                         return <ProgressBar categoryName={item.name} procent='0' />
                                     }) : <ProgressBar categoryName={item.name} procent='0' />
                                 })}
 
-                            </View> */}
-                            <View style={{ flex: 1 }}>
-                                {chooseData.map((item, index) => {
-                                    return category.length > 0 ? category.map((val, ind) => {
-                                        if (item.id === val) {
-                                            return <ProgressBar categoryName={item.name} color={item.color} procent='100' />
-                                        }
-                                        else { return <ProgressBar categoryName={item.name} procent='0' /> }
-                                    }) : <ProgressBar categoryName={item.name} procent='0' />
-
-                                })}
                             </View>
+
                             {addPartner ? <Image source={me} style={styles.me} /> :
                                 <TouchableOpacity style={styles.rightSide} onPress={() => {
                                     copyToClipboard()

@@ -62,7 +62,7 @@ export function AddEvent(props) {
                     <View>
                         <Text style={styles.titleText}>Create Want/Need</Text>
                         <TabGlobalButton name="Select Category"
-                            data={category.name}
+                            data={category.type}
                             onPush={() => setMOdalVisible(!modalVisible)}
                         />
                         <PaperInput
@@ -78,7 +78,7 @@ export function AddEvent(props) {
                             }}
                         />
                         <TabGlobalButton name="Frequency"
-                            data={frequency.name}
+                            data={frequency.type}
                             onPush={() => setFrequencyModal(!frequencyModal)}
                         />
                         <TabGlobalButton name="Start Date"
@@ -100,7 +100,8 @@ export function AddEvent(props) {
                 />
                 <FrequencyModal
                     isVisible={frequencyModal}
-                    onClose={(info) => { 
+                    onClose={(info) => {
+                        console.log(info);
                         setFrequency(info)
                         setFrequencyModal(!frequencyModal)
                     }}

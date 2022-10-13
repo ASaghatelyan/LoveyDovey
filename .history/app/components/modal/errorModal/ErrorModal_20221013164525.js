@@ -12,9 +12,9 @@ export function ErrorModal(props) {
     <Modal
     isVisible={props.isVisible}
     style={styles.content}
-    animationIn={'rotate'} 
-    animationOut={'rotate'}
-> 
+    on
+>
+   
     <View style={styles.bottomSide}> 
         <TouchableOpacity onPress={props.onClose}>
             <Image source={close} style={styles.closeIc} />

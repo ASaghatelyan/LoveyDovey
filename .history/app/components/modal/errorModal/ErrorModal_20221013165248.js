@@ -12,7 +12,8 @@ export function ErrorModal(props) {
     <Modal
     isVisible={props.isVisible}
     style={styles.content}
-    animationIn={'rotate'} 
+    animationIn={''}
+ 
     animationOut={'rotate'}
 > 
     <View style={styles.bottomSide}> 

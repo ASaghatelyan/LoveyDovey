@@ -165,7 +165,7 @@ export function HomeScreen(props) {
                                 })}
 
                             </View> */}
-                            <View style={{ flex: 1 }}>
+ <View style={{ flex: 1 }}>
                                 {chooseData.map((item, index) => {
                                     return category.length > 0 ? category.map((val, ind) => {
                                         if (item.id === val) {

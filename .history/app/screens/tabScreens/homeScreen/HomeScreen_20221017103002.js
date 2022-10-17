@@ -74,7 +74,7 @@ export function HomeScreen(props) {
     const [copiedText, setCopiedText] = useState('');
     const [modalVisable, setModalVisable] = useState(false);
     const [load, setLoad] = useState(false)
-    const [category, setCategory] = useState([])
+    const [category, setCategory] = useState([1,2,3,4,5])
     const [userInfo, setUserInfo] = useState([])
     const [reload, setReload] = useState(false)
     const [chooseData, setChooseData] = useState([
@@ -202,8 +202,10 @@ export function HomeScreen(props) {
             <BgImage img={bg} />
             <SafeAreaView
                 style={styles.mainContainer}>
-                <StatusBar 
-                    animated={true} 
+                <StatusBar
+                    // backgroundColor={'#FFF'}
+                    animated={true}
+                    // backgroundColor="transparent"
                     barStyle='dark-content'
                     translucent={true}
                 />

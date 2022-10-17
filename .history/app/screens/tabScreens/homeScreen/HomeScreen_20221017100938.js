@@ -160,16 +160,13 @@ export function HomeScreen(props) {
         try {
             setLoad(true)
             let res = await axiosInstance.get(`user/lover-match`)
-            setCategory(res.data.data.category_id);  
+            // setCategory(res.data.data.category_id);
+            setCategory([1,4,7]);
             const _copyData = structuredClone(chooseData)
             const newData = _copyData.map(item => {
-                if ((category.length>1 ? category:res.data.data.category_id).includes(item.id)) {
+                if (res.data.data.category_id.includes(item.id)) {
                     item.status = true
-                } 
-                else if (!(category.length>1 ? category:res.data.data.category_id).includes(item.id)) {
-                    item.status = false
-                } 
-                return item
+                } return item
             })
             setChooseData(newData)
             setLoad(false)
@@ -196,14 +193,16 @@ export function HomeScreen(props) {
     // }
 
     console.log(category);
-    console.log(chooseData);
+ 
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
             <SafeAreaView
                 style={styles.mainContainer}>
-                <StatusBar 
-                    animated={true} 
+                <StatusBar
+                    // backgroundColor={'#FFF'}
+                    animated={true}
+                    // backgroundColor="transparent"
                     barStyle='dark-content'
                     translucent={true}
                 />

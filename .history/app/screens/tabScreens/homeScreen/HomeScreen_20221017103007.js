@@ -202,8 +202,10 @@ export function HomeScreen(props) {
             <BgImage img={bg} />
             <SafeAreaView
                 style={styles.mainContainer}>
-                <StatusBar 
-                    animated={true} 
+                <StatusBar
+                    // backgroundColor={'#FFF'}
+                    animated={true}
+                    // backgroundColor="transparent"
                     barStyle='dark-content'
                     translucent={true}
                 />

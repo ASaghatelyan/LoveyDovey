@@ -193,7 +193,7 @@ export function HomeScreen(props) {
     //         } return item
     //     })
     //     setChooseData(newData) org.reactjs.native.example.LoveyDovey
-    // }
+    // }org.reactjs.native.example.LoveyDovey (explicit)
 
     console.log(category);
     console.log(chooseData);

@@ -23,7 +23,7 @@ export function EditProfile(props) {
     const [globalData, setGlobalData] = useState({ ...props.route.params.globalData })
     const [changedData, setChangedData] = useState({})
     const [text, setText] = useState(props.route.params?.data?.name);
-    const [img, setImages] = useState(null)
+    const [img, setImages] = useState('')
     const [modatlVisible, setModalVisible] = useState(false)
     const [bthDay, setBthDay] = useState('Date of Birth')
     const [genderModal, setGenderModal] = useState(false)
@@ -124,12 +124,12 @@ export function EditProfile(props) {
     formData.append("gender_id", gender.id);
     formData.append("ethnicity_id", ethnicity.id);
     formData.append("income_level_id", incomLvl.id);
-    img && formData.append(`image`, {
+    formData.append(`image`, {
         name: `image.jpg`,
         uri: `${img}`,
         type: 'image/jpeg',
     })
-
+console.log(formData);
     const onUpdate = async () => {
         try {
             await axiosInstance.post(`user/detail/create`, formData)

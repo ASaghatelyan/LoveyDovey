@@ -124,12 +124,12 @@ export function EditProfile(props) {
     formData.append("gender_id", gender.id);
     formData.append("ethnicity_id", ethnicity.id);
     formData.append("income_level_id", incomLvl.id);
-    img && formData.append(`image`, {
+    img ? formData.append(`image`, {
         name: `image.jpg`,
         uri: `${img}`,
         type: 'image/jpeg',
     })
-
+console.log(formData);
     const onUpdate = async () => {
         try {
             await axiosInstance.post(`user/detail/create`, formData)

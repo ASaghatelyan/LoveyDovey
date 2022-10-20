@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         marginLeft:globalWidth(11)
     },
     checkBocStyle: {
-        transform: [{ scaleX: 0.85 }, { scaleY: 1 }], 
+        transform: [{ scaleX: 0.8 }, { scaleY: 1 }], 
         width: 11,
         height: 11, 
       

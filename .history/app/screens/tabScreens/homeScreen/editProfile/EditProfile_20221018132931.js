@@ -129,7 +129,7 @@ export function EditProfile(props) {
         uri: `${img}`,
         type: 'image/jpeg',
     })
-
+console.log(formData);
     const onUpdate = async () => {
         try {
             await axiosInstance.post(`user/detail/create`, formData)

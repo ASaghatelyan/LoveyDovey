@@ -29,7 +29,8 @@ export function ChangePasswird(props) {
     const requestFunc = async () => {
         try {
             console.log('ddd');
-            let res = await axiosInstance.post(`user/change-password`, formData) 
+            let res = await axiosInstance.post(`user/change-password`, formData)
+            console.log(res.data);
             setCurrentPass('')
             setaNewPass('')
             setConfirmPass('')

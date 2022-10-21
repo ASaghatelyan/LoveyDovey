@@ -30,7 +30,8 @@ export function ForgotStepThree(props) {
           email,
           password: pass,
           password_confirmation: confirmPass
-        }) 
+        })
+        console.log(res);
         props.navigation.replace("Login")
         setConfirmPass('')
         setPass('')

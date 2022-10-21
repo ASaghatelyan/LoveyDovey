@@ -20,7 +20,8 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(async (config) => {
-    let token = await getDataTokken(); 
+    let token = await getDataTokken();
+    console.log(token);
     if (token) {
         config.headers.Authorization = `Bearer ${token}`; 
     }

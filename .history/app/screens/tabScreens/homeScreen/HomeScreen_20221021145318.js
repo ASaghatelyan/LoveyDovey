@@ -186,7 +186,9 @@ export function HomeScreen(props) {
         onGetLover()
         onGetLoverMatch()
     }, [])
-  
+ 
+
+ 
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />

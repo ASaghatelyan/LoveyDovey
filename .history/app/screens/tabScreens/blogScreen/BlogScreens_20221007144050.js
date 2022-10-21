@@ -47,7 +47,8 @@ export function BlogScreens(props) {
                 <ScrollView contentContainerStyle={styles.content}  >
                     <Text style={styles.titleText}>Blogs</Text>
                     <View style={styles.bottomView}>
-                        {data.map((item, index) => { 
+                        {data.map((item, index) => {
+                            console.log(item.url);
                             return <TouchableOpacity key={index} style={styles.itemView}
                                 onPress={() => props.navigation.navigate('BlogInfo',item)}
                             >

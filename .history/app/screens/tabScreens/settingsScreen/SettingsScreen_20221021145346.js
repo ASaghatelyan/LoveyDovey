@@ -36,7 +36,7 @@ export function SettingsScreen(props) {
                         <TabGlobalButton name="Change Password" img={pass} onPush={() => (props.navigation.navigate('ChangePasswird'))} />
                         <TabGlobalButton name="Terms & Condition" img={term} onPush={() => (props.navigation.navigate('TermsCondition'))} />
                         <TabGlobalButton name="Privacy Policy" img={term} onPush={() =>  (props.navigation.navigate('PrivacyPolicy'))} />
-                        <TabGlobalButton name="Intro Slides" img={term} props={props} onPush={() =>  (props.navigation.navigate('IntroSlides'))} />
+                        <TabGlobalButton name="Intro Slides" img={term} props={props} onPush={() => console.log(props.navigation.navigate('IntroSlides'))} />
                         <TabGlobalButton name="Logout" img={logOut} onPush={async() => {
                             await AsyncStorage.removeItem('user')
                             await AsyncStorage.removeItem('partner')

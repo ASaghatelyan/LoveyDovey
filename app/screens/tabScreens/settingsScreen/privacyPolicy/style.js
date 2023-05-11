@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
         paddingVertical: globalHeight(10),
     },
     gFlex: {
-        flex: 1,
+        flex: 0.9,
         justifyContent: 'center',
         alignItems: 'center'
     },

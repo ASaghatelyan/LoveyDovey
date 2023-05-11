@@ -1,0 +1,1 @@
+export {RegistrationType} from './RegistrationType'

@@ -80,7 +80,7 @@ export function CreateEvent(props) {
                 <ScrollView contentContainerStyle={styles.content}  >
                     <View style={styles.titleView}>
                         <Text style={styles.titleText}>Calendar</Text>
-                        <View style={styles.gFlex}>
+                        {/* <View style={styles.gFlex}>
                             <TouchableOpacity>
                                 <Image source={user} style={styles.img} />
                             </TouchableOpacity>
@@ -90,7 +90,7 @@ export function CreateEvent(props) {
                             <TouchableOpacity>
                                 <Image source={noti} style={styles.img3} />
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
                     </View>
                     <View >
                         <CalendarLovey

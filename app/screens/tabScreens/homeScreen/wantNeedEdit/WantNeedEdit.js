@@ -62,7 +62,7 @@ export function WantNeedEdit(props) {
                 <ScrollView contentContainerStyle={styles.content}  >
                     <View>
                         <View style={styles.topTitle}>
-                            <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                            <TouchableOpacity style={{ padding:4}} onPress={() => props.navigation.goBack()}>
                                 <Image source={back} style={styles.back} />
                             </TouchableOpacity>
                             <View style={styles.gFlex}>
@@ -75,7 +75,7 @@ export function WantNeedEdit(props) {
                             onPush={() => setMOdalVisible(!modalVisible)}
                         />
                         <PaperInput
-                            label="Desgription"
+                            label="Description"
                             value={text}
                             onChangeText={text => {
                                 data.description = text

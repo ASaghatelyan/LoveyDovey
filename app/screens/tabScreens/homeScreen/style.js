@@ -26,13 +26,13 @@ export const styles = StyleSheet.create({
         // alignItems: 'flex-start',
         justifyContent: 'space-between',
         paddingHorizontal: globalWidth(17),
-        paddingVertical: globalHeight(10),
+        paddingTop: globalHeight(10),
     },
     itemView: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 45
+        paddingBottom: 25
     },
     titleText: {
         fontSize: globalWidth(24),
@@ -54,8 +54,8 @@ export const styles = StyleSheet.create({
         color: '#3A3434',
         lineHeight: globalHeight(16),
         position: 'absolute',
-        top: 23,
-        left: 33
+        top: globalHeight(23),
+        left: globalWidth(37)
     },
     titleView: {
         flexDirection: 'row',

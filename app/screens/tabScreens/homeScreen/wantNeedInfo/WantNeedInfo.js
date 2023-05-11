@@ -30,11 +30,11 @@ export function WantNeedInfo(props) {
 
     let onDone = async () => {
         try {
-            await axiosInstance.post(`/user/need-or-want/status/update`, {
+           let a= await axiosInstance.post(`/user/need-or-want/status/update`, {
                 id: props.route.params.id,
                 status: 'Done'
             })
-            props.navigation.goBack()
+            props.navigation.pop(2)
 
         } catch (e) {
             console.log(e, 'err');
@@ -54,7 +54,7 @@ export function WantNeedInfo(props) {
                 />
                 <ScrollView contentContainerStyle={styles.content}  >
                     <View style={styles.topTitle}>
-                        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                        <TouchableOpacity style={{ padding:4}} onPress={() => props.navigation.goBack()}>
                             <Image source={back} style={styles.back} />
                         </TouchableOpacity>
                         <View style={styles.gFlex}>

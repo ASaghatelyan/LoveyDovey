@@ -4,13 +4,15 @@ import { View, Text, Platform, Linking } from 'react-native'
 import MainNAvigation from './app/navigation/MainNAvigation'
 import dynamicLinks from '@react-native-firebase/dynamic-links';
 import firebase from '@react-native-firebase/app';
-
+import { Provider } from "react-redux";
+import store from 'app/redux/index'
+import { async } from '@firebase/util';
 
 
 
 export default function App() {
   const iosCredentials = {
-    apiKey: "AIzaSyAAMse0dsiH-ZSPLpH_pbjE4GRZvgTr9WQ",
+    apiKey: "AIzaSyBv5NDd12A7KkSa5JKndD7X6EeeoPfkgW0",
     authDomain: "loveydovey-613f5.firebaseapp.com",
     projectId: "loveydovey-613f5",
     storageBucket: "loveydovey-613f5.appspot.com",
@@ -42,7 +44,7 @@ export default function App() {
 
 
 
-  useEffect(() => {
+  useEffect(() => { 
     dynamicLinks().getInitialLink().then((link) => {
       console.log(link, ']]]]]]]]]][[[[[[[[');
       handleDynamicLink(link)
@@ -65,6 +67,8 @@ export default function App() {
 
 
   return (
-    <MainNAvigation />
+    <Provider store={store}>
+      <MainNAvigation />
+    </Provider>
   )
 }

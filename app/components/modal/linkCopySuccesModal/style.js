@@ -17,11 +17,11 @@ export const styles = StyleSheet.create({
     modal: {
         backgroundColor: '#FFF',
         width: globalWidth(325),
-        height: globalHeight(144),
+        // minHeight: globalHeight(144),
         borderRadius: 2,
         paddingHorizontal: globalWidth(26),
         paddingVertical: globalHeight(24),
-    }, 
+    },
     title: {
         fontSize: globalWidth(16),
         color: '#000',
@@ -33,13 +33,13 @@ export const styles = StyleSheet.create({
         fontSize: globalWidth(12),
         color: '#000',
         lineHeight: globalHeight(15),
-        fontFamily: 'Roboto-Regular', 
+        fontFamily: 'Roboto-Regular',
     },
     battonView: {
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
-        marginTop: globalHeight(5), 
+        marginTop: globalHeight(5),
     },
 
 });

@@ -12,6 +12,7 @@ import like from 'app/assets/img/like.png'
 import love from 'app/assets/img/love.png'
 import he from 'app/assets/img/he.png'
 import mers from 'app/assets/img/mers.png'
+import { GlobalButton } from 'app/components/globalButton'
 
 export function SelectCategori(props) {
     const [data, setData] = useState('')
@@ -79,7 +80,7 @@ export function SelectCategori(props) {
 
             <View style={styles.titleView}>
                 <Text style={styles.whosIn}>Choose Category</Text>
-                <TouchableOpacity onPress={() => props.onClose(data)}>
+                <TouchableOpacity style={{padding:4}} onPress={() => props.onClose(data)}>
                     <Image source={close} style={styles.closeIc} />
                 </TouchableOpacity>
             </View>
@@ -100,7 +101,7 @@ export function SelectCategori(props) {
 
                 })}
             </View>
-
+            <GlobalButton btnName="Submit" onSubmit={() => props.onClose(data)} />
         </Modal>
     )
 }

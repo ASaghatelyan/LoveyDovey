@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
         borderTopEndRadius: 16,
         borderTopLeftRadius: 16,
         paddingHorizontal: globalWidth(24),
-        paddingBottom: globalHeight(68),  
+        paddingBottom: globalHeight(28),  
         justifyContent:'space-between',
         backgroundColor:'#FFF', 
        paddingTop:globalHeight(8), 
@@ -30,7 +30,8 @@ export const styles = StyleSheet.create({
     titleView:{
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        marginBottom:10
     },
     whosIn: {
         fontSize: globalWidth(16), 
@@ -44,6 +45,7 @@ export const styles = StyleSheet.create({
     bottomSide:{
         alignItems:'flex-start',
         justifyContent:'space-between',
+        marginBottom:globalHeight(20)
     },
     itemView:{
         flexDirection:'row',

@@ -16,45 +16,19 @@ import loc from 'app/assets/img/loc.png'
 import edit from 'app/assets/img/edit.png'
 import { GlobalButton } from 'app/components/globalButton';
 import axiosInstance from 'app/networking/api';
-
+import { useDispatch, useSelector } from 'react-redux';
 
 export function Profile(props) {
-    const [data, setData] = useState([]);
+    let data = useSelector(store => store.customer)
+    
     const [globalData, setGlobalData] = useState({})
     const [load, setLoad] = useState(false)
 
-    let requestFunc = async () => {
-        try {
-            let res = await axiosInstance.get(`/user/detail`)
-            setData(res.data.data);
-            let resCountry = await axiosInstance.get("/country")
-            let resGender = await axiosInstance.get("/gender")
-            let resEducation = await axiosInstance.get(`/education`)
-            let resIncomingLvl = await axiosInstance.get(`/income-level`) 
-            setGlobalData({
-                resCountry: resCountry.data.data,
-                resGender: resGender.data.data,
-                resEducation: resEducation.data.data,
-                resIncomingLvl: resIncomingLvl.data.data,
-            })
-            setLoad(false)
-        } catch (e) {
-            console.log(e, 'err');
-            setLoad(false)
-        }
-    }
 
-  
-    useEffect(() => {
-        const unsubscribe = props.navigation.addListener('focus', () => {
-            setLoad(true)  
-            requestFunc()
-        });
-        return unsubscribe;
-    }, [props.navigation]);
+ 
 
-    
-    
+ 
+
     return (
         <View style={{ flex: 1, height: '100%' }}>
             <BgImage img={bg} />
@@ -67,7 +41,7 @@ export function Profile(props) {
                 />
                 <ScrollView contentContainerStyle={styles.content}  >
                     <View style={styles.topTitle}>
-                        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                        <TouchableOpacity style={{ padding: 4 }} onPress={() => props.navigation.goBack()}>
                             <Image source={back} style={styles.back} />
                         </TouchableOpacity>
                         <View style={styles.gFlex}>
@@ -81,19 +55,19 @@ export function Profile(props) {
                         <View style={styles.avatarView}>
                             <Image source={data.user_details?.image ? { uri: data.user_details?.image } : user} style={styles.userAvatar} />
                         </View>
-                        <TabGlobalButton name={`Username`} data={data.name} />
-                        <TabGlobalButton name={`Email Address`} data={data.email} />
-                        <TabGlobalButton name={`Date of Birth `} data={data.user_details?.date_of_birth} />
-                        <TabGlobalButton name={`Gender`} data={data.user_details?.gender?.name} />
-                        <TabGlobalButton name={`Country`} data={data.user_details?.country} />
-                        <TabGlobalButton name={`State`} data={data.user_details?.state} />
-                        <TabGlobalButton name={`City`} data={data.user_details?.city} />
+                        <TabGlobalButton opa={1} name={`Username`} data={data?.name} />
+                        <TabGlobalButton opa={1} name={`Email Address`} data={data?.email} />
+                        <TabGlobalButton opa={1} name={`Date of Birth `} data={data?.user_details?.date_of_birth} />
+                        <TabGlobalButton opa={1} name={`Gender`} data={data?.user_details?.gender?.name} />
+                        <TabGlobalButton opa={1} name={`Country`} data={data?.user_details?.country} />
+                        <TabGlobalButton opa={1} name={`State`} data={data?.user_details?.state} />
+                        <TabGlobalButton opa={1} name={`City`} data={data?.user_details?.city} />
                     </View>
                 </ScrollView>
             </SafeAreaView>
-          
+
             <LoadingModal isVisible={load} />
-         
+
         </View>
     )
 }

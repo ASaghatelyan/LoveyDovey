@@ -21,39 +21,41 @@ export const styles = StyleSheet.create({
         borderTopEndRadius: 16,
         borderTopLeftRadius: 16,
         paddingHorizontal: globalWidth(24),
-        paddingBottom: globalHeight(68),  
-        justifyContent:'space-between',
-        backgroundColor:'#FFF', 
-       paddingTop:globalHeight(8), 
-       margin:0
-    }, 
-    titleView:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between'
+        paddingBottom: globalHeight(28),
+        justifyContent: 'space-between',
+        backgroundColor: '#FFF',
+        paddingTop: globalHeight(8),
+        margin: 0
+    },
+    titleView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 10
     },
     whosIn: {
-        fontSize: globalWidth(16), 
+        fontSize: globalWidth(16),
         color: '#000',
         lineHeight: globalHeight(25),
     },
-    closeIc:{
-        width:globalWidth(24),
-        height:globalHeight(24)
+    closeIc: {
+        width: globalWidth(24),
+        height: globalHeight(24)
     },
-    bottomSide:{
-        alignItems:'flex-start',
-        justifyContent:'space-between',
+    bottomSide: {
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        marginBottom: globalHeight(20)
     },
-    itemView:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between',
-        width:'100%'
-    }, 
-    imgIc:{
-        width:globalWidth(17),
-        height:globalHeight(17),
+    itemView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%'
     },
-    
+    imgIc: {
+        width: globalWidth(17),
+        height: globalHeight(17),
+    },
+
 });

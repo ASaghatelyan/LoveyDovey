@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
         height: height
     },
     gFlex: {
-        flex: 1,
+        flex: 0.9,
         justifyContent: 'center',
         alignItems: 'center'
     },

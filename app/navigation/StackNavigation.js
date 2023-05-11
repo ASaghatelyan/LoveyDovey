@@ -6,7 +6,9 @@ import {
   Registration,
   TermsCondition,
   Introduction,
-  ChooseCategories
+  ChooseCategories,
+  RegistrInviter,
+  RegistrationType
 } from "app/screens";
 import ForgotPassNavigation from "./ForgotPassNavigation";
 
@@ -21,7 +23,9 @@ export default function StackNavigation() {
     >
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="RegistrationType" component={RegistrationType} />
       <Stack.Screen name="Registration" component={Registration} />
+      <Stack.Screen name="RegistrInviter" component={RegistrInviter} />
       <Stack.Screen name="Introduction" component={Introduction} />
       <Stack.Screen name="ChooseCategories" component={ChooseCategories} />
       <Stack.Screen name="TermsCondition" component={TermsCondition} />

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>705888184535-qjc29uqhkc28ldf55aqiqj7ca11gbbga.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.705888184535-qjc29uqhkc28ldf55aqiqj7ca11gbbga</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBv5NDd12A7KkSa5JKndD7X6EeeoPfkgW0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>705888184535</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.loveydovey</string>
+	<key>PROJECT_ID</key>
+	<string>loveydovey-613f5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>loveydovey-613f5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:705888184535:ios:83b39ec0ef7ac38a962892</string>
+</dict>
+</plist>

@@ -13,7 +13,8 @@ import lock from 'app/assets/img/lock.png'
 import { IAgree, Input } from 'app/components'
 import { GlobalButton } from 'app/components/globalButton'
 import axiosInstance from 'app/networking/api'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import back from 'app/assets/img/back.png'
+
 
 export function Registration(props) {
     const [name, setName] = useState("")
@@ -40,7 +41,6 @@ export function Registration(props) {
     }
 
 
-
     let handleSingUp = async () => {
         try {
             if (name && validateEmail(email) && pass.length > 7 && confirmPass.length > 7 && pass === confirmPass && toggleCheckBox) {
@@ -48,10 +48,10 @@ export function Registration(props) {
                     email,
                     password: pass,
                     name,
-                    confirm_password:confirmPass
+                    confirm_password: confirmPass
                 }
                 let response = await axiosInstance.post("/register", register);
-                props.navigation.navigate('Login') 
+                props.navigation.navigate('Login')
             }
             if (!name) {
                 setErr("Name is not filled")
@@ -81,23 +81,26 @@ export function Registration(props) {
                 setErr("Incorrect email address");
 
             }
-        } catch (e) { 
-            console.log(e,'err');
+        } catch (e) {
+            console.log(e, 'err');
             if (e.response.status === 401) {
                 let data = { email, type: "email" };
                 props.navigation.navigate("SignUp", data);
             }
         }
-       
+
     }
 
     return (
-        <ScrollView contentContainerStyle={styles.content}    showsVerticalScrollIndicator={false}
-        bounces={false}>
+        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}
+            bounces={false}>
             <StatusBar barStyle={'light-content'} showHideTransition={false} translucent />
             {Platform.OS === 'android' && StatusBar.setBackgroundColor("rgba(0,0,0,0)")}
             {Platform.OS === 'android' && StatusBar.setTranslucent(true)}
             <ImageBackground source={bg} style={styles.bgImage}>
+            <TouchableOpacity style={styles.btnView}  onPress={()=>props.navigation.goBack()}>
+                    <Image source={back} style={styles.backBtn} />
+                </TouchableOpacity>
                 <Image source={logo} style={styles.logo} />
                 <View style={styles.bottomView}>
                     <View style={{ width: '100%' }}>
@@ -147,7 +150,7 @@ export function Registration(props) {
 
                             setToggleCheckBox(newValue)
                         }} />
-                        <GlobalButton diffStyle={{marginTop:38}}  btnName="Sign up"  onSubmit={handleSingUp}/>
+                        <GlobalButton diffStyle={{ marginTop: 38 }} btnName="Sign up" onSubmit={handleSingUp} />
                         {err ? <Text style={styles.err}>{err}</Text> : <Text style={styles.err}></Text>}
                     </View>
                     <View style={styles.gFlex}>

@@ -56,30 +56,35 @@ export function WantNeedList(props) {
         {
             id: 6,
             status: false,
-            type: 'Peace',
-            img: mers
+            type: 'Passion',
+            img: he
         },
         {
             id: 7,
             status: false,
-            type: 'Passion',
-            img: he
+            type: 'Peace',
+            img: mers
         },
     ])
 
     const [data, setData] = useState([])
 
     useEffect(() => {
-        let requestFunc = async () => {
-            try {
-                let res = await axiosInstance.get(`/user/need-or-want`)
-                setData(Object.values(res.data.data))
-            } catch (e) {
-                console.log(e, 'err');
+        const unsubscribe = props.navigation.addListener('focus', () => {
+            let requestFunc = async () => {
+                try {
+                    let res = await axiosInstance.get(`/user/need-or-want`)
+                    setData(Object.values(res.data.data))
+                } catch (e) {
+                    console.log(e, 'err');
+                }
             }
-        }
-        requestFunc()
-    }, [])
+            requestFunc()
+        });
+        return unsubscribe;
+    }, [props.navigation]);
+
+
 
     const chooseItem = (id) => {
         let arr = data.map((i) => {
@@ -104,7 +109,7 @@ export function WantNeedList(props) {
                 />
                 <ScrollView contentContainerStyle={styles.content}  >
                     <View style={styles.topTitle}>
-                        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                        <TouchableOpacity style={{ padding: 4 }} onPress={() => props.navigation.goBack()}>
                             <Image source={back} style={styles.back} />
                         </TouchableOpacity>
                         <View style={styles.gFlex}>

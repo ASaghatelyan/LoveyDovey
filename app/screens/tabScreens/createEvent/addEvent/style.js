@@ -57,6 +57,26 @@ export const styles = StyleSheet.create({
         marginBottom: 16
 
     },
-
+    topTitle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: globalWidth(33),
+        marginHorizontal: globalHeight(24),
+    },
+    back: {
+        width: globalWidth(21),
+        height: globalHeight(12)
+    },
+    titleText: {
+        fontSize: globalWidth(24),
+        fontFamily: "Roboto-Medium",
+        color: '#403D3D',
+        lineHeight: globalHeight(28),
+    }, 
+    gFlex: {
+        flex: 0.9,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
 });
 

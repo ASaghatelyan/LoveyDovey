@@ -12,6 +12,7 @@ import { GlobalButton } from 'app/components/globalButton'
 import { TextInput as PaperInput } from 'react-native-paper';
 import moment from 'moment'
 import axiosInstance from 'app/networking/api'
+import back from 'app/assets/img/back.png'
 
 export function AddEvent(props) {
 
@@ -35,7 +36,7 @@ export function AddEvent(props) {
     formData.append('end', endData,)
 
     let onCreate = async () => {
-        try { 
+        try {
             if (startData && endData && frequency && text && category) {
                 await axiosInstance.post(`user/need-or-want/create`, formData)
                 props.navigation.replace('TabNavigation', { screen: 'CreateEventNavigation' })
@@ -57,15 +58,23 @@ export function AddEvent(props) {
                     // backgroundColor="transparent"
                     barStyle='dark-content'
                     translucent={true} />
+                <View style={styles.topTitle}>
+                    <TouchableOpacity style={{ padding: 4 }} onPress={() => props.navigation.goBack()}>
+                        <Image source={back} style={styles.back} />
+                    </TouchableOpacity>
+                    <View style={styles.gFlex}>
+                        <Text style={styles.titleText}>Edit Profile</Text>
+                    </View>
+                </View>
                 <ScrollView contentContainerStyle={styles.content}  >
                     <View>
-                        <Text style={styles.titleText}>Create Want/Need</Text>
+                        {/* <Text style={styles.titleText}>Create Want/Need</Text> */}
                         <TabGlobalButton name="Select Category"
                             data={category.name}
                             onPush={() => setMOdalVisible(!modalVisible)}
                         />
                         <PaperInput
-                            label="Desgription"
+                            label="Description"
                             value={text}
                             onChangeText={text => setText(text)}
                             style={styles.description}
@@ -99,7 +108,7 @@ export function AddEvent(props) {
                 />
                 <FrequencyModal
                     isVisible={frequencyModal}
-                    onClose={(info) => { 
+                    onClose={(info) => {
                         setFrequency(info)
                         setFrequencyModal(!frequencyModal)
                     }}

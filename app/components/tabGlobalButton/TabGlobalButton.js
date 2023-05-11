@@ -6,7 +6,7 @@ import { styles } from './style'
 export function TabGlobalButton(props) {
  
     return (
-        <TouchableOpacity style={[styles.globalView,props.diffStyle]} onPress={props.onPush} >
+        <TouchableOpacity activeOpacity={props.opa} style={[styles.globalView,props.diffStyle]} onPress={props.onPush} >
             <View style={styles.topView}>
                 {props.img ? <Image source={props.img} style={styles.img} /> : null}
                 <Text style={styles.nameText}>{props.name}</Text>

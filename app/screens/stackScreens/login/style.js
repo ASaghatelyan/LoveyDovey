@@ -2,58 +2,68 @@ import { StyleSheet, Dimensions } from "react-native";
 
 let width = Dimensions.get("window").width;
 let height = Dimensions.get("window").height;
+const widthFigma = 375
+const heightFigma = 812
+
+const globalWidth = (a) => {
+    return ((width * a) / widthFigma)
+}
+const globalHeight = (a) => {
+    return ((height * a) / heightFigma)
+}
+
 
 export const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
         position: 'relative', 
         alignItems: 'center',
-        paddingHorizontal: 16,
-        marginBottom: 37,
+        paddingHorizontal: globalWidth(16),
+        marginBottom: globalHeight(37),
     },
     err: {
-        fontSize: 14,
+        fontSize: globalWidth(14),
         fontFamily: "Roboto-Bold",
         color: 'red',
         textAlign: 'center',
-        lineHeight: 18,
-        marginTop: 6
+        lineHeight: globalHeight(18),
+        marginTop: globalHeight(6)
     },
     bgImage: {
         height: '100%',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        marginBottom: 37,
+        paddingHorizontal: globalWidth(16),
+        marginBottom: globalHeight(37),
     },
     logo: {
-        marginTop: 120,
+        marginTop: globalHeight(120),
         width: width / 2.97,
         height: width / 2.97
     },
     titleLogin: {
-        fontSize: 14,
+        fontSize: globalWidth(14),
         fontFamily: "Roboto-Bold",
         color: '#FFF',
         marginTop: height / 13.31,
-        lineHeight: 18
+        lineHeight: globalHeight(18)
     },
     emailView: {
         position: 'absolute',
-        right: 18,
-        bottom: 18
+        right: globalWidth(18),
+        bottom: globalHeight(18)
     },
     emailIc: {
-        width: 17,
-        height: 11
+        width: globalWidth(17),
+        height: globalHeight(11)
     },
     lockView: {
         position: 'absolute',
-        right: 18,
-        bottom: 17
+        right: globalWidth(18),
+        bottom: globalHeight(17)
     },
     lockIc: {
-        width: 15,
-        height: 17,
+        width: globalWidth(15),
+        height: globalHeight(17),
         resizeMode: 'contain'
     },
     bottomView: {
@@ -69,23 +79,23 @@ export const styles = StyleSheet.create({
     forgotPassView: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 9
+        marginTop: globalHeight(9)
     },
     forgotPassText: {
-        fontSize: 16,
+        fontSize: globalWidth(16),
         fontFamily: "Roboto-Bold",
         color: '#F5F5F5',
-        lineHeight: 19
+        lineHeight: globalHeight(19)
     },
     noAccount: {
-        fontSize: 16,
+        fontSize: globalWidth(16),
         fontFamily: "Roboto-Bold",
         color: '#F5F5F5',
-        lineHeight: 19
+        lineHeight: globalHeight(19)
     },
     regText: {
         color: '#EB1829',
-        fontSize: 16,
+        fontSize: globalWidth(16),
         fontFamily: "Roboto-Medium",
     },
 });

@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: globalWidth(17), 
     },
     gFlex: {
-        flex: 1,
+        flex: 0.9,
         justifyContent: 'center',
         alignItems: 'center'
     },

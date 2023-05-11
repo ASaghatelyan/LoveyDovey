@@ -29,7 +29,7 @@ export function TermsCondition(props) {
                 />
                 <ScrollView contentContainerStyle={styles.content}  >
                     <View style={styles.topTitle}>
-                        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                        <TouchableOpacity style={{ padding:4}} onPress={() => props.navigation.goBack()}>
                             <Image source={back} style={styles.back} />
                         </TouchableOpacity>
                         <View style={styles.gFlex}>

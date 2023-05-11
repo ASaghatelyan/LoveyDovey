@@ -60,17 +60,18 @@ export const styles = StyleSheet.create({
         color: '#210B04',
         fontSize: globalWidth(20),
         fontFamily: "Roboto-Medium",
+        marginBottom:globalHeight(10)
     },
     description: {
         borderBottomColor: '#979797',
         backgroundColor: '#FFF',
-        fontSize: 14,
-        marginBottom: 16
+        fontSize: globalWidth(14),
+        marginBottom: globalHeight(16)
     },
     btnView: {
         alignItems: 'center',
         marginHorizontal: globalHeight(16),
-        marginTop: 24
+        marginTop: globalHeight(24)
     },
     textInput: {
         backgroundColor: '#F8F8F8',
@@ -78,7 +79,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         borderRadius: 10,
-        marginTop: 4,
+        marginTop: globalHeight(4),
         paddingHorizontal: globalWidth(16),
         paddingTop: globalHeight(16),
     },
@@ -89,8 +90,7 @@ export const styles = StyleSheet.create({
         marginRight: globalWidth(16)
     },
     commentItem: {
-        marginBottom: 17
-
+        marginBottom: globalHeight(17)
     },
     commentView: {
         flexDirection: 'row',
@@ -124,13 +124,13 @@ export const styles = StyleSheet.create({
     itemView: {
         borderBottomColor: '#C4C0BF',
         borderBottomWidth: 1,
-        paddingBottom: 24,
-        marginBottom: 24
+        paddingBottom: globalHeight(24),
+        marginBottom: globalHeight(24)
     },
     recentItemView: {
         flexDirection:'row',
         alignItems:'center',
-        marginBottom:24
+        marginBottom:globalHeight(24)
     },
     blogImg: {
         width:globalWidth(93),
@@ -142,7 +142,7 @@ export const styles = StyleSheet.create({
         color: '#403D3D',
         lineHeight: globalHeight(14),
         width: globalWidth(213),
-        marginLeft: 16
+        marginLeft: globalWidth(16)
     }
 });
 

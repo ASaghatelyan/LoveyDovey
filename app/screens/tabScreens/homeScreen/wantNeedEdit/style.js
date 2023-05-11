@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
         marginBottom: globalWidth(33), 
     },
     gFlex: {
-        flex: 1,
+        flex: 0.9,
         justifyContent: 'center',
         alignItems: 'center'
     },

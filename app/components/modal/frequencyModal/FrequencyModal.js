@@ -4,6 +4,7 @@ import Modal from 'react-native-modal'
 import { styles } from './style'
 import { SubmitItem } from 'app/components/submitItem'
 import close from 'app/assets/img/close.png'
+import { GlobalButton } from 'app/components/globalButton'
 
 export function FrequencyModal(props) {
     const [data, setData] = useState('')
@@ -58,7 +59,7 @@ export function FrequencyModal(props) {
         >
             <View style={styles.titleView}>
                 <Text style={styles.whosIn}>Choose Frequency</Text>
-                <TouchableOpacity onPress={() => props.onClose(data)}>
+                <TouchableOpacity style={{ padding: 4 }} onPress={() => props.onClose(data)}>
                     <Image source={close} style={styles.closeIc} />
                 </TouchableOpacity>
             </View>
@@ -76,7 +77,7 @@ export function FrequencyModal(props) {
                     />)
                 })}
             </View>
-
+            <GlobalButton btnName="Submit" onSubmit={() => props.onClose(data)} />
         </Modal>
     )
 }

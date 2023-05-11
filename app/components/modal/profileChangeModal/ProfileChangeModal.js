@@ -41,7 +41,7 @@ export function ProfileChangeModal(props) {
                         key={index}
                         color={{ color: '#403D3D', fontSize: 16 }}
                         check={item.status}
-                        onSubmit={() => {
+                        valueChanged={() => {
                             setData(props.data[index].name);
                             chooseItem(index)
                             props.onChoose(props.data[index])
